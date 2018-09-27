@@ -9,22 +9,19 @@
 
 TurningSensors turningSensors = {0,0,0,0};
 
+struct itimerspec       itime;
 timer_t                 timer_id;
-struct itimerspec       itime_4_sec;
-struct itimerspec       itime_3_sec;
-struct itimerspec       itime_2_5_sec;
-struct itimerspec       itime_2_sec;
-struct itimerspec       itime_1_5_sec;
-struct itimerspec       itime_1_sec;
 
-void changeMainIntersectionState(enum mainIntersectionStates *newState, struct itimerspec *itime){
+void changeMainIntersectionState(enum mainIntersectionStates *newState){
 	switch (*newState) {
 		case RRRRRRRR:
 			printf("RRRRRRRR 1\n");
+			setTime(&timer_id, &itime, 1);
 			*newState = GGGGRRRR;
 			break;
 		case GGGGRRRR:
 			printf("GGGGRRRR 2\n");
+			setTime(&timer_id, &itime, 4);
 			if (turningSensors.NE_Waiting || turningSensors.SW_Waiting || turningSensors.ES_Waiting || turningSensors.WN_Waiting) {
 				*newState = YGYGRRRR;
 			} else {
@@ -33,16 +30,19 @@ void changeMainIntersectionState(enum mainIntersectionStates *newState, struct i
 			break;
 		case YGYGRRRR:
 			printf("YGYGRRRR 3\n");
+			setTime(&timer_id, &itime, 2);
 			*newState = RGRGRRGG;
 			break;
 		case RGRGRRGG:
 			printf("RGRGRRGG 4\n");
+			setTime(&timer_id, &itime, 3);
 			turningSensors.NE_Waiting = 0;
 			turningSensors.SW_Waiting = 0;
 			*newState = RGRGRRYY;
 			break;
 		case RGRGRRYY:
 			printf("RGRGRRYY 5\n");
+			setTime(&timer_id, &itime, 2);
 			if (!turningSensors.ES_Waiting && turningSensors.WN_Waiting) {
 				*newState = RGRYRRRR;
 			} else if (turningSensors.ES_Waiting && turningSensors.WN_Waiting) {
@@ -55,42 +55,51 @@ void changeMainIntersectionState(enum mainIntersectionStates *newState, struct i
 			break;
 		case RYRYRRRR:
 			printf("RYRYRRRR 6\n");
+			setTime(&timer_id, &itime, 2);
 			*newState = RRRRGGRR;
 			break;
 		case RRRRGGRR:
 			printf("RRRRGGRR 7\n");
+			setTime(&timer_id, &itime, 3);
 			turningSensors.ES_Waiting = 0;
 			turningSensors.WN_Waiting = 0;
 			*newState = RRRRYYRR;
 			break;
 		case RRRRYYRR:
 			printf("RRRRYYRR 8\n");
+			setTime(&timer_id, &itime, 2);
 			*newState = GGGGRRRR;
 			break;
 		case RYRGGRRR:
 			printf("RYRGGRRR 9\n");
+			setTime(&timer_id, &itime, 2);
 			*newState = RRRGGRRR;
 			break;
 		case RRRGGRRR:
 			printf("RRRGGRRR 10\n");
+			setTime(&timer_id, &itime, 3);
 			turningSensors.ES_Waiting = 0;
 			*newState = RRRGYRRR;
 			break;
 		case RRRGYRRR:
 			printf("RRRGYRRR 11\n");
+			setTime(&timer_id, &itime, 2);
 			*newState = GGGGRRRR;
 			break;
 		case RGRYRRRR:
 			printf("RGRYRRRR 12\n");
+			setTime(&timer_id, &itime, 2);
 			*newState = RGRRGRRR;
 			break;
 		case RGRRGRRR:
 			printf("RGRRGRRR 13\n");
+			setTime(&timer_id, &itime, 3);
 			turningSensors.WN_Waiting = 0;
 			*newState = RGRRRYRR;
 			break;
 		case RGRRRYRR:
 			printf("RGRRRYRR 14\n");
+			setTime(&timer_id, &itime, 2);
 			*newState = GGGGRRRR;
 			break;
 		}
@@ -102,18 +111,15 @@ void *mainIntersectionStateMachine() {
 	int                     chid;
 	int                     rcvid;
 
-//	setUpTimer(&chid, &itime, &itime_1_sec, 1000000000);
-//	setUpTimer(&chid, &itime, &itime_2_sec, 1000000000);
-//	setUpTimer(&chid, &itime, &itime_3_sec, 1000000000);
-//	setUpTimer(&chid, &itime, &itime_4_sec, 1000000000);
+	setUpTimer(&chid, &timer_id);
+
+	changeMainIntersectionState(&newState);
 
 	while (1) {
 		rcvid = MsgReceive(chid, &msg, sizeof(msg), NULL);
 		if (rcvid == 0){
 		   if (msg.pulse.code == MY_PULSE_CODE){
-//			   changeMainIntersectionState(&newState, &itime);
-//			   printf("Timer value: %f\n", itime.it_value.tv_sec);
-//			   timer_settime(timer_id, 0, &itime, NULL);
+			   changeMainIntersectionState(&newState);
 		   }
 		}
 	}

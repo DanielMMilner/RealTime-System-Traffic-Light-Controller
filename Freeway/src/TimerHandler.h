@@ -36,7 +36,7 @@ typedef struct {
 	char buf[BUF_SIZE]; // Message we send back to clients to tell them the messages was processed correctly.
 } my_reply;
 
-void setUpTimer(int *chid, timer_t *timer_id);
+void setTime(timer_t *timer_id, struct itimerspec *itime, float length);
 
 void setUpTimer(int *chid, timer_t *timer_id);
 
