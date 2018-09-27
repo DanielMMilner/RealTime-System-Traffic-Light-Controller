@@ -38,7 +38,7 @@ enum mainIntersectionStates {
 
 enum mainIntersectionStates CurState;
 
-void changeMainIntersectionState(enum mainIntersectionStates *newState);
+void changeMainIntersectionState(enum mainIntersectionStates *newState, timer_t *timer_id,struct itimerspec *itime);
 
 void *mainIntersectionStateMachine();
 
