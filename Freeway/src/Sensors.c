@@ -7,9 +7,9 @@
 
 #include "Sensors.h"
 
-TurningSensors turningSensors = {0,0,0,0};
+TurningSensors turningSensors = { 0, 0, 0, 0 };
 
-void changeSensor(int* sensor, int value){
+void changeSensor(int* sensor, int value) {
 	pthread_mutex_lock(&turningSensors.mutex);
 	*sensor = value;
 	pthread_mutex_unlock(&turningSensors.mutex);
@@ -18,7 +18,7 @@ void changeSensor(int* sensor, int value){
 //To be replaced with keypad input
 void *userInput() {
 	int temp;
-	while(1) {
+	while (1) {
 		temp = getchar();
 		if (temp == '1')
 			changeSensor(&turningSensors.NE_Waiting, 1);

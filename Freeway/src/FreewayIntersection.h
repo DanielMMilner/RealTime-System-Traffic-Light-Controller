@@ -34,7 +34,8 @@ enum mainIntersectionStates CurState;
 
 extern TurningSensors turningSensors;
 
-void changeMainIntersectionState(enum mainIntersectionStates *newState, timer_t *timer_id,struct itimerspec *itime);
+void changeMainIntersectionState(enum mainIntersectionStates *newState,
+		timer_t *timer_id, struct itimerspec *itime);
 
 void *mainIntersectionStateMachine();
 

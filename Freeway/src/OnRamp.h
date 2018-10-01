@@ -17,7 +17,8 @@ enum onRampStates {
 	GREEN, RED, YELLOW, OFF
 };
 
-void changeOnRampState(enum onRampStates *newState,timer_t *timer_id,struct itimerspec *itime);
+void changeOnRampState(enum onRampStates *newState, timer_t *timer_id,
+		struct itimerspec *itime);
 
 void *onRampStateMachine();
 

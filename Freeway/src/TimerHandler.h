@@ -19,10 +19,9 @@
 #define BUF_SIZE 100
 #define MY_PULSE_CODE   _PULSE_CODE_MINAVAIL
 
-typedef union
-{
-	struct _pulse   pulse;
-    // your other message structures would go here too
+typedef union {
+	struct _pulse pulse;
+// your other message structures would go here too
 } my_message_t;
 
 typedef struct {

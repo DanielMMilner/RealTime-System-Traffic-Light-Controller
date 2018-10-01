@@ -17,7 +17,7 @@ typedef struct {
 	int SW_Waiting;
 	int ES_Waiting;
 	int WN_Waiting;
-    pthread_mutex_t mutex;
+	pthread_mutex_t mutex;
 } TurningSensors;
 
 void changeSensor(int* sensor, int value);
