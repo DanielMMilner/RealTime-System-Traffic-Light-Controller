@@ -11,13 +11,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "TimerHandler.h"
-
-typedef struct {
-	int NE_Waiting;
-	int SW_Waiting;
-	int ES_Waiting;
-	int WN_Waiting;
-} TurningSensors;
+#include "Sensors.h"
 
 enum mainIntersectionStates {
 	RRRRRRRR,
@@ -37,6 +31,8 @@ enum mainIntersectionStates {
 };
 
 enum mainIntersectionStates CurState;
+
+extern TurningSensors turningSensors;
 
 void changeMainIntersectionState(enum mainIntersectionStates *newState, timer_t *timer_id,struct itimerspec *itime);
 

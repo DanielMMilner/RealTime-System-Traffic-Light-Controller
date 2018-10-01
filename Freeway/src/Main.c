@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "FreewayIntersection.h"
 #include "OnRamp.h"
+#include "Sensors.h"
 
 int main(int argc, char *argv[]) {
 	printf("Intersection running\n");

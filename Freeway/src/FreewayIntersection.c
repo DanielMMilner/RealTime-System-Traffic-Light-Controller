@@ -7,8 +7,6 @@
 
 #include "FreewayIntersection.h"
 
-TurningSensors turningSensors = {0,0,0,0};
-
 void changeMainIntersectionState(enum mainIntersectionStates *newState, timer_t *timer_id,struct itimerspec *itime){
 	switch (*newState) {
 		case RRRRRRRR:
@@ -33,8 +31,8 @@ void changeMainIntersectionState(enum mainIntersectionStates *newState, timer_t 
 		case RGRGRRGG:
 			printf("RGRGRRGG 4\n");
 			setTime(timer_id, itime, 3);
-			turningSensors.NE_Waiting = 0;
-			turningSensors.SW_Waiting = 0;
+			changeSensor(&turningSensors.NE_Waiting, 0);
+			changeSensor(&turningSensors.SW_Waiting, 0);
 			*newState = RGRGRRYY;
 			break;
 		case RGRGRRYY:
@@ -58,8 +56,8 @@ void changeMainIntersectionState(enum mainIntersectionStates *newState, timer_t 
 		case RRRRGGRR:
 			printf("RRRRGGRR 7\n");
 			setTime(timer_id, itime, 3);
-			turningSensors.ES_Waiting = 0;
-			turningSensors.WN_Waiting = 0;
+			changeSensor(&turningSensors.ES_Waiting, 0);
+			changeSensor(&turningSensors.WN_Waiting, 0);
 			*newState = RRRRYYRR;
 			break;
 		case RRRRYYRR:
@@ -75,7 +73,7 @@ void changeMainIntersectionState(enum mainIntersectionStates *newState, timer_t 
 		case RRRGGRRR:
 			printf("RRRGGRRR 10\n");
 			setTime(timer_id, itime, 3);
-			turningSensors.ES_Waiting = 0;
+			changeSensor(&turningSensors.ES_Waiting, 0);
 			*newState = RRRGYRRR;
 			break;
 		case RRRGYRRR:
@@ -91,7 +89,7 @@ void changeMainIntersectionState(enum mainIntersectionStates *newState, timer_t 
 		case RGRRGRRR:
 			printf("RGRRGRRR 13\n");
 			setTime(timer_id, itime, 3);
-			turningSensors.WN_Waiting = 0;
+			changeSensor(&turningSensors.WN_Waiting, 0);
 			*newState = RGRRRYRR;
 			break;
 		case RGRRRYRR:
@@ -261,20 +259,3 @@ void *mainIntersectionStateMachine() {
 //	ChannelDestroy(chid);
 //	return EXIT_SUCCESS;
 //}
-
-//To be replaced with keypad input
-void *userInput() {
-	int temp;
-	for (;;) {
-		temp = getchar();
-		if (temp == '1')
-			turningSensors.NE_Waiting = 1;
-		if (temp == '2')
-			turningSensors.SW_Waiting = 1;
-		if (temp == '3')
-			turningSensors.ES_Waiting = 1;
-		if (temp == '4')
-			turningSensors.WN_Waiting = 1;
-	}
-	return 0;
-}
