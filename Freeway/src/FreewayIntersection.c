@@ -122,7 +122,7 @@ void *mainIntersectionStateMachine() {
 			}
 		}
 	}
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 /*** Server code ***/

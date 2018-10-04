@@ -26,6 +26,8 @@ int main(int argc, char *argv[]) {
 	pthread_t mainIntersection;
 	pthread_create(&mainIntersection, NULL, mainIntersectionStateMachine, NULL);
 
+	keypadMethod();
+
 	pthread_join(sensors, NULL);
 	pthread_join(onRamp1, NULL);
 	pthread_join(onRamp2, NULL);
