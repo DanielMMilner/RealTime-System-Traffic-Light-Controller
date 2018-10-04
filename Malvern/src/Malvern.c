@@ -75,13 +75,14 @@ int timer_done(int chid)
 
 typedef struct
 {
-    int sensor1;
-    int sensor2;
-    int sensor3;
-    int sensor4;
-    int sensor5;
-    int sensor6;
-    int sensor7;
+    int sensor1:1;
+    int sensor2:1;
+    int sensor3:1;
+    int sensor4:1;
+    int sensor5:1;
+    int sensor6:1;
+    int sensor7:1;
+    pthread_mutex_t mutex;
 } sensor_state;
 
 typedef enum
@@ -245,6 +246,46 @@ void light_state_machine(light_state *state, sensor_state sen, int boom_gate, ti
     }
 }
 
+void *sensor_thr(void *data) {
+	sensor_state *ss = (sensor_state*)data;
+
+	while(1) {
+		int sensor_sel = 0;
+		scanf("%d", &sensor_sel);
+
+		pthread_mutex_lock(&ss->mutex);
+
+		// toggle sensor data.
+		switch(sensor_sel) {
+		case 1:
+			ss->sensor1 = !ss->sensor1;
+			break;
+		case 2:
+			ss->sensor2 = !ss->sensor2;
+			break;
+		case 3:
+			ss->sensor3 = !ss->sensor3;
+			break;
+		case 4:
+			ss->sensor4 = !ss->sensor4;
+			break;
+		case 5:
+			ss->sensor5 = !ss->sensor5;
+			break;
+		case 6:
+			ss->sensor6 = !ss->sensor6;
+			break;
+		case 7:
+			ss->sensor7 = !ss->sensor7;
+			break;
+		default:
+			break;
+			// ignore bad values
+		}
+
+		pthread_mutex_unlock(&ss->mutex);
+	}
+}
 
 int main(void) {
     timer_container tc;
