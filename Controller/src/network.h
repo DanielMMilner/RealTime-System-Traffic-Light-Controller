@@ -9,7 +9,7 @@
 #include <share.h>
 
 #define BUF_SIZE 300
-#define LOCAL_ATTACH_POINT "controller"
+#define LOCAL_ATTACH_POINT "controller2"
 #define MAX_CONNECT_ATTEMPT_COUNT 20
 
 typedef enum {
@@ -17,7 +17,7 @@ typedef enum {
 } Client_ID;
 
 static char *CLIENT_NAMES[5] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
-        "Pedestrain Node" };
+        "Pedestrian Node" };
 
 typedef enum
 {
