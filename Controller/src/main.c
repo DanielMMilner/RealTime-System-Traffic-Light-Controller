@@ -4,37 +4,8 @@
 #include <sys/dispatch.h>
 #include <fcntl.h>
 #include <share.h>
-
-#define BUF_SIZE 300
-#define LOCAL_ATTACH_POINT "controller"
-
-typedef enum {
-	CID_CONTROLLER = 0, CID_FREEWAY = 1, CID_MALVERN = 2, CID_TRAIN = 3, CID_PEDESTRAIN = 4
-} Client_ID;
-
-static char *CLIENT_NAMES[5] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
-        "Pedestrain Node" };
-
-typedef struct {
-	Client_ID id;
-	char QNET_name[BUF_SIZE];
-} Client_typedef;
-
-typedef struct {
-	struct _pulse hdr;
-	int ClientID; // node client ID
-	char data[BUF_SIZE]; // Message Data
-} Send_header;
-
-typedef struct {
-	struct _pulse hdr; // Our real data comes after this header
-	char buf[BUF_SIZE]; // Message we send back to clients to tell them the messages was processed correctly.
-} Response_header;
-
-// Thread to read from console.
-int *read_thread() {
-
-}
+#include "network.h"
+#include "client.h"
 
 // Thread for the server
 int *server_thread() {
@@ -104,9 +75,24 @@ int *server_thread() {
 				continue;	// go back to top of while loop
 			}
 
-			printf("Server received data packet with value of '%s' from client (ID:%d), ", msg.data, msg.ClientID);
-			fflush(stdout);
-			printf("\n    -----> replying with: '%s'\n", replymsg.buf);
+			printf("Message received from: %s with command '%s' and data '%d'\n", CLIENT_NAMES[msg.ClientID], COMMAND_STRS[(int)msg.command], msg.data);
+
+			// Process the data and res given the command
+			switch(msg.command)
+			{
+			case COMMAND_GET_STATE:
+				replymsg.data = 100; // ENTER STATE HERE
+				break;
+			case COMMAND_SET_SENSOR:
+				// PROCESS SENSOR REQUEST HERE
+				// msg.data contains the sensor number
+				// msg.data2 contains the value to set the sensor to 0 or 1
+
+				replymsg.data = -1; // Always reply with -1 for set sensor
+				break;
+			}
+
+			// Server responds to msg.
 			MsgReply(rcvid, EOK, &replymsg, sizeof(replymsg));
 
 		} else {
@@ -121,41 +107,9 @@ int *server_thread() {
 	return EXIT_SUCCESS;
 }
 
-// Thread for each client. Many of these are running
-int *client_thread(void *data) {
-	Client_typedef *client = (Client_typedef*) data;
-	Send_header msg;
-	Response_header reply;
-
-	msg.ClientID = (int) client->id;
-
-	int server_coid;
-
-	// Connect to the server
-	printf("Attempting to connect to: %s at %s\n", CLIENT_NAMES[(int) client->id], client->QNET_name);
-
-	if ((server_coid = name_open(client->QNET_name, 0)) == -1) {
-		printf("\n    ERROR, unable to connect to %s!\n\n", client->QNET_name);
-		return EXIT_FAILURE;
-	}
-
-	printf("Connection established to: %s\n", CLIENT_NAMES[(int) client->id]);
-
-	// We would have pre-defined data to stuff here
-	msg.hdr.type = 0x00;
-	msg.hdr.subtype = 0x00;
-
-	sprintf(msg.data, "HELLO WORLD");
-
-	MsgSend(server_coid, &msg, sizeof(msg), &reply, sizeof(reply));
-
-	name_close(server_coid);
-	return EXIT_SUCCESS;
-}
-
 // Private vars
-Client_typedef freeway = { CID_FREEWAY, "/dev/name/local/controller" };
-Client_typedef malvern = { CID_MALVERN, "/dev/name/local/controller" };
+Client_typedef freeway = { CID_FREEWAY, "/net/RMIT_BBB_v5_03/dev/name/local/freeway" };
+//Client_typedef malvern = { CID_MALVERN, "/dev/name/local/controller" };
 //Client_typedef pedestrain = {CID_PEDESTRAIN, "/net/Beagle01.net.intra/dev/name/local/pedestrain"};
 //Client_typedef train = {CID_TRAIN, "/net/Beagle01.net.intra/dev/name/local/train"};
 
@@ -168,7 +122,6 @@ int main(void) {
 	pthread_create(&serverTHD, NULL, server_thread, NULL);
 	sleep(1);
 	pthread_create(&clientTHD, NULL, client_thread, &freeway);
-	pthread_create(&c2, NULL, client_thread, &malvern);
 
 	pthread_join(c2, &retval);
 	pthread_join(clientTHD, &retval);
