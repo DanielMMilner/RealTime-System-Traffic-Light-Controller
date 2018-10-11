@@ -24,6 +24,6 @@ typedef struct
 
 
 void configure_timer(timer_container *tc);
-int timer_done(int chid);
+int timer_done(timer_container *tc);
 
 #endif /* SRC_MALV_TIMER_H_ */

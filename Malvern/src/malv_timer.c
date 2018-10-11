@@ -45,11 +45,11 @@ void configure_timer(timer_container *tc)
     timer_settime(tc->timer_id, 0, tc->itime_current, NULL);
 }
 
-int timer_done(int chid)
+int timer_done(timer_container *tc)
 {
     my_message_t msg;
 
-    if(MsgReceive(chid, &msg, sizeof(msg), NULL) == 0)
+    if(MsgReceive(tc->chid, &msg, sizeof(msg), NULL) == 0)
     {
         if (msg.pulse.code == MY_PULSE_CODE)
         {

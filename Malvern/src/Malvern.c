@@ -29,7 +29,7 @@ int main(void) {
     // main control loop
     while(1)
     {
-        if(timer_done(tc.chid))
+        if(timer_done(&tc))
         {
             print_state(&state, &sen);
             light_state_machine(&state, sen, boom_gate, &tc);
