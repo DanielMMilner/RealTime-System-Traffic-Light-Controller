@@ -30,6 +30,14 @@ enum mainIntersectionStates {
 	RGRRRYRR
 };
 
+enum freewaySensors {
+	NE_Waiting = 1,
+	SW_Waiting = 2,
+	ES_Waiting = 3,
+	WN_Waiting = 4,
+	Use_Sensors = 5
+};
+
 enum mainIntersectionStates CurState;
 
 extern TurningSensors turningSensors;

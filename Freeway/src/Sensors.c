@@ -1,31 +1,84 @@
 #include "Sensors.h"
 
-TurningSensors turningSensors = { 0, 0, 0, 0 };
+TurningSensors turningSensors = { 0, 0, 0, 0, 0, 0, 0 };
 
 // create global struct to share data between threads
 ISR_data ISR_area_data;
 
+int getSensorValue(int sensor) {
+	pthread_mutex_lock(&turningSensors.mutex);
+	int value = 0;
+	switch (sensor) {
+	case (1):
+		value = turningSensors.NE_Waiting;
+		break;
+	case (2):
+		value = turningSensors.SW_Waiting;
+		break;
+	case (3):
+		value = turningSensors.ES_Waiting;
+		break;
+	case (4):
+		value = turningSensors.WN_Waiting;
+		break;
+	case (5):
+		value = turningSensors.Use_Sensors;
+		break;
+	case (6):
+		value = turningSensors.East_Onramp;
+		break;
+	case (7):
+		value = turningSensors.West_Onramp;
+		break;
+	}
+	pthread_mutex_unlock(&turningSensors.mutex);
+
+	return value;
+}
+
 void changeSensor(int* sensor, int value) {
 	pthread_mutex_lock(&turningSensors.mutex);
-	*sensor = value;
+	if (value == 2) {
+		if (*sensor == 1) {
+			*sensor = 0;
+			printf("Sensors Disabled\n");
+		} else {
+			*sensor = 1;
+			printf("Sensors Enabled\n");
+		}
+	} else {
+		*sensor = value;
+	}
 	pthread_mutex_unlock(&turningSensors.mutex);
 }
 
-//To be replaced with keypad input
-void *userInput() {
-	int temp;
-	while (1) {
-		temp = getchar();
-		if (temp == '1')
-			changeSensor(&turningSensors.NE_Waiting, 1);
-		if (temp == '2')
-			changeSensor(&turningSensors.SW_Waiting, 1);
-		if (temp == '3')
-			changeSensor(&turningSensors.ES_Waiting, 1);
-		if (temp == '4')
-			changeSensor(&turningSensors.WN_Waiting, 1);
+void remoteSensorActivation(int sensor) {
+	switch (sensor) {
+	case (1):
+		changeSensor(&turningSensors.NE_Waiting, 1);
+		break;
+	case (2):
+		changeSensor(&turningSensors.SW_Waiting, 1);
+		break;
+	case (3):
+		changeSensor(&turningSensors.ES_Waiting, 1);
+		break;
+	case (4):
+		changeSensor(&turningSensors.WN_Waiting, 1);
+		break;
+	case (5):
+		changeSensor(&turningSensors.Use_Sensors, 2);
+		printf("Sensors Toggled\n");
+		break;
+	case (6):
+		changeSensor(&turningSensors.East_Onramp, 2);
+		printf("East Ramp Toggled\n");
+		break;
+	case (7):
+		changeSensor(&turningSensors.West_Onramp, 2);
+		printf("West Ramp Toggled\n");
+		break;
 	}
-	return 0;
 }
 
 void strobe_SCL(uintptr_t gpio_port_add) {
@@ -64,20 +117,24 @@ uint32_t KeypadReadIObit(uintptr_t gpio_base, uint32_t BitsToRead) {
 void DecodeKeyValue(uint32_t word) {
 	switch (word) {
 	case 0x01:
-		printf("Key  1 pressed\n");
+		printf("NE Sensor triggered\n");
 		changeSensor(&turningSensors.NE_Waiting, 1);
 		break;
 	case 0x02:
-		printf("Key  2 pressed\n");
+		printf("SW Sensor triggered\n");
 		changeSensor(&turningSensors.SW_Waiting, 1);
 		break;
 	case 0x04:
-		printf("Key  3 pressed\n");
+		printf("ES Sensor triggered\n");
 		changeSensor(&turningSensors.ES_Waiting, 1);
 		break;
 	case 0x08:
-		printf("Key  4 pressed\n");
+		printf("WN Sensor triggered\n");
 		changeSensor(&turningSensors.WN_Waiting, 1);
+		break;
+	case 0x10:
+		printf("Key  5 pressed\n");
+		changeSensor(&turningSensors.Use_Sensors, 2);
 		break;
 	case 0x00:  // key release event (do nothing)
 		break;

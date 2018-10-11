@@ -1,10 +1,3 @@
-/*
- * Sensors.h
- *
- *  Created on: 28Sep.,2018
- *      Author: Daniel
- */
-
 /******************************************************
  *  Demonstration program to read the XC4602 Jaycar Keypad
  *  on a BeagleBone Black (BBB) running QNX 6.60 that matches the lecture notes
@@ -101,6 +94,9 @@ typedef struct {
 	int SW_Waiting;
 	int ES_Waiting;
 	int WN_Waiting;
+	int Use_Sensors;
+	int East_Onramp;
+	int West_Onramp;
 	pthread_mutex_t mutex;
 } TurningSensors;
 
@@ -124,9 +120,11 @@ typedef struct {
 	struct sigevent pevent; // remember to fill in "event" structure in main
 } ISR_data;
 
+int getSensorValue(int sensor);
+
 void changeSensor(int* sensor, int value);
 
-void *userInput();
+void remoteSensorActivation(int sensor);
 
 void strobe_SCL(uintptr_t gpio_port_add);
 

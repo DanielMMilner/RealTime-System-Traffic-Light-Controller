@@ -12,14 +12,21 @@
 #include <stdio.h>
 
 #include "TimerHandler.h"
+#include "Sensors.h"
+
+extern TurningSensors turningSensors;
 
 enum onRampStates {
 	GREEN, RED, YELLOW, OFF
 };
 
-void changeOnRampState(enum onRampStates *newState, timer_t *timer_id,
-		struct itimerspec *itime);
+enum rampSensors {
+	East_Onramp = 6, West_Onramp = 7
+};
 
-void *onRampStateMachine();
+void changeOnRampState(enum onRampStates *newState, timer_t *timer_id,
+		struct itimerspec *itime, int rampID);
+
+void *onRampStateMachine(void *isEast);
 
 #endif /* SRC_ONRAMP_H_ */
