@@ -20,7 +20,7 @@ typedef enum
     State12
 } light_state;
 
-void print_light_state(light_state *state);
+void print_state(light_state *state, sensor_state *sen);
 void light_state_machine(light_state *state, sensor_state sen, int boom_gate, timer_container *tc);
 
 #endif /* SRC_MALV_STATEMACHINE_H_ */

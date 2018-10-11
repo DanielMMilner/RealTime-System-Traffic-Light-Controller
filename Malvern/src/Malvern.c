@@ -6,7 +6,7 @@
 #include "malv_timer.h"
 #include "malv_sensors.h"
 #include "malv_statemachine.h"
-
+#include "server.h"
 
 int main(void) {
 	// state variables
@@ -23,12 +23,15 @@ int main(void) {
     pthread_t th_sensor;
     pthread_create(&th_sensor, NULL, sensor_thr, &sen);
 
+    pthread_t th_server;
+    pthread_create(&th_server, NULL, server_thread, NULL);
+
     // main control loop
     while(1)
     {
         if(timer_done(tc.chid))
         {
-            print_light_state(&state);
+            print_state(&state, &sen);
             light_state_machine(&state, sen, boom_gate, &tc);
 
             timer_settime(tc.timer_id, 0, tc.itime_current, NULL);

@@ -1,59 +1,69 @@
-
 #include "malv_statemachine.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-void print_light_state(light_state *state) {
+void print_state(light_state *state, sensor_state *sen) {
     switch (*state) {
     case State1:
-        printf("RRRRRRR (State1)\n");
+        printf("RRRRRRR (State 1)");
         break;
     case State2:
-        printf("RRRRRGG (State2)\n");
+        printf("RRRRRGG (State 2)");
         break;
     case State3:
-        printf("RRRRRYG (State3)\n");
+        printf("RRRRRYG (State 3)");
         break;
     case State4:
-        printf("RRRRRRG (State4)\n");
+        printf("RRRRRRG (State 4)");
         break;
     case State5:
-        printf("GGRRRRG (State5)\n");
+        printf("GGRRRRG (State 5)");
         break;
     case State5b:
-        printf("RGRRRRG (State5b)\n");
+        printf("RGRRRRG (State5b)");
         break;
     case State6:
-        printf("YYRRRRY (State6)\n");
+        printf("YYRRRRY (State 6)");
         break;
     case State6b:
-        printf("RYRRRRY (State6b)\n");
+        printf("RYRRRRY (State6b)");
         break;
     case State7:
-        printf("RRRRRRR (State7)\n");
+        printf("RRRRRRR (State 7)");
         break;
     case State8:
-        printf("GRRGGRR (State8)\n");
+        printf("GRRGGRR (State 8)");
         break;
     case State8b:
-        printf("RRRGGRR (State8b)\n");
+        printf("RRRGGRR (State8b)");
         break;
     case State9:
-        printf("YRRYGRR (State9)\n");
+        printf("YRRYGRR (State 9)");
         break;
     case State9b:
-        printf("RRRYGRR (State9b)\n");
+        printf("RRRYGRR (State9b)");
         break;
     case State10:
-        printf("RRRRGRR (State10)\n");
+        printf("RRRRGRR (State10)");
         break;
     case State11:
-        printf("RRGRGRR (State11)\n");
+        printf("RRGRGRR (State11)");
         break;
     case State12:
-        printf("RRYRYRR (State12)\n");
+        printf("RRYRYRR (State12)");
         break;
     }
+
+    printf(" Sensors: ");
+    printf("%u", sen->sensor1);
+    printf("%u", sen->sensor2);
+    printf("%u", sen->sensor3);
+    printf("%u", sen->sensor4);
+    printf("%u", sen->sensor5);
+    printf("%u", sen->sensor6);
+    printf("%u", sen->sensor7);
+
+    printf("\n");
 }
 
 void light_state_machine(light_state *state, sensor_state sen, int boom_gate, timer_container *tc) {
