@@ -37,6 +37,7 @@ enum freewaySensors {
 typedef struct State State;
 
 struct State {
+	int id;
 	char stateName[9];
 	float length;
 	State *nextState;
@@ -46,15 +47,13 @@ enum mainIntersectionStates CurState;
 
 extern TurningSensors turningSensors;
 
-void changeStateUsingSensors(State *currentState, State sensorStates[]);
+void changeStateUsingSensors(State *currentState, State sensorStates[], int *sensorActivated);
 
 void getYellowLightState(State *currentState, State *nextState);
 
 int isYellowRequired(State *currentState);
 
-void nextStateSensor(State *currentState, int *yellowNeeded, State sensorStates[10]);
-
-void nextStateFixed(State *currentState, int *yellowNeeded);
+int isStateChangeSafe(State *currentState, int *yellowNeeded);
 
 void setStateTime(timer_t *timer_id, struct itimerspec *itime, float length);
 

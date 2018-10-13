@@ -1,6 +1,6 @@
 #include "Sensors.h"
 
-TurningSensors turningSensors = { 0, 0, 0, 0, 0, 0, 0 };
+TurningSensors turningSensors = { 0, 0, 0, 0, 1, 0, 0 };
 
 // create global struct to share data between threads
 ISR_data ISR_area_data;
