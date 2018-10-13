@@ -15,7 +15,7 @@
 
 
 int main(int argc, char *argv[]) {
-	printf("Intersection running\n");
+	printf("Intersection running...\n");
 
     int *east = malloc(sizeof(*east));
     int *west = malloc(sizeof(*west));

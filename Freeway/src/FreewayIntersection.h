@@ -16,18 +16,14 @@
 enum mainIntersectionStates {
 	RRRRRRRR,
 	GGGGRRRR,
-	YGYGRRRR,
 	RGRGRRGG,
-	RGRGRRYY,
-	RYRYRRRR,
 	RRRRGGRR,
-	RRRRYYRR,
-	RYRGGRRR,
-	RRRGGRRR,
-	RRRGYRRR,
-	RGRYRRRR,
-	RGRRGRRR,
-	RGRRRYRR
+	GRRGGRRR,
+	RGGRRGRR,
+	GGRGRRGR,
+	RGGGRRRG,
+	RRRGGRRG,
+	RGRRRGGR,
 };
 
 enum freewaySensors {
@@ -38,17 +34,30 @@ enum freewaySensors {
 	Use_Sensors = 5
 };
 
+typedef struct State State;
+
+struct State {
+	char stateName[9];
+	float length;
+	State *nextState;
+};
+
 enum mainIntersectionStates CurState;
 
 extern TurningSensors turningSensors;
 
-void changeMainIntersectionState(enum mainIntersectionStates *newState,
-		timer_t *timer_id, struct itimerspec *itime);
+void changeStateUsingSensors(State *currentState, State sensorStates[]);
+
+void getYellowLightState(State *currentState, State *nextState);
+
+int isYellowRequired(State *currentState);
+
+void nextStateSensor(State *currentState, int *yellowNeeded, State sensorStates[10]);
+
+void nextStateFixed(State *currentState, int *yellowNeeded);
+
+void setStateTime(timer_t *timer_id, struct itimerspec *itime, float length);
 
 void *mainIntersectionStateMachine();
-
-void *userInput();
-
-int FreewayIntersection();
 
 #endif /* SRC_FREEWAYINTERSECTION_H_ */

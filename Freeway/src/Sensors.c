@@ -41,10 +41,8 @@ void changeSensor(int* sensor, int value) {
 	if (value == 2) {
 		if (*sensor == 1) {
 			*sensor = 0;
-			printf("Sensors Disabled\n");
 		} else {
 			*sensor = 1;
-			printf("Sensors Enabled\n");
 		}
 	} else {
 		*sensor = value;
@@ -68,15 +66,27 @@ void remoteSensorActivation(int sensor) {
 		break;
 	case (5):
 		changeSensor(&turningSensors.Use_Sensors, 2);
-		printf("Sensors Toggled\n");
+		if(turningSensors.Use_Sensors){
+			printf("Sensors enabled\n");
+		}else{
+			printf("Sensors disabled\n");
+		}
 		break;
 	case (6):
 		changeSensor(&turningSensors.East_Onramp, 2);
-		printf("East Ramp Toggled\n");
+		if(turningSensors.East_Onramp){
+			printf("East on ramp lights enabled\n");
+		}else{
+			printf("East on ramp lights disabled\n");
+		}
 		break;
 	case (7):
 		changeSensor(&turningSensors.West_Onramp, 2);
-		printf("West Ramp Toggled\n");
+		if(turningSensors.West_Onramp){
+			printf("East on ramp lights enabled\n");
+		}else{
+			printf("East on ramp lights disabled\n");
+		}
 		break;
 	}
 }
