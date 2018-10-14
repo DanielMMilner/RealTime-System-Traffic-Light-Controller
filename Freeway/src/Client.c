@@ -1,7 +1,6 @@
 #include "Client.h"
 #include "Sensors.h"
 
-
 // Thread for the server
 int *server_thread() {
 	name_attach_t *attach;

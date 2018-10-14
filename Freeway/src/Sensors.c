@@ -39,11 +39,7 @@ int getSensorValue(int sensor) {
 void changeSensor(int* sensor, int value) {
 	pthread_mutex_lock(&turningSensors.mutex);
 	if (value == 2) {
-		if (*sensor == 1) {
-			*sensor = 0;
-		} else {
-			*sensor = 1;
-		}
+		*sensor = !*sensor;
 	} else {
 		*sensor = value;
 	}
@@ -88,6 +84,14 @@ void remoteSensorActivation(int sensor) {
 			printf("East on ramp lights disabled\n");
 		}
 		break;
+	}
+}
+
+void *userInput(){
+	int temp;
+	while(1){
+		temp = getchar();
+		remoteSensorActivation(temp - '0');
 	}
 }
 

@@ -7,67 +7,77 @@
 
 #include "FreewayIntersection.h"
 
-void changeStateUsingSensors(State *currentState, State sensorStates[10], int *sensorActivated) {
-	//used to determine if the nextState has changed.
-	int previousID = currentState->nextState->id;
+void changeTiming(State *state, float newTime){
+	state->length = newTime;
+}
+
+void changePattern(State *state, State *nextState){
+	state->nextState = nextState;
+}
+
+void changeStateUsingSensors(State *currentState, State sensorStates[10]) {
+	//current sensor states
+	int ES_Sensor = getSensorValue(ES_Waiting);
+	int WN_Sensor = getSensorValue(WN_Waiting);
+	int SW_Sensor = getSensorValue(SW_Waiting);
+	int NE_Sensor = getSensorValue(NE_Waiting);
 
 	//find if a sensor has been activated and change state accordingly.
-	if (getSensorValue(ES_Waiting) && getSensorValue(WN_Waiting)) {
+	if (ES_Sensor && WN_Sensor) {
 		currentState->nextState = &sensorStates[RRRRGGRR];
 		changeSensor(&turningSensors.ES_Waiting, 0);
 		changeSensor(&turningSensors.WN_Waiting, 0);
-	} else if (getSensorValue(SW_Waiting) && getSensorValue(NE_Waiting)) {
+	} else if (SW_Sensor && NE_Sensor) {
 		currentState->nextState = &sensorStates[RGRGRRGG];
 		changeSensor(&turningSensors.SW_Waiting, 0);
 		changeSensor(&turningSensors.NE_Waiting, 0);
-	} else if (getSensorValue(ES_Waiting) && getSensorValue(SW_Waiting)) {
+	} else if (ES_Sensor && SW_Sensor) {
 		currentState->nextState = &sensorStates[RRRGGRRG];
 		changeSensor(&turningSensors.ES_Waiting, 0);
 		changeSensor(&turningSensors.SW_Waiting, 0);
-	} else if (getSensorValue(NE_Waiting) && getSensorValue(WN_Waiting)) {
+	} else if (NE_Sensor && WN_Sensor) {
 		currentState->nextState = &sensorStates[RGRRRGGR];
 		changeSensor(&turningSensors.NE_Waiting, 0);
 		changeSensor(&turningSensors.WN_Waiting, 0);
-	} else if (getSensorValue(ES_Waiting)) {
+	} else if (ES_Sensor) {
 		currentState->nextState = &sensorStates[GRRGGRRR];
 		changeSensor(&turningSensors.ES_Waiting, 0);
-	} else if (getSensorValue(WN_Waiting)) {
+	} else if (WN_Sensor) {
 		currentState->nextState = &sensorStates[RGGRRGRR];
 		changeSensor(&turningSensors.WN_Waiting, 0);
-	} else if (getSensorValue(NE_Waiting)) {
+	} else if (NE_Sensor) {
 		currentState->nextState = &sensorStates[GGRGRRGR];
 		changeSensor(&turningSensors.NE_Waiting, 0);
-	} else if (getSensorValue(SW_Waiting)) {
+	} else if (SW_Sensor) {
 		currentState->nextState = &sensorStates[RGGGRRRG];
 		changeSensor(&turningSensors.SW_Waiting, 0);
 	} else {
 		currentState->nextState = &sensorStates[GGGGRRRR];
 	}
-
-	if(previousID != currentState->nextState->id){
-		*sensorActivated = 4;
-	}
 }
 
-void getYellowLightState(State *currentState, State *nextState) {
-	char yellowState[9] = "";
+void getYellowLightState(State *currentState, State *nextState, State *yellowState) {
+	char yellowStateName[9] = "";
 
 	//create yellow light state
 	for (int i = 0; i <= 7; i++) {
 		if (currentState->stateName[i] == 'R') {
-			yellowState[i] = 'R';
+			yellowStateName[i] = 'R';
 		} else if (currentState->stateName[i] == 'G'
 				&& nextState->stateName[i] == 'R') {
-			yellowState[i] = 'Y';
+			yellowStateName[i] = 'Y';
 		} else {
-			yellowState[i] = 'G';
+			yellowStateName[i] = 'G';
 		}
 	}
 
-	printf("%s\n", yellowState);
+	yellowState->nextState = nextState;
+	strcpy(yellowState->stateName, yellowStateName);
 }
 
 int isYellowRequired(State *currentState) {
+	if(currentState->id == currentState->nextState->id)
+		return 0;
 	//determine if a yellow light is required between the next two states
 	State *nextState = currentState->nextState;
 	for (int i = 0; i <= 7; i++) {
@@ -75,22 +85,6 @@ int isYellowRequired(State *currentState) {
 				&& nextState->stateName[i] == 'R') {
 			return 1;
 		}
-	}
-	return 0;
-}
-
-int isStateChangeSafe(State *currentState, int *yellowNeeded) {
-	if (*yellowNeeded) {
-		//A yellow light state is needed.
-		getYellowLightState(currentState, currentState->nextState);
-		*yellowNeeded = 0;
-		return 1;
-	} else {
-		//No yellow light state is needed.
-		printf("%s\n", currentState->stateName);
-		*yellowNeeded = isYellowRequired(currentState);
-		if (!*yellowNeeded)
-			return 1; 		//Yellow light state is needed before next state change.
 	}
 	return 0;
 }
@@ -137,10 +131,12 @@ void *mainIntersectionStateMachine() {
 		};
 
 	int yellowNeeded = 0;
-	int sensorActivated = 0;
+	int isRedState = 1;
+	int previousStateYellow = 0;
 	int useSensors = getSensorValue(Use_Sensors);
 	int useSensorsNext = useSensors;
 	State *currentState;
+	State yellowState = {-1, "YYYYYYYY", 1, &sensorStates[GGGGRRRR]};
 
 	if(useSensors){
 		currentState = &sensorStates[RRRRRRRR];
@@ -157,7 +153,8 @@ void *mainIntersectionStateMachine() {
 
 			if (useSensors != useSensorsNext) {
 				// sensors have been enabled/disabled. Go to RRRRRRRR state before enable/disabling sensors.
-				getYellowLightState(currentState, &fixedStates[RRRRRRRR]);
+				getYellowLightState(currentState, &fixedStates[RRRRRRRR], &yellowState);
+				printf("%s\n", yellowState.stateName);
 
 				//reset to default state.
 				currentState = useSensorsNext ? &sensorStates[RRRRRRRR] : &fixedStates[RRRRRRRR];
@@ -165,49 +162,28 @@ void *mainIntersectionStateMachine() {
 				setStateTime(&timer_id, &itime, 1);
 			} else {
 				if (useSensors) {
-					if(sensorActivated == 0){
-						//checks if a sensor has been activated and changes state accordingly.
-						changeStateUsingSensors(currentState, sensorStates, &sensorActivated);
-					}
+					//checks if a sensor has been activated and changes state accordingly.
+					if(currentState->id == GGGGRRRR && !previousStateYellow)
+						changeStateUsingSensors(currentState, sensorStates);
+				}
 
-					if(sensorActivated == 4){
-						//A sensor was activated
-						State *tmpState;
-						//print the required yellow lights
-						getYellowLightState(currentState, currentState->nextState);
-						sensorActivated--;
-
-						//set the current state to the next state and reset the current state to the default
-						tmpState = currentState->nextState;
-						currentState->nextState = &sensorStates[GGGGRRRR];
-						currentState = tmpState;
-						yellowNeeded = 1;
-					}else if(sensorActivated == 3){
-						//print the state that the sensor activated
-						printf("%s\n", currentState->stateName);
-						sensorActivated--;
-						yellowNeeded = 0;
-					}else if(sensorActivated == 2){
-						//print the required yellow lights to return to the default
-						getYellowLightState(currentState, currentState->nextState);
-						sensorActivated--;
-						//set the current state back to the default
-						currentState = currentState->nextState;
-						yellowNeeded = 1;
-					}else if(sensorActivated == 1){
-						//print the default state
-						printf("%s\n", currentState->stateName);
-						sensorActivated = 0;
-						yellowNeeded = 0;
-					}else{
-						//no sensors activated
-						printf("%s\n", currentState->stateName);
-						currentState = currentState->nextState;
-					}
-
-				}else if(isStateChangeSafe(currentState, &yellowNeeded)){
-					//no yellow light is needed. change to next state.
+				if(!previousStateYellow && isYellowRequired(currentState)){
+					getYellowLightState(currentState, currentState->nextState, &yellowState);
+					currentState = &yellowState;
+					printf("%s\n", currentState->stateName);
+					previousStateYellow = 1;
 					currentState = currentState->nextState;
+				}else{
+					previousStateYellow = 0;
+					printf("%s\n", currentState->stateName);
+					if(!isYellowRequired(currentState)){
+						currentState = currentState->nextState;
+					}
+				}
+
+				if(isRedState){
+					previousStateYellow = 1;
+					isRedState = 0;
 				}
 
 				//set timer based on current state

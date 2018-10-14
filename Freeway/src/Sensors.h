@@ -126,6 +126,8 @@ void changeSensor(int* sensor, int value);
 
 void remoteSensorActivation(int sensor);
 
+void *userInput();
+
 void strobe_SCL(uintptr_t gpio_port_add);
 
 void delaySCL();

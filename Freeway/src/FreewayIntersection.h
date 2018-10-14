@@ -43,17 +43,17 @@ struct State {
 	State *nextState;
 };
 
-enum mainIntersectionStates CurState;
-
 extern TurningSensors turningSensors;
 
-void changeStateUsingSensors(State *currentState, State sensorStates[], int *sensorActivated);
+void changeTiming(State *state, float newTime);
 
-void getYellowLightState(State *currentState, State *nextState);
+void changePattern(State *state, State *nextState);
+
+void changeStateUsingSensors(State *currentState, State sensorStates[]);
+
+void getYellowLightState(State *currentState, State *nextState, State *yellowState);
 
 int isYellowRequired(State *currentState);
-
-int isStateChangeSafe(State *currentState, int *yellowNeeded);
 
 void setStateTime(timer_t *timer_id, struct itimerspec *itime, float length);
 

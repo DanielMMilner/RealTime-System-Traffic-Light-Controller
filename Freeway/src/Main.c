@@ -28,6 +28,9 @@ int main(int argc, char *argv[]) {
 	pthread_t onRamp2;
 	pthread_create(&onRamp2, NULL, onRampStateMachine, (void *) west);
 
+	pthread_t input;
+	pthread_create(&input, NULL, userInput, NULL);
+
 	pthread_t mainIntersection;
 	pthread_create(&mainIntersection, NULL, mainIntersectionStateMachine, NULL);
 
@@ -42,6 +45,7 @@ int main(int argc, char *argv[]) {
 	pthread_join(onRamp1, NULL);
 	pthread_join(onRamp2, NULL);
 	pthread_join(mainIntersection, NULL);
+	pthread_join(input, NULL);
 	pthread_join(client, NULL);
 //	pthread_join(lcd, NULL);
 
