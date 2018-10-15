@@ -85,6 +85,16 @@ int *server_thread() {
 				break;
 			}
 
+			// Select a node.
+				// Select an action
+					// Enter data for that action.
+
+			// Set train time
+			// Get state of each node.
+			// Set light timings.
+			// Alter light patterns for freeway.
+			// Trigger sensor
+
 			// Server responds to msg.
 			MsgReply(rcvid, EOK, &replymsg, sizeof(replymsg));
 
@@ -94,7 +104,6 @@ int *server_thread() {
 
 	}
 
-	// Remove the attach point name from the file system (i.e. /dev/name/local/<myname>)
 	name_detach(attach, 0);
 
 	return EXIT_SUCCESS;

@@ -30,7 +30,9 @@
 								<inputType id="com.qnx.qcc.inputType.compiler.1027547481" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
 							<tool id="com.qnx.qcc.tool.assembler.1275022304" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
-								<option id="com.qnx.qcc.option.assembler.includePath.366139336" name="Include Directories (-I)" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath"/>
+								<option id="com.qnx.qcc.option.assembler.includePath.366139336" name="Include Directories (-I)" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="../../Modules"/>
+								</option>
 								<inputType id="com.qnx.qcc.inputType.assembler.1364564658" superClass="com.qnx.qcc.inputType.assembler"/>
 							</tool>
 							<tool id="com.qnx.qcc.tool.linker.915289414" name="QCC Linker" superClass="com.qnx.qcc.tool.linker"/>

@@ -3,6 +3,8 @@
 
 #include "network.h"
 
+#define LOCAL_ATTACH_POINT "controller"
+
 int *server_thread();
 
 #endif /* SRC_SERVER_H_ */

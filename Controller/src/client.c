@@ -15,8 +15,9 @@ int *client_thread(void *data) {
 
 	while(1)
 	{
+		client->connected = 0;
 		connectAttemptCount++;
-		printf("Atempt %d to connect to: %s at %s\n",connectAttemptCount, CLIENT_NAMES[(int) client->id], client->QNET_name);
+		//printf("Atempt %d to connect to: %s at %s\n",connectAttemptCount, CLIENT_NAMES[(int) client->id], client->QNET_name);
 		if ((server_coid = name_open(client->QNET_name, 0)) == -1) {
 			sleep(1);
 		}else{
@@ -24,17 +25,20 @@ int *client_thread(void *data) {
 		}
 		if(connectAttemptCount >= MAX_CONNECT_ATTEMPT_COUNT)
 		{
-			printf("Cannot connect to %s", client->QNET_name);
+			printf("Failed to connect to %s after %d attempts\n", client->QNET_name, connectAttemptCount);
 			return EXIT_FAILURE;
 		}
 	}
 
+	client->connected = 1;
 
 	printf("Connection established to: %s\n", CLIENT_NAMES[(int) client->id]);
 
 	// We would have pre-defined data to stuff here
 	msg.hdr.type = 0x00;
 	msg.hdr.subtype = 0x00;
+
+
 
 	// Setup the command
 	msg.command = COMMAND_TOGGLE_SENSOR;
