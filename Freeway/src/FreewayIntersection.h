@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "TimerHandler.h"
 #include "Sensors.h"
+#include "LCDdisplay.h"
 
 enum mainIntersectionStates {
 	RRRRRRRR,

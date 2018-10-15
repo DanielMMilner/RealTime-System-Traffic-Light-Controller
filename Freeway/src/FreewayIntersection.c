@@ -104,37 +104,37 @@ void *mainIntersectionStateMachine() {
 
 	//use for the fixed sequence
 	State fixedStates[] = {
-			{RRRRRRRR, "RRRRRRRR", 1, &fixedStates[GGGGRRRR]},
-			{GGGGRRRR, "GGGGRRRR", 1, &fixedStates[RGRGRRGG]},
-			{RGRGRRGG, "RGRGRRGG", 1, &fixedStates[RRRRGGRR]},
-			{RRRRGGRR, "RRRRGGRR", 1, &fixedStates[GGGGRRRR]},
-			{GRRGGRRR, "GRRGGRRR", 1, &fixedStates[RGGRRGRR]},
-			{RGGRRGRR, "RGGRRGRR", 1, &fixedStates[GGRGRRGR]},
-			{GGRGRRGR, "GGRGRRGR", 1, &fixedStates[RGGGRRRG]},
-			{RGGGRRRG, "RGGGRRRG", 1, &fixedStates[RRRGGRRG]},
-			{RRRGGRRG, "RRRGGRRG", 1, &fixedStates[RGRRRGGR]},
-			{RGRRRGGR, "RGRRRGGR", 1, &fixedStates[GGGGRRRR]},
+			{RRRRRRRR, "RRRRRRRR", 2, &fixedStates[GGGGRRRR]},
+			{GGGGRRRR, "GGGGRRRR", 4, &fixedStates[RGRGRRGG]},
+			{RGRGRRGG, "RGRGRRGG", 4, &fixedStates[RRRRGGRR]},
+			{RRRRGGRR, "RRRRGGRR", 4, &fixedStates[GGGGRRRR]},
+			{GRRGGRRR, "GRRGGRRR", 4, &fixedStates[RGGRRGRR]},
+			{RGGRRGRR, "RGGRRGRR", 4, &fixedStates[GGRGRRGR]},
+			{GGRGRRGR, "GGRGRRGR", 4, &fixedStates[RGGGRRRG]},
+			{RGGGRRRG, "RGGGRRRG", 4, &fixedStates[RRRGGRRG]},
+			{RRRGGRRG, "RRRGGRRG", 4, &fixedStates[RGRRRGGR]},
+			{RGRRRGGR, "RGRRRGGR", 4, &fixedStates[GGGGRRRR]},
 		};
 
 	//used for sensors
 	State sensorStates[] = {
-			{RRRRRRRR, "RRRRRRRR", 1, &sensorStates[GGGGRRRR]},
-			{GGGGRRRR, "GGGGRRRR", 2, &sensorStates[GGGGRRRR]},
-			{RGRGRRGG, "RGRGRRGG", 3, &sensorStates[GGGGRRRR]},
-			{RRRRGGRR, "RRRRGGRR", 3, &sensorStates[GGGGRRRR]},
-			{GRRGGRRR, "GRRGGRRR", 3, &sensorStates[GGGGRRRR]},
-			{RGGRRGRR, "RGGRRGRR", 3, &sensorStates[GGGGRRRR]},
-			{GGRGRRGR, "GGRGRRGR", 3, &sensorStates[GGGGRRRR]},
-			{RGGGRRRG, "RGGGRRRG", 3, &sensorStates[GGGGRRRR]},
-			{RRRGGRRG, "RRRGGRRG", 3, &sensorStates[GGGGRRRR]},
-			{RGRRRGGR, "RGRRRGGR", 3, &sensorStates[GGGGRRRR]},
+			{RRRRRRRR, "RRRRRRRR", 2, &sensorStates[GGGGRRRR]},
+			{GGGGRRRR, "GGGGRRRR", 4, &sensorStates[GGGGRRRR]},
+			{RGRGRRGG, "RGRGRRGG", 4, &sensorStates[GGGGRRRR]},
+			{RRRRGGRR, "RRRRGGRR", 4, &sensorStates[GGGGRRRR]},
+			{GRRGGRRR, "GRRGGRRR", 4, &sensorStates[GGGGRRRR]},
+			{RGGRRGRR, "RGGRRGRR", 4, &sensorStates[GGGGRRRR]},
+			{GGRGRRGR, "GGRGRRGR", 4, &sensorStates[GGGGRRRR]},
+			{RGGGRRRG, "RGGGRRRG", 4, &sensorStates[GGGGRRRR]},
+			{RRRGGRRG, "RRRGGRRG", 4, &sensorStates[GGGGRRRR]},
+			{RGRRRGGR, "RGRRRGGR", 4, &sensorStates[GGGGRRRR]},
 		};
 
-	int yellowNeeded = 0;
 	int isRedState = 1;
 	int previousStateYellow = 0;
 	int useSensors = getSensorValue(Use_Sensors);
 	int useSensorsNext = useSensors;
+	int change = 0;
 	State *currentState;
 	State yellowState = {-1, "YYYYYYYY", 1, &sensorStates[GGGGRRRR]};
 
@@ -146,20 +146,38 @@ void *mainIntersectionStateMachine() {
 
 	setStateTime(&timer_id, &itime, currentState->length);
 
+	changeDisplayUseSensors(getSensorValue(Use_Sensors));
+
 	while (1) {
 		rcvid = MsgReceive(chid, &msg, sizeof(msg), NULL);
 		if (rcvid == 0 && msg.pulse.code == MY_PULSE_CODE) {
 			useSensorsNext = getSensorValue(Use_Sensors);
 
-			if (useSensors != useSensorsNext) {
-				// sensors have been enabled/disabled. Go to RRRRRRRR state before enable/disabling sensors.
-				getYellowLightState(currentState, &fixedStates[RRRRRRRR], &yellowState);
-				printf("%s\n", yellowState.stateName);
+			if (useSensors != useSensorsNext || change) {
+				if(previousStateYellow){
+					previousStateYellow = 0;
+					printf("%s\n", currentState->stateName);
+					changeDisplayIntersection(currentState->stateName);
+					if(!isYellowRequired(currentState)){
+						currentState = currentState->nextState;
+					}
+					change = 1;
+					//set timer based on current state
+					float length = previousStateYellow ? 1 : currentState->length;
+					setStateTime(&timer_id, &itime, length);
+				}else{
+					// sensors have been enabled/disabled. Go to RRRRRRRR state before enable/disabling sensors.
+					getYellowLightState(currentState, &fixedStates[RRRRRRRR], &yellowState);
+					printf("%s\n", yellowState.stateName);
+					changeDisplayIntersection(yellowState.stateName);
 
-				//reset to default state.
-				currentState = useSensorsNext ? &sensorStates[RRRRRRRR] : &fixedStates[RRRRRRRR];
+					//reset to default state.
+					currentState = useSensorsNext ? &sensorStates[RRRRRRRR] : &fixedStates[RRRRRRRR];
+					isRedState = 1;
+					change = 0;
 
-				setStateTime(&timer_id, &itime, 1);
+					changeDisplayUseSensors(useSensorsNext);
+				}
 			} else {
 				if (useSensors) {
 					//checks if a sensor has been activated and changes state accordingly.
@@ -171,11 +189,13 @@ void *mainIntersectionStateMachine() {
 					getYellowLightState(currentState, currentState->nextState, &yellowState);
 					currentState = &yellowState;
 					printf("%s\n", currentState->stateName);
+					changeDisplayIntersection(currentState->stateName);
 					previousStateYellow = 1;
 					currentState = currentState->nextState;
 				}else{
 					previousStateYellow = 0;
 					printf("%s\n", currentState->stateName);
+					changeDisplayIntersection(currentState->stateName);
 					if(!isYellowRequired(currentState)){
 						currentState = currentState->nextState;
 					}
@@ -185,11 +205,12 @@ void *mainIntersectionStateMachine() {
 					previousStateYellow = 1;
 					isRedState = 0;
 				}
-
-				//set timer based on current state
-				float length = yellowNeeded ? 1 : currentState->length;
-				setStateTime(&timer_id, &itime, length);
 			}
+
+			//set timer based on current state
+			float length = previousStateYellow ? 2 : currentState->length;
+			setStateTime(&timer_id, &itime, length);
+
 			useSensors = useSensorsNext;
 		}
 	}

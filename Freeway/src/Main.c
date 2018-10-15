@@ -22,33 +22,32 @@ int main(int argc, char *argv[]) {
     *east = 0;
     *west = 1;
 
+	pthread_t input;
+	pthread_create(&input, NULL, userInput, NULL);
+
+	pthread_t client;
+	pthread_create(&client, NULL, server_thread, NULL);
+
+	pthread_t lcd;
+	pthread_create(&lcd, NULL, LCDfunction, NULL);
+
+	pthread_t mainIntersection;
+	pthread_create(&mainIntersection, NULL, mainIntersectionStateMachine, NULL);
+
 	pthread_t onRamp1;
 	pthread_create(&onRamp1, NULL, onRampStateMachine, (void *) east);
 
 	pthread_t onRamp2;
 	pthread_create(&onRamp2, NULL, onRampStateMachine, (void *) west);
 
-	pthread_t input;
-	pthread_create(&input, NULL, userInput, NULL);
-
-	pthread_t mainIntersection;
-	pthread_create(&mainIntersection, NULL, mainIntersectionStateMachine, NULL);
-
-	pthread_t client;
-	pthread_create(&client, NULL, server_thread, NULL);
-
-//	pthread_t lcd;
-//	pthread_create(&lcd, NULL, LCDfunction, NULL);
-
 	keypadMethod();
 
+	pthread_join(lcd, NULL);
 	pthread_join(onRamp1, NULL);
 	pthread_join(onRamp2, NULL);
 	pthread_join(mainIntersection, NULL);
 	pthread_join(input, NULL);
 	pthread_join(client, NULL);
-//	pthread_join(lcd, NULL);
-
 
 	printf("Main Terminated...\n");
 	return EXIT_SUCCESS;

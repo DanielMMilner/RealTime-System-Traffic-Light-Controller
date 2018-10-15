@@ -7,49 +7,48 @@
 
 #include "OnRamp.h"
 
+int isActive(int rampID, enum onRampStates *newState, timer_t *timer_id,
+		struct itimerspec *itime) {
+	if ((rampID == 0 && !getSensorValue(East_Onramp))
+			|| (rampID == 1 && !getSensorValue(West_Onramp))) {
+		*newState = OFF;
+		setTime(timer_id, itime, 0.1);
+		changeDisplayOnRamp('-', rampID);
+		return 0;
+	}
+	return 1;
+}
+
 void changeOnRampState(enum onRampStates *newState, timer_t *timer_id,
 		struct itimerspec *itime, int rampID) {
 	switch (*newState) {
 	case OFF:
-		if (rampID == 0) {
-			if (getSensorValue(East_Onramp)) {
-				*newState = GREEN;
-				setTime(timer_id, itime, 2);
-			} else {
-				printf("East ramp if Off\n");
-				setTime(timer_id, itime, 3);
-			}
-		} else {
-			if (getSensorValue(West_Onramp)) {
-				*newState = GREEN;
-				setTime(timer_id, itime, 2);
-			} else {
-				printf("West ramp if Off\n");
-				setTime(timer_id, itime, 3);
-			}
+		if (isActive(rampID, newState, timer_id, itime)) {
+			*newState = RED;
+			setTime(timer_id, itime, 0.5);
+			changeDisplayOnRamp('R', rampID);
 		}
 		break;
 	case GREEN:
-		printf("GREEN\n");
-		*newState = YELLOW;
-		setTime(timer_id, itime, 0.5);
+		if (isActive(rampID, newState, timer_id, itime)) {
+			printf("GREEN\n");
+			*newState = YELLOW;
+			setTime(timer_id, itime, 0.5);
+			changeDisplayOnRamp('G', rampID);
+		}
 		break;
 	case YELLOW:
 		printf("YELLOW\n");
 		*newState = RED;
 		setTime(timer_id, itime, 0.5);
+		changeDisplayOnRamp('Y', rampID);
 		break;
 	case RED:
-		if (!getSensorValue(East_Onramp) && rampID == 0) {
-			*newState = OFF;
-			setTime(timer_id, itime, 3);
-		} else if (!getSensorValue(West_Onramp) && rampID == 1) {
-			*newState = OFF;
-			setTime(timer_id, itime, 3);
-		} else {
+		if (isActive(rampID, newState, timer_id, itime)) {
 			printf("RED\n");
 			*newState = GREEN;
 			setTime(timer_id, itime, 3);
+			changeDisplayOnRamp('R', rampID);
 		}
 		break;
 	}

@@ -150,6 +150,12 @@ void DecodeKeyValue(uint32_t word) {
 		printf("Key  5 pressed\n");
 		changeSensor(&turningSensors.Use_Sensors, 2);
 		break;
+	case 0x20:
+		changeSensor(&turningSensors.East_Onramp, 2);
+		break;
+	case 0x40:
+		changeSensor(&turningSensors.West_Onramp, 2);
+		break;
 	case 0x00:  // key release event (do nothing)
 		break;
 //	default:
@@ -180,6 +186,8 @@ const struct sigevent* Inthandler(void* area, int id) {
 }
 
 void *keypadMethod() {
+	pthread_mutex_init(&turningSensors.mutex,NULL);		// pass NULL as the attr parameter to use the default attributes for the mutex
+
 	uintptr_t control_module = mmap_device_io(AM335X_CONTROL_MODULE_SIZE,
 	AM335X_CONTROL_MODULE_BASE);
 	uintptr_t gpio1_base = mmap_device_io(AM335X_GPIO_SIZE, AM335X_GPIO1_BASE);

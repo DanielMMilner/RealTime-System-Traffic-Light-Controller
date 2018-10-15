@@ -13,6 +13,7 @@
 
 #include "TimerHandler.h"
 #include "Sensors.h"
+#include "LCDdisplay.h"
 
 extern TurningSensors turningSensors;
 
