@@ -1,8 +1,13 @@
 #include "Client.h"
 #include "Sensors.h"
 
+static char *CLIENT_NAMES[5] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+        "Pedestrain Node" };
+
+static char *COMMAND_STRS[2] = {"Get State", "Set Sensor"};
+
 // Thread for the server
-int *server_thread() {
+void *server_thread() {
 	name_attach_t *attach;
 
 	// Create a local name (/dev/name/...)

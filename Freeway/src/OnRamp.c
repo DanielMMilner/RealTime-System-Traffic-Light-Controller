@@ -9,6 +9,7 @@
 
 int isActive(int rampID, enum onRampStates *newState, timer_t *timer_id,
 		struct itimerspec *itime) {
+	//checks if the ramps are still active. sets to off state if not active.
 	if ((rampID == 0 && !getSensorValue(East_Onramp))
 			|| (rampID == 1 && !getSensorValue(West_Onramp))) {
 		*newState = OFF;
@@ -23,7 +24,9 @@ void changeOnRampState(enum onRampStates *newState, timer_t *timer_id,
 		struct itimerspec *itime, int rampID) {
 	switch (*newState) {
 	case OFF:
+		//checks if ramp is active
 		if (isActive(rampID, newState, timer_id, itime)) {
+			//ramp is active, changes state accordingly
 			*newState = RED;
 			setTime(timer_id, itime, 0.5);
 			changeDisplayOnRamp('R', rampID);

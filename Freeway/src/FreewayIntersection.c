@@ -93,13 +93,40 @@ void setStateTime(timer_t *timer_id, struct itimerspec *itime, float length) {
 	setTime(timer_id, itime, length);
 }
 
+void useCurrentState(int *previousStateYellow, State **currentState){
+	*previousStateYellow = 0;
+	printf("%s\n", (*currentState)->stateName);
+	changeDisplayIntersection((*currentState)->stateName);
+	if(!isYellowRequired(*currentState)){
+		*currentState = (*currentState)->nextState;
+	}
+}
+
+void useYellowState(int *previousStateYellow, State **currentState, State *yellowState){
+	*previousStateYellow = 1;
+	getYellowLightState(*currentState, (*currentState)->nextState, yellowState);
+	*currentState = yellowState;
+	printf("%s\n", (*currentState)->stateName);
+	changeDisplayIntersection((*currentState)->stateName);
+	*currentState = (*currentState)->nextState;
+}
+
+void changeMode(State **currentState, State *startState, State *yellowState){
+	// sensors have been enabled/disabled. Go to RRRRRRRR state before enable/disabling sensors.
+	getYellowLightState(*currentState, startState, yellowState);
+	printf("%s\n", yellowState->stateName);
+	changeDisplayIntersection(yellowState->stateName);
+
+	//reset to default state.
+	*currentState = startState;
+}
+
 void *mainIntersectionStateMachine() {
 	my_message_t msg;
 	int chid;
 	int rcvid;
 	struct itimerspec itime;
 	timer_t timer_id;
-
 	setUpTimer(&chid, &timer_id);
 
 	//use for the fixed sequence
@@ -130,88 +157,74 @@ void *mainIntersectionStateMachine() {
 			{RGRRRGGR, "RGRRRGGR", 4, &sensorStates[GGGGRRRR]},
 		};
 
-	int isRedState = 1;
-	int previousStateYellow = 0;
-	int useSensors = getSensorValue(Use_Sensors);
-	int useSensorsNext = useSensors;
-	int change = 0;
+	int isAllRedState = True;
+	int previousStateYellow = False;
+	int changeModeNextCycle = False;
+	int useSensorsPreviousCycle = getSensorValue(Use_Sensors);
+	int useSensorsCurrentCycle = useSensorsPreviousCycle;
+	State yellowState = {YELLOW_STATE_ID, "YYYYYYYY", YELLOW_STATE_LENGTH, &sensorStates[GGGGRRRR]};
 	State *currentState;
-	State yellowState = {-1, "YYYYYYYY", 1, &sensorStates[GGGGRRRR]};
 
-	if(useSensors){
+	if(useSensorsCurrentCycle){
 		currentState = &sensorStates[RRRRRRRR];
 	}else{
 		currentState = &fixedStates[RRRRRRRR];
 	}
+	changeDisplayUseSensors(getSensorValue(Use_Sensors));
 
 	setStateTime(&timer_id, &itime, currentState->length);
-
-	changeDisplayUseSensors(getSensorValue(Use_Sensors));
 
 	while (1) {
 		rcvid = MsgReceive(chid, &msg, sizeof(msg), NULL);
 		if (rcvid == 0 && msg.pulse.code == MY_PULSE_CODE) {
-			useSensorsNext = getSensorValue(Use_Sensors);
+			useSensorsCurrentCycle = getSensorValue(Use_Sensors);
 
-			if (useSensors != useSensorsNext || change) {
+			//checks if mode has been changed.
+			if (useSensorsPreviousCycle != useSensorsCurrentCycle || changeModeNextCycle) {
 				if(previousStateYellow){
-					previousStateYellow = 0;
-					printf("%s\n", currentState->stateName);
-					changeDisplayIntersection(currentState->stateName);
-					if(!isYellowRequired(currentState)){
-						currentState = currentState->nextState;
-					}
-					change = 1;
-					//set timer based on current state
-					float length = previousStateYellow ? 1 : currentState->length;
-					setStateTime(&timer_id, &itime, length);
+					//if currently in the middle of a cycle we must wait before changing modes.
+					useCurrentState(&previousStateYellow, &currentState);
+					changeModeNextCycle = True;
 				}else{
-					// sensors have been enabled/disabled. Go to RRRRRRRR state before enable/disabling sensors.
-					getYellowLightState(currentState, &fixedStates[RRRRRRRR], &yellowState);
-					printf("%s\n", yellowState.stateName);
-					changeDisplayIntersection(yellowState.stateName);
+					//change modes to fixed/sensor
+					if(useSensorsCurrentCycle){
+						changeMode(&currentState, &sensorStates[RRRRRRRR], &yellowState);
+					}else{
+						changeMode(&currentState, &fixedStates[RRRRRRRR], &yellowState);
+					}
 
-					//reset to default state.
-					currentState = useSensorsNext ? &sensorStates[RRRRRRRR] : &fixedStates[RRRRRRRR];
-					isRedState = 1;
-					change = 0;
-
-					changeDisplayUseSensors(useSensorsNext);
+					//update LCD
+					changeDisplayUseSensors(useSensorsCurrentCycle);
+					isAllRedState = True;
+					changeModeNextCycle = False;
 				}
 			} else {
-				if (useSensors) {
-					//checks if a sensor has been activated and changes state accordingly.
-					if(currentState->id == GGGGRRRR && !previousStateYellow)
-						changeStateUsingSensors(currentState, sensorStates);
-				}
+				//checks if a sensor has been activated and changes state accordingly.
+				//Sensor mode only activates turning state from GGGGRRRR state
+				if(useSensorsCurrentCycle && currentState->id == GGGGRRRR && !previousStateYellow)
+					changeStateUsingSensors(currentState, sensorStates);
 
 				if(!previousStateYellow && isYellowRequired(currentState)){
-					getYellowLightState(currentState, currentState->nextState, &yellowState);
-					currentState = &yellowState;
-					printf("%s\n", currentState->stateName);
-					changeDisplayIntersection(currentState->stateName);
-					previousStateYellow = 1;
-					currentState = currentState->nextState;
+					//yellow light state is required to before state change can happen safely.
+					useYellowState(&previousStateYellow, &currentState, &yellowState);
 				}else{
-					previousStateYellow = 0;
-					printf("%s\n", currentState->stateName);
-					changeDisplayIntersection(currentState->stateName);
-					if(!isYellowRequired(currentState)){
-						currentState = currentState->nextState;
-					}
+					//no yellow lights needed. change to next state.
+					useCurrentState(&previousStateYellow, &currentState);
 				}
 
-				if(isRedState){
-					previousStateYellow = 1;
-					isRedState = 0;
+				if(isAllRedState){
+					//All red state is treated as a yellow state as no yellow lights
+					//are needed for any state transition from this state.
+					previousStateYellow = True;
+					isAllRedState = False;
 				}
 			}
 
 			//set timer based on current state
-			float length = previousStateYellow ? 2 : currentState->length;
+			float length = previousStateYellow ? YELLOW_STATE_LENGTH : currentState->length;
 			setStateTime(&timer_id, &itime, length);
 
-			useSensors = useSensorsNext;
+			useSensorsPreviousCycle = useSensorsCurrentCycle;
 		}
 	}
 	return EXIT_SUCCESS;

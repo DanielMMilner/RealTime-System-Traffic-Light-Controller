@@ -72,7 +72,7 @@ void *LCDthread (void *data)
 	return 0;
 }
 
-int *LCDfunction()
+void *LCDfunction()
 {
 	int file;
 	int error;

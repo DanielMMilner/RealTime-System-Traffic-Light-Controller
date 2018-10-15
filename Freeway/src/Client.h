@@ -15,16 +15,11 @@
 #include <fcntl.h>
 #include <share.h>
 
-
-#define BUF_SIZE 300
 #define LOCAL_ATTACH_POINT "freeway"
 
 typedef enum {
 	CID_CONTROLLER = 0, CID_FREEWAY = 1, CID_MALVERN = 2, CID_TRAIN = 3, CID_PEDESTRAIN = 4
 } Client_ID;
-
-static char *CLIENT_NAMES[5] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
-        "Pedestrain Node" };
 
 typedef enum
 {
@@ -32,11 +27,9 @@ typedef enum
 	COMMAND_TOGGLE_SENSOR
 }Node_Commands;
 
-static char *COMMAND_STRS[2] = {"Get State", "Set Sensor"};
-
 typedef struct {
 	Client_ID id;
-	char QNET_name[BUF_SIZE];
+	char QNET_name[300];
 } Client_typedef;
 
 typedef struct {
@@ -52,6 +45,6 @@ typedef struct {
 } Response_header;
 
 
-int *server_thread();
+void *server_thread();
 
 #endif /* CLIENT_H_ */

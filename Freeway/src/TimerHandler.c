@@ -12,7 +12,7 @@ void setTime(timer_t *timer_id, struct itimerspec *itime, float length) {
 
 	// setup the timer
 	itime->it_value.tv_sec = seconds;
-	itime->it_value.tv_nsec = decimal * 1000000000;
+	itime->it_value.tv_nsec = decimal * 1000000000; //converts decimal to nano seconds
 	itime->it_interval.tv_sec = 0;
 	itime->it_interval.tv_nsec = 0;
 
