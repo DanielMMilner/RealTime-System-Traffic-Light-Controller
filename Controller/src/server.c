@@ -18,8 +18,6 @@ int *server_thread() {
 	int living = 0;
 
 	Response_header replymsg; // replymsg structure for sending back to client
-	replymsg.hdr.type = 0x01;
-	replymsg.hdr.subtype = 0x00;
 
 	living = 1;
 	while (living) {
@@ -68,20 +66,20 @@ int *server_thread() {
 				continue;	// go back to top of while loop
 			}
 
-			printf("Message received from: %s with command '%s' and data '%d'\n", CLIENT_NAMES[msg.ClientID], COMMAND_STRS[(int)msg.command], msg.data);
+			printf("Message received from: %s with command '%s' and data '%d' and '%d'\n", CLIENT_NAMES[msg.ClientID], COMMAND_STRS[(int)msg.command], msg.data1, msg.data2);
 
 			// Process the data and res given the command
 			switch(msg.command)
 			{
 			case COMMAND_GET_STATE:
-				replymsg.data = 100; // ENTER STATE HERE
+
 				break;
 			case COMMAND_TOGGLE_SENSOR:
 				// PROCESS SENSOR REQUEST HERE
 				// msg.data contains the sensor number
 				// msg.data2 contains the value to set the sensor to 0 or 1
 
-				replymsg.data = -1; // Always reply with -1 for set sensor
+
 				break;
 			}
 

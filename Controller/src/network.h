@@ -15,6 +15,8 @@
 #define COMMAND_COUNT 2
 #define CONN_STATE_COUNT 3
 
+#define REPLY_BUFF_SIZE 100
+
 typedef enum {
 	CID_CONTROLLER = 0, CID_FREEWAY = 1, CID_MALVERN = 2, CID_TRAIN = 3, CID_PEDESTRAIN = 4
 } Client_ID;
@@ -25,7 +27,9 @@ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Ma
 typedef enum
 {
 	COMMAND_GET_STATE,
-	COMMAND_TOGGLE_SENSOR
+	COMMAND_TOGGLE_SENSOR,
+	COMMAND_CHANGE_LIGHT_TIMING,
+	COMMAND_CHANGE_LIGHT_PATTERN
 }Node_Commands;
 
 static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
@@ -33,8 +37,7 @@ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
 typedef enum
 {
 	CONN_STATE_DISCONNECTED,
-	CONN_STATE_CONNECTED,
-	CONN_STATE_TIMEOUT
+	CONN_STATE_CONNECTED
 }Connection_State;
 
 static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
@@ -43,27 +46,24 @@ typedef struct {
 	Client_ID id;
 	char QNET_name[BUF_SIZE];
 	Connection_State conn_state;
+
+	int ClientID; // Id of the node sending the message
+	Node_Commands command;
+	int data1, data2;
+	int messageReady;
+	pthread_mutex_t mutex;
 } Client_typedef;
 
 typedef struct {
 	struct _pulse hdr;
 	int ClientID; // Id of the node sending the message
 	Node_Commands command;
-	int data;
+	int data1, data2;
 } Send_header;
 
 typedef struct {
 	struct _pulse hdr; // Our real data comes after this header
-	int data;
+	char data[REPLY_BUFF_SIZE];
 } Response_header;
-
-typedef struct
-{
-	char current_state[20];
-	char next_state[20];
-	// Sensor states,
-	// Current timing
-}Freeway_typedef;
-
 
 #endif /* SRC_NETWORK_H_ */
