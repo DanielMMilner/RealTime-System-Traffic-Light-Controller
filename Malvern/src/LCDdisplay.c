@@ -3,17 +3,20 @@
 void *LCDthread (void *data)
 {
 	LCD_connect *td = (LCD_connect*) data;
-	uint8_t	LCDdata[20] = {};
 
 	while(1)
 	{
+		pthread_mutex_lock(&td->mutex);
+
 		// write some Text to the LCD screen
 		SetCursor(td->fd, td->Address,0,0); // set cursor on LCD to first position first line
-		sprintf((char*)LCDdata, "Hello 987!");
-		I2cWrite_(td->fd, td->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+		I2cWrite_(td->fd, td->Address, DATA_SEND, &td->LCDdata1[0], sizeof(td->LCDdata1));		// write new data to I2C
 
-//		SetCursor(td->fd, td->Address,1,0); // set cursor on LCD to first position first line
-//		I2cWrite_(td->fd, td->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+		// write some Text to the LCD2 screen
+		SetCursor(td->fd, td->Address,1,0); // set cursor on LCD to first position first line
+		I2cWrite_(td->fd, td->Address, DATA_SEND, &td->LCDdata2[0], sizeof(td->LCDdata2));		// write new data to I2C
+
+		pthread_mutex_unlock(&td->mutex);
 	}
 	return 0;
 }

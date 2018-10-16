@@ -31,6 +31,8 @@ typedef struct
 	int fd;
 	uint8_t Address;
 	uint8_t mode;
+	uint8_t LCDdata1[20];
+	uint8_t LCDdata2[20];
 	pthread_mutex_t mutex;
 } LCD_connect;
 

@@ -3,6 +3,8 @@
 
 #include "network.h"
 
-void *server_thread(void);
+#define LOCAL_ATTACH_POINT "malvern"
+
+void *server_thread(void *data);
 
 #endif /* SRC_SERVER_H_ */
