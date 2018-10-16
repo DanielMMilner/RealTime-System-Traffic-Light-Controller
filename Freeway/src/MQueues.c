@@ -25,7 +25,7 @@ void *OnRampCommunicationSend(){
 		while(1)
         {
 			sprintf(buf, "%d%d", getSensorEnabled(6),getSensorEnabled(7));			//put the message in a char[] so it can be sent
-			printf("queue: '%s'\n", buf); 			//print the message to this processes terminal
+			//printf("queue: '%s'\n", buf); 			//print the message to this processes terminal
 			mq_send(qd, buf, MESSAGESIZE, 0);		//send the mqueue
 			usleep(200000);
 		}
