@@ -39,6 +39,17 @@ uint32_t KeypadReadIObit(uintptr_t gpio_base, uint32_t BitsToRead) {
 void *KeypadThread(void *data)
 {
 	keypadData *kd = (keypadData*) data;
+	int id = 0; // Attach interrupt Event to IRQ for GPIO1B  (upper 16 bits of port)
+
+
+	// Main code starts here
+	// The thread that calls InterruptWait() must be the one that called InterruptAttach().
+	// id = InterruptAttach (GPIO1_IRQ, Inthandler, &ISR_area_data, sizeof(ISR_area_data), _NTO_INTR_FLAGS_TRK_MSK | _NTO_INTR_FLAGS_NO_UNMASK | _NTO_INTR_FLAGS_END);
+	id = InterruptAttach(GPIO1_IRQ, Inthandler, kd,
+			sizeof(*kd), _NTO_INTR_FLAGS_TRK_MSK);
+
+	InterruptUnmask(GPIO1_IRQ, id);  // Enable a hardware interrupt
+
 	uint32_t val = 0;
 	while(1)
 	{
@@ -62,6 +73,14 @@ void *KeypadThread(void *data)
 				val = KeypadReadIObit(kd->gpio1_base, SD0); // read in data bit
 				val = ~val & 0x01; // invert bit and mask out everything but the LSB
 				word = word | (val << i); // add data bit to word in unique position (build word up bit by bit)
+			}
+
+			if((word != 32768) && (word != 0)) // ignore key 16
+			{
+				pthread_mutex_lock(&kd->mutex);
+				kd->new_press = 1;
+				kd->key = word;
+				pthread_mutex_unlock(&kd->mutex);
 			}
 		}
 	}
@@ -94,6 +113,8 @@ const struct sigevent* Inthandler(void* area, int id) {
 
 void *configureKeypad(keypadData *kd)
 {
+	kd->new_press = 0;
+	pthread_mutex_init(&kd->mutex, NULL);
 
 	uintptr_t control_module = mmap_device_io(AM335X_CONTROL_MODULE_SIZE,
 	AM335X_CONTROL_MODULE_BASE);
@@ -155,16 +176,6 @@ void *configureKeypad(keypadData *kd)
 		out32(kd->gpio1_base + GPIO_FALLINGDETECT, SD0);    // set falling edge
 		out32(kd->gpio1_base + GPIO_CLEARDATAOUT, SD0);   // clear GPIO_CLEARDATAOUT
 		out32(kd->gpio1_base + GPIO_IRQSTATUS_1, SD0);      // clear any prior IRQs
-
-		int id = 0; // Attach interrupt Event to IRQ for GPIO1B  (upper 16 bits of port)
-
-		// Main code starts here
-		// The thread that calls InterruptWait() must be the one that called InterruptAttach().
-		// id = InterruptAttach (GPIO1_IRQ, Inthandler, &ISR_area_data, sizeof(ISR_area_data), _NTO_INTR_FLAGS_TRK_MSK | _NTO_INTR_FLAGS_NO_UNMASK | _NTO_INTR_FLAGS_END);
-		id = InterruptAttach(GPIO1_IRQ, Inthandler, kd,
-				sizeof(*kd), _NTO_INTR_FLAGS_TRK_MSK);
-
-		InterruptUnmask(GPIO1_IRQ, id);  // Enable a hardware interrupt
 	}
 	return EXIT_SUCCESS;
 }

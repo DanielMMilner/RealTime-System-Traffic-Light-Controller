@@ -41,6 +41,15 @@ int main(void) {
     // main control loop
     while(1)
     {
+    	pthread_mutex_lock(&kd.mutex);
+    	if(kd.new_press)
+    	{
+    		printf("Key Pressed!! %u\n", kd.key);
+    		kd.new_press = 0;
+    	}
+    	pthread_mutex_unlock(&kd.mutex);
+
+
         if(timer_done(&tc))
         {
             print_state(&state, &sen);

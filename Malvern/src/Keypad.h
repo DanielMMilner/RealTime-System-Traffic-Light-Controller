@@ -107,6 +107,9 @@ typedef struct {
 	int count_thread;
 	uintptr_t gpio1_base;
 	struct sigevent pevent; // remember to fill in "event" structure in main
+	uint32_t key;
+	int new_press;
+	pthread_mutex_t mutex;
 } keypadData;
 
 void strobe_SCL(uintptr_t gpio_port_add);
