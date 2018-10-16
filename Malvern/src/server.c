@@ -82,7 +82,32 @@ void *server_thread(void *data) {
 			case COMMAND_TOGGLE_SENSOR:
 				// PROCESS SENSOR REQUEST HERE
 				// msg.data contains the sensor number
-
+				pthread_mutex_lock(&ld->sensor_data.mutex);
+				switch(msg.data1)
+				{
+				case 1:
+					ld->sensor_data.sensor1 = 1;
+					break;
+				case 2:
+					ld->sensor_data.sensor2 = 1;
+					break;
+				case 3:
+					ld->sensor_data.sensor3 = 1;
+					break;
+				case 4:
+					ld->sensor_data.sensor4 = 1;
+					break;
+				case 5:
+					ld->sensor_data.sensor5 = 1;
+					break;
+				case 6:
+					ld->sensor_data.sensor6 = 1;
+					break;
+				case 7:
+					ld->sensor_data.sensor7 = 1;
+					break;
+				}
+				pthread_mutex_unlock(&ld->sensor_data.mutex);
 				break;
 			case COMMAND_CHANGE_LIGHT_TIMING:
 
