@@ -5094,3 +5094,618 @@ make: Nothing to be done for 'all'.
 16:46:16 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
 make -j4 all 
 make: Nothing to be done for 'all'.
+16:50:30 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+16:52:05 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+16:52:13 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+16:53:11 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:24:10: error: 'app_data {aka struct <anonymous>}' has no member named 'stat'
+   appdata->stat = curr_state;
+          ^
+src/Pedestrian.c:27:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:44:11: warning: passing argument 1 of 'sprintf' makes pointer from integer without a cast [-Wint-conversion]
+   sprintf(appdata->state, "%d", curr_state);
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'int'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:47:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:65:11: warning: passing argument 1 of 'sprintf' makes pointer from integer without a cast [-Wint-conversion]
+   sprintf(appdata->state, "%d", curr_state);
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'int'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:68:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:113:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:125:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+16:53:18 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:24:18: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+   appdata->state = curr_state;
+                  ^
+src/Pedestrian.c:27:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:44:11: warning: passing argument 1 of 'sprintf' makes pointer from integer without a cast [-Wint-conversion]
+   sprintf(appdata->state, "%d", curr_state);
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'int'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:47:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:65:11: warning: passing argument 1 of 'sprintf' makes pointer from integer without a cast [-Wint-conversion]
+   sprintf(appdata->state, "%d", curr_state);
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'int'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:68:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:113:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:125:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o  
+16:53:31 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:24:18: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+   appdata->state = curr_state;
+                  ^
+src/Pedestrian.c:27:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:44:18: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+   appdata->state = curr_state;
+                  ^
+src/Pedestrian.c:47:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:65:18: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+   appdata->state = curr_state;
+                  ^
+src/Pedestrian.c:68:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:113:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:125:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o  
+16:53:33 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+16:54:33 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:24:18: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+   appdata->state = curr_state;
+                  ^
+src/Pedestrian.c:27:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:44:18: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+   appdata->state = curr_state;
+                  ^
+src/Pedestrian.c:47:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:65:18: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+   appdata->state = curr_state;
+                  ^
+src/Pedestrian.c:68:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:114:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:126:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o  
+16:56:05 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/server.d,-MT,build/armv7le-debug/src/server.o -o build/armv7le-debug/src/server.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/server.c
+src/server.c: In function 'server_thread':
+src/server.c:12:10: warning: return makes pointer from integer without a cast [-Wint-conversion]
+   return EXIT_FAILURE;
+          ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_TIMING' not handled in switch [-Wswitch]
+    switch(msg.command)
+    ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_PATTERN' not handled in switch [-Wswitch]
+In file included from src/server.h:4:0,
+                 from src/server.c:1:
+src/server.c: At top level:
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o  
+16:58:09 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/train.d,-MT,build/armv7le-debug/src/train.o -o build/armv7le-debug/src/train.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/train.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/lcd.d,-MT,build/armv7le-debug/src/lcd.o -o build/armv7le-debug/src/lcd.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/lcd.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/server.d,-MT,build/armv7le-debug/src/server.o -o build/armv7le-debug/src/server.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/server.c
+src/train.c: In function 'boom_gate_sm':
+src/train.c:23:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"DOWN");
+           ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c:43:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RISING");
+           ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c:61:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"UP");
+           ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c:86:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"LOWERING");
+           ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c:104:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"ERR");
+           ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c: In function 'east_west_train_sensor':
+src/train.c:169:19: warning: passing argument 1 of 'pthread_exit' makes pointer from integer without a cast [-Wint-conversion]
+      pthread_exit(EXIT_FAILURE);
+                   ^
+In file included from src/train.h:13:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/pthread.h:200:13: note: expected 'void *' but argument is of type 'int'
+ extern void pthread_exit(void *__value_ptr) __attribute__((__noreturn__));
+             ^
+src/train.c:176:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+     sprintf(LCDdata,"%d mins", next_train);
+             ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c: In function 'west_east_train_sensor':
+src/train.c:263:19: warning: passing argument 1 of 'pthread_exit' makes pointer from integer without a cast [-Wint-conversion]
+      pthread_exit(EXIT_FAILURE);
+                   ^
+In file included from src/train.h:13:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/pthread.h:200:13: note: expected 'void *' but argument is of type 'int'
+ extern void pthread_exit(void *__value_ptr) __attribute__((__noreturn__));
+             ^
+src/train.c:270:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+     sprintf(LCDdata,"%d mins", next_train);
+             ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c: In function 'load_timetable':
+src/train.c:338:7: warning: implicit declaration of function 'strtok' [-Wimplicit-function-declaration]
+   p = strtok(buffer, delim);
+       ^
+src/train.c:338:5: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+   p = strtok(buffer, delim);
+     ^
+src/train.c:341:6: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+    p = strtok(NULL, delim);
+      ^
+src/train.c: In function 'main':
+src/train.c:399:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/train.c:411:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/train.h:28:0,
+                 from src/train.c:1:
+src/train.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/train.c: In function 'load_timetable':
+src/train.c:353:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/lcd.c: In function 'init_LCD':
+src/lcd.c:48:56: warning: implicit declaration of function 'strerror' [-Wimplicit-function-declaration]
+   fprintf(stderr, "Error setting the bus speed: %d\n", strerror(error));
+                                                        ^
+In file included from src/train.h:28:0,
+                 from src/lcd.c:29:
+src/lcd.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/lcd.c: In function 'init_LCD':
+src/lcd.c:61:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/server.c: In function 'server_thread':
+src/server.c:12:10: warning: return makes pointer from integer without a cast [-Wint-conversion]
+   return EXIT_FAILURE;
+          ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_TIMING' not handled in switch [-Wswitch]
+    switch(msg.command)
+    ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_PATTERN' not handled in switch [-Wswitch]
+In file included from src/server.h:4:0,
+                 from src/server.c:1:
+src/server.c: At top level:
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Train   build/armv7le-debug/src/train.o build/armv7le-debug/src/server.o build/armv7le-debug/src/lcd.o  
+17:00:35 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/server.d,-MT,build/armv7le-debug/src/server.o -o build/armv7le-debug/src/server.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/server.c
+src/server.c: In function 'server_thread':
+src/server.c:12:10: warning: return makes pointer from integer without a cast [-Wint-conversion]
+   return EXIT_FAILURE;
+          ^
+src/server.c:88:14: warning: passing argument 1 of 'sprintf' makes pointer from integer without a cast [-Wint-conversion]
+      sprintf(appdata->day, "%d", msg.data1);
+              ^
+In file included from src/network.h:5:0,
+                 from src/server.h:4,
+                 from src/server.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'int'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_TIMING' not handled in switch [-Wswitch]
+    switch(msg.command)
+    ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_PATTERN' not handled in switch [-Wswitch]
+In file included from src/server.h:4:0,
+                 from src/server.c:1:
+src/server.c: At top level:
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Train   build/armv7le-debug/src/train.o build/armv7le-debug/src/server.o build/armv7le-debug/src/lcd.o  
+17:00:46 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+17:01:00 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+17:02:15 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+17:03:50 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+17:04:36 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+17:06:11 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/train.d,-MT,build/armv7le-debug/src/train.o -o build/armv7le-debug/src/train.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/train.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/server.d,-MT,build/armv7le-debug/src/server.o -o build/armv7le-debug/src/server.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/server.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/lcd.d,-MT,build/armv7le-debug/src/lcd.o -o build/armv7le-debug/src/lcd.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/lcd.c
+src/train.c: In function 'boom_gate_sm':
+src/train.c:23:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"DOWN");
+           ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c:43:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RISING");
+           ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c:61:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"UP");
+           ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c:86:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"LOWERING");
+           ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c:104:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"ERR");
+           ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c: In function 'east_west_train_sensor':
+src/train.c:169:19: warning: passing argument 1 of 'pthread_exit' makes pointer from integer without a cast [-Wint-conversion]
+      pthread_exit(EXIT_FAILURE);
+                   ^
+In file included from src/train.h:13:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/pthread.h:200:13: note: expected 'void *' but argument is of type 'int'
+ extern void pthread_exit(void *__value_ptr) __attribute__((__noreturn__));
+             ^
+src/train.c:176:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+     sprintf(LCDdata,"%d mins", next_train);
+             ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c: In function 'west_east_train_sensor':
+src/train.c:263:19: warning: passing argument 1 of 'pthread_exit' makes pointer from integer without a cast [-Wint-conversion]
+      pthread_exit(EXIT_FAILURE);
+                   ^
+In file included from src/train.h:13:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/pthread.h:200:13: note: expected 'void *' but argument is of type 'int'
+ extern void pthread_exit(void *__value_ptr) __attribute__((__noreturn__));
+             ^
+src/train.c:270:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+     sprintf(LCDdata,"%d mins", next_train);
+             ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/train.c: In function 'load_timetable':
+src/train.c:338:7: warning: implicit declaration of function 'strtok' [-Wimplicit-function-declaration]
+   p = strtok(buffer, delim);
+       ^
+src/train.c:338:5: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+   p = strtok(buffer, delim);
+     ^
+src/train.c:341:6: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+    p = strtok(NULL, delim);
+      ^
+src/train.c: In function 'main':
+src/train.c:399:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/train.c:411:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/train.h:11:0,
+                 from src/train.c:1:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/train.h:28:0,
+                 from src/train.c:1:
+src/train.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/train.c: In function 'load_timetable':
+src/train.c:353:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/server.c: In function 'server_thread':
+src/server.c:12:10: warning: return makes pointer from integer without a cast [-Wint-conversion]
+   return EXIT_FAILURE;
+          ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_TIMING' not handled in switch [-Wswitch]
+    switch(msg.command)
+    ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_PATTERN' not handled in switch [-Wswitch]
+In file included from src/server.h:4:0,
+                 from src/server.c:1:
+src/server.c: At top level:
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/lcd.c: In function 'init_LCD':
+src/lcd.c:48:56: warning: implicit declaration of function 'strerror' [-Wimplicit-function-declaration]
+   fprintf(stderr, "Error setting the bus speed: %d\n", strerror(error));
+                                                        ^
+In file included from src/train.h:28:0,
+                 from src/lcd.c:29:
+src/lcd.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/lcd.c: In function 'init_LCD':
+src/lcd.c:61:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Train   build/armv7le-debug/src/train.o build/armv7le-debug/src/server.o build/armv7le-debug/src/lcd.o  
+17:06:14 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+17:20:13 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+17:20:23 **** Incremental Build of configuration armv7le-debug for project Train ****
+make -j4 all 
+make: Nothing to be done for 'all'.

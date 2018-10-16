@@ -1,6 +1,21 @@
-16:46:16 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+16:56:05 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
 make -j4 all 
-make: Nothing to be done for 'all'.
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/server.d,-MT,build/armv7le-debug/src/server.o -o build/armv7le-debug/src/server.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/server.c
+src/server.c: In function 'server_thread':
+src/server.c:12:10: warning: return makes pointer from integer without a cast [-Wint-conversion]
+   return EXIT_FAILURE;
+          ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_TIMING' not handled in switch [-Wswitch]
+    switch(msg.command)
+    ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_PATTERN' not handled in switch [-Wswitch]
+In file included from src/server.h:4:0,
+                 from src/server.c:1:
+src/server.c: At top level:
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o  
 
-16:46:16 Build Finished (took 343ms)
+16:56:07 Build Finished (took 1s.154ms)
 

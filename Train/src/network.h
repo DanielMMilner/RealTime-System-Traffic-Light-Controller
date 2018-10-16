@@ -49,7 +49,7 @@ typedef struct {
 
 	int ClientID; // Id of the node sending the message
 	Node_Commands command;
-	int data1, data2;
+	int data1, data2, data3;
 	int messageReady;
 	pthread_mutex_t mutex;
 } Client_typedef;
@@ -58,7 +58,7 @@ typedef struct {
 	struct _pulse hdr;
 	int ClientID; // Id of the node sending the message
 	Node_Commands command;
-	int data1, data2;
+	int data1, data2, data3;
 } Send_header;
 
 typedef struct {

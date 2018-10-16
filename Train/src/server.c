@@ -82,11 +82,15 @@ void *server_thread(void *data) {
 				// msg.data contains the sensor number
 				// msg.data2 contains the value to set the sensor to 0 or 1
 
-//				if (VALUE >= 0 && VALUE <= 6) {
-//					sprintf(appdata->day, "%d", <VALUE_HERE>);
-//				} else {
-//					printf("Invalid command from controller: Day must be an int in the range 0..6");
-//				}
+				pthread_mutex_lock(&appdata->mutex);
+
+				if (msg.data1 >= 0 && msg.data1 <= 6) {
+					appdata->day = msg.data1;
+				} else {
+					printf("Invalid command from controller: Day must be an int in the range 0..6");
+				}
+
+				pthread_mutex_unlock(&appdata->mutex);
 
 				break;
 			}

@@ -15,5 +15,5 @@ com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Pedestrian/activeLaun
 com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Pedestrian/activeLaunchTarget=com.qnx.tools.ide.target.qconn\:192.168.201.60
 com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Train/activeLaunchMode=run
 com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Train/activeLaunchTarget=com.qnx.tools.ide.target.qconn\:192.168.201.71
-configDescList=com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Freeway,com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Malvern,com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Train,com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Pedestrian
+configDescList=com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Freeway,com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Malvern,com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Pedestrian,com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/Train
 eclipse.preferences.version=1

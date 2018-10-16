@@ -21,7 +21,7 @@ void pedestrian_sm(enum states *curr_state, app_data *data) {
 
 		pthread_mutex_lock(&appdata->mutex);
 
-		sprintf(appdata->state, "%d", curr_state);
+		appdata->state = curr_state;
 
 		SetCursor(appdata->fd, appdata->Address,0,0); // set cursor on LCD to first position first line
 		sprintf(LCDdata,"RED");
@@ -41,7 +41,7 @@ void pedestrian_sm(enum states *curr_state, app_data *data) {
 
 		pthread_mutex_lock(&appdata->mutex);
 
-		sprintf(appdata->state, "%d", curr_state);
+		appdata->state = curr_state;
 
 		SetCursor(appdata->fd, appdata->Address,0,0); // set cursor on LCD to first position first line
 		sprintf(LCDdata,"GREEN");
@@ -62,7 +62,7 @@ void pedestrian_sm(enum states *curr_state, app_data *data) {
 
 		pthread_mutex_lock(&appdata->mutex);
 
-		sprintf(appdata->state, "%d", curr_state);
+		appdata->state = curr_state;
 
 		SetCursor(appdata->fd, appdata->Address,0,0); // set cursor on LCD to first position first line
 		sprintf(LCDdata,"FLASH RED");
@@ -93,6 +93,7 @@ int main(void) {
 	app_data data;
 
 	data.state = curr_state;
+	data.sensor = 0;
 
 	pthread_mutex_init(&data.mutex, NULL);
 
