@@ -6,25 +6,37 @@
 #include "malv_timer.h"
 #include "malv_sensors.h"
 #include "malv_statemachine.h"
-#include "server.h"
+//#include "server.h"
+#include "LCDdisplay.h"
+#include "Keypad.h"
 
 int main(void) {
 	// state variables
     timer_container tc;
     sensor_state sen;
     light_state state = State1;
+    LCD_connect td;
+    keypadData kd;
 
     int boom_gate = 0;
 
     // initialisation
     configure_timer(&tc);
     configure_sensor(&sen);
+    configureLCD(&td);
+    configureKeypad(&kd);
 
     pthread_t th_sensor;
     pthread_create(&th_sensor, NULL, sensor_thr, &sen);
 
-    pthread_t th_server;
-    pthread_create(&th_server, NULL, server_thread, NULL);
+//    pthread_t th_server;
+//    pthread_create(&th_server, NULL, server_thread, NULL);
+
+    pthread_t th_lcd;
+    pthread_create(&th_lcd, NULL, LCDthread, &td);
+
+    pthread_t th_keypad;
+    pthread_create(&th_keypad, NULL, KeypadThread, &kd);
 
     // main control loop
     while(1)
