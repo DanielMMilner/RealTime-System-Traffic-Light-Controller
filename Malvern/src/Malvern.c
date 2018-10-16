@@ -11,6 +11,10 @@
 #include "LCDdisplay.h"
 #include "Keypad.h"
 
+
+// todo add sensor threads
+// add something else
+
 int main(void) {
 	// state variables
 	light_data ld = {0};

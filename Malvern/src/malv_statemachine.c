@@ -108,17 +108,16 @@ void light_state_machine(light_state *state, sensor_state *sen, int boom_gate, t
     switch (*state)
     {
     case State1:
-        if(sen->sensor6 || sen->sensor7)
-        {
-            *state = State2;
-            sen->sensor6 = 0;
-            sen->sensor7 = 0;
-            tc->itime_current = &tc->itime_red;
-        }
-        tc->itime_current = &tc->itime_red;
+		*state = State2;
+		tc->itime_current = &tc->itime_red;
         break;
     case State2:
-        *state = State3;
+    	if(sen->sensor6 || sen->sensor7)
+    	{
+    		sen->sensor6 = 0;
+    		sen->sensor7 = 0;
+    		*state = State3;
+    	}
         tc->itime_current = &tc->itime_green;
         break;
     case State3:
@@ -199,7 +198,7 @@ void light_state_machine(light_state *state, sensor_state *sen, int boom_gate, t
         tc->itime_current = &tc->itime_yellow;
         break;
     case State9b:
-        if(sen->sensor1 || sen->sensor2 || sen->sensor3 || sen->sensor6 || sen->sensor7)
+        if(sen->sensor1 || sen->sensor2 || sen->sensor3 || sen->sensor6 || sen->sensor7 )
         {
             *state = State10;
             sen->sensor1 = 0;
@@ -215,19 +214,19 @@ void light_state_machine(light_state *state, sensor_state *sen, int boom_gate, t
         tc->itime_current = &tc->itime_green;
         break;
     case State11:
-        *state = State12;
-        tc->itime_current = &tc->itime_green;
-        break;
-    case State12:
-        if(sen->sensor1 || sen->sensor2 || sen->sensor4 || sen->sensor6 || sen->sensor7)
-        {
-            *state = State1;
+    	if(sen->sensor1 || sen->sensor2 || sen->sensor4 || sen->sensor6 || sen->sensor7)
+		{
+    		*state = State12;
             sen->sensor1 = 0;
             sen->sensor2 = 0;
             sen->sensor4 = 0;
             sen->sensor6 = 0;
             sen->sensor7 = 0;
-        }
+		}
+        tc->itime_current = &tc->itime_green;
+        break;
+    case State12:
+		*state = State1;
         tc->itime_current = &tc->itime_yellow;
         break;
     }
