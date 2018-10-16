@@ -4,7 +4,8 @@
 #include "network.h"
 #include "client.h"
 
-int *console_thread();
+void *console_thread();
+int getNumFromUser(int low, int high);
 
 typedef struct
 {

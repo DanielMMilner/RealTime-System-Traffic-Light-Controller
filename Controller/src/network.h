@@ -12,8 +12,8 @@
 #define MAX_CONNECT_ATTEMPT_COUNT 2
 
 #define NODE_COUNT 5
-#define COMMAND_COUNT 2
-#define CONN_STATE_COUNT 3
+#define COMMAND_COUNT 4
+#define CONN_STATE_COUNT 2
 
 #define REPLY_BUFF_SIZE 100
 
@@ -32,7 +32,7 @@ typedef enum
 	COMMAND_CHANGE_LIGHT_PATTERN
 }Node_Commands;
 
-static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor", "Change light timing", "Change light pattern"};
 
 typedef enum
 {
@@ -40,7 +40,7 @@ typedef enum
 	CONN_STATE_CONNECTED
 }Connection_State;
 
-static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected"};
 
 typedef struct {
 	Client_ID id;

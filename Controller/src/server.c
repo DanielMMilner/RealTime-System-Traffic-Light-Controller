@@ -1,7 +1,7 @@
 #include "server.h"
 
 // Thread for the server
-int *server_thread() {
+void *server_thread() {
 	name_attach_t *attach;
 
 	// Create a local name (/dev/name/...)
@@ -77,21 +77,14 @@ int *server_thread() {
 			case COMMAND_TOGGLE_SENSOR:
 				// PROCESS SENSOR REQUEST HERE
 				// msg.data contains the sensor number
-				// msg.data2 contains the value to set the sensor to 0 or 1
+			case COMMAND_CHANGE_LIGHT_TIMING:
 
+				break;
+
+			case COMMAND_CHANGE_LIGHT_PATTERN:
 
 				break;
 			}
-
-			// Select a node.
-				// Select an action
-					// Enter data for that action.
-
-			// Set train time
-			// Get state of each node.
-			// Set light timings.
-			// Alter light patterns for freeway.
-			// Trigger sensor
 
 			// Server responds to msg.
 			MsgReply(rcvid, EOK, &replymsg, sizeof(replymsg));

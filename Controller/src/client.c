@@ -4,7 +4,7 @@
 extern Console_Command console_command;
 
 // Thread for each client. Many of these are running
-int *client_thread(void *data) {
+void *client_thread(void *data) {
 	Client_typedef *client = (Client_typedef*) data;
 	Send_header msg;
 	Response_header reply;
@@ -13,8 +13,7 @@ int *client_thread(void *data) {
 
 	int server_coid;
 
-	printf("Attempting to connect to: %s at %s\n",
-			CLIENT_NAMES[(int) client->id], client->QNET_name);
+	//printf("Attempting to connect to: %s at %s\n", CLIENT_NAMES[(int) client->id], client->QNET_name);
 
 	// Connect to the server
 
@@ -50,7 +49,7 @@ int *client_thread(void *data) {
 				client->conn_state = CONN_STATE_DISCONNECTED;
 			}
 
-			printf("MSG from %s '%s'\n", CLIENT_NAMES[client->ClientID], reply.data);
+			printf("MSG from %s '%s'\n", CLIENT_NAMES[client->id], reply.data);
 			// Depending on the client the response will be different.
 			switch (client->id) {
 			case CID_MALVERN:

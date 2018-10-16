@@ -14,7 +14,7 @@ Console_Command console_command;
 Client_typedef freeway = { CID_FREEWAY, "/net/RMIT_BBB_v5_03/dev/name/local/aaaa" };
 Client_typedef malvern = { CID_MALVERN, "/dev/name/local/vvv" };
 Client_typedef pedestrian = {CID_PEDESTRAIN, "/dev/name/local/controller"};
-Client_typedef train = {CID_TRAIN, "/net/Beagle01.net.intra/dev/name/local/train"};
+Client_typedef train = {CID_TRAIN, "/net/RMIT_BBB_v5_06/dev/name/local/train"};
 
 // Private vars
 Client_typedef * clients[4];
@@ -40,7 +40,6 @@ int main(void) {
 
 	pthread_create(&consoleThread, NULL, console_thread, NULL);
 	pthread_create(&serverThread, NULL, server_thread, NULL);
-	sleep(1);
 
 	pthread_create(&freewayThread, NULL, client_thread, &freeway);
 	pthread_create(&malvernThread, NULL, client_thread, &malvern);
