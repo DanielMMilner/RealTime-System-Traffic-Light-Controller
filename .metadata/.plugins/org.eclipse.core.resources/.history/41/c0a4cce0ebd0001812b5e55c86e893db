@@ -21,7 +21,7 @@ void boom_gate_sm(enum states *curr_state, app_data *data) {
 
 		pthread_mutex_lock(&appdata->mutex);
 
-		sprintf(appdata->state, "%s", "BD(0)");
+		sprintf(appdata->state, "BD(0)");
 
 		SetCursor(appdata->fd, appdata->Address,0,0); // set cursor on LCD to first position first line
 		sprintf(LCDdata,"DOWN");
@@ -121,6 +121,9 @@ void *east_west_train_sensor(void *data) {
 	app_data *appdata = (app_data*) data;
 	uint8_t	LCDdata[10] = {};
 
+	// day stuff
+	int day = 0;
+
 	struct sigevent event;
 	struct itimerspec itime;
 	timer_t timer_id;
@@ -173,7 +176,7 @@ void *east_west_train_sensor(void *data) {
 					pthread_exit(EXIT_FAILURE);
 				}
 
-				next_train = appdata->timetable[0][appdata->day][next_train_index] - timer_count;
+				next_train = appdata->timetable[0][day][next_train_index] - timer_count;
 
 				pthread_mutex_lock(&appdata->mutex);
 				SetCursor(appdata->fd, appdata->Address,0,10); // set cursor on LCD to first position first line
@@ -190,7 +193,7 @@ void *east_west_train_sensor(void *data) {
 
 				timer_count = mono_time.tv_sec - time_of_day;
 
-				if (timer_count == appdata->timetable[0][appdata->day][next_train_index]) {
+				if (timer_count == appdata->timetable[0][day][next_train_index]) {
 					printf("Train here!\n");
 
 					leave_time = timer_count + BD_DURATION + B_CHANGE_DURATION;
@@ -213,6 +216,9 @@ void *west_east_train_sensor(void *data) {
 	app_data *appdata = (app_data*) data;
 	uint8_t	LCDdata[10] = {};
 
+	// day stuff
+	int day = 0; // TODO: make dynamic
+
 	struct sigevent event;
 	struct itimerspec itime;
 	timer_t timer_id;
@@ -265,7 +271,7 @@ void *west_east_train_sensor(void *data) {
 					pthread_exit(EXIT_FAILURE);
 				}
 
-				next_train = appdata->timetable[1][appdata->day][next_train_index] - timer_count;
+				next_train = appdata->timetable[1][day][next_train_index] - timer_count;
 
 				pthread_mutex_lock(&appdata->mutex);
 				SetCursor(appdata->fd, appdata->Address,1,10); // set cursor on LCD to first position first line
@@ -282,7 +288,7 @@ void *west_east_train_sensor(void *data) {
 
 				timer_count = mono_time.tv_sec - time_of_day;
 
-				if (timer_count == appdata->timetable[1][appdata->day][next_train_index]) {
+				if (timer_count == appdata->timetable[1][day][next_train_index]) {
 					printf("Train here!\n");
 
 					leave_time = timer_count + BD_DURATION + B_CHANGE_DURATION;
@@ -362,9 +368,6 @@ int main(void) {
 
 	app_data data;
 
-	sprintf(data.state, "%s", "BU(2)");
-	data.day = 0;
-
 	// Create the mutex
 	pthread_mutex_init(&data.mutex, NULL); // pass NULL as the attr parameter to use the default attributes for the mutex
 
@@ -378,7 +381,7 @@ int main(void) {
 	pthread_t west_east_train_thread;
 	pthread_t s_thread;
 
-	pthread_create(&s_thread, NULL, server_thread, &data);
+	pthread_create(&s_thread, NULL, server_thread, NULL);
 	pthread_create(&east_west_train_thread, NULL, east_west_train_sensor,
 			&data);
 	pthread_create(&west_east_train_thread, NULL, west_east_train_sensor,
