@@ -12,9 +12,9 @@
 Console_Command console_command;
 
 Client_typedef freeway = { CID_FREEWAY, "/net/RMIT_BBB_v5_06/dev/name/local/freeway" };
-Client_typedef malvern = { CID_MALVERN, "/net/RMIT_BBB_v5_06/dev/name/local/malvern" };
+Client_typedef malvern = { CID_MALVERN, "/net/RMIT_BBB_v5_03/dev/name/local/malvern" };
 Client_typedef pedestrian = {CID_PEDESTRAIN, "/net/RMIT_BBB_v5_06/dev/name/local/pedestrian"};
-Client_typedef train = {CID_TRAIN, "/net/RMIT_BBB_v5_06/dev/name/local/train"};
+Client_typedef train = {CID_TRAIN, "/net/RMIT_BBB_v5_02/dev/name/local/train"};
 
 // Private vars
 Client_typedef * clients[4];
@@ -33,21 +33,21 @@ int main(void) {
 	pthread_mutex_init(&train.mutex, NULL);
 
 	pthread_t freewayThread, malvernThread, pedThread, trainThread;
-	pthread_t serverThread;
 	pthread_t consoleThread;
 
 
 	void *retval;
 
 	pthread_create(&consoleThread, NULL, console_thread, NULL);
-	pthread_create(&serverThread, NULL, server_thread, NULL);
 
 	pthread_create(&freewayThread, NULL, client_thread, &freeway);
 	pthread_create(&malvernThread, NULL, client_thread, &malvern);
 	pthread_create(&trainThread, NULL, client_thread, &train);
 	pthread_create(&pedThread, NULL, client_thread, &pedestrian);
 
-	pthread_join(serverThread, &retval);
+
+	//server_thread();
+
 	pthread_join(freewayThread, &retval);
 	pthread_join(malvernThread, &retval);
 	pthread_join(pedThread, &retval);
