@@ -11,7 +11,7 @@ void *server_thread() {
 		return EXIT_FAILURE;
 	}
 
-	printf("Server Listening for Clients on ATTACH_POINT: %s \n", LOCAL_ATTACH_POINT);
+	//printf("Server Listening for Clients on ATTACH_POINT: %s \n", LOCAL_ATTACH_POINT);
 
 	Send_header msg;
 	int rcvid = 0;
@@ -41,7 +41,7 @@ void *server_thread() {
 
 			default:
 				// Some other pulse sent by one of your processes or the kernel
-				printf("\nServer got some other pulse\n");
+				//printf("\nServer got some other pulse\n");
 				break;
 
 			}
@@ -66,7 +66,7 @@ void *server_thread() {
 				continue;	// go back to top of while loop
 			}
 
-			printf("Message received from: %s with command '%s' and data '%d' and '%d'\n", CLIENT_NAMES[msg.ClientID], COMMAND_STRS[(int)msg.command], msg.data1, msg.data2);
+			printf("Message received from: %s with command '%s' and data '%d' and '%d' and '%d'\n", CLIENT_NAMES[msg.ClientID], COMMAND_STRS[(int)msg.command], msg.data1, msg.data2, msg.data3);
 
 			// Process the data and res given the command
 			switch(msg.command)
