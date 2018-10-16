@@ -12,8 +12,8 @@
 Console_Command console_command;
 
 Client_typedef freeway = { CID_FREEWAY, "/net/RMIT_BBB_v5_06/dev/name/local/freeway" };
-Client_typedef malvern = { CID_MALVERN, "/dev/name/local/vvv" };
-Client_typedef pedestrian = {CID_PEDESTRAIN, "/dev/name/local/control22ler"};
+Client_typedef malvern = { CID_MALVERN, "/net/RMIT_BBB_v5_06/dev/name/local/malvern" };
+Client_typedef pedestrian = {CID_PEDESTRAIN, "/net/RMIT_BBB_v5_06/dev/name/local/pedestrian"};
 Client_typedef train = {CID_TRAIN, "/net/RMIT_BBB_v5_06/dev/name/local/train"};
 
 // Private vars

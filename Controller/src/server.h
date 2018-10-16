@@ -3,7 +3,7 @@
 
 #include "network.h"
 
-#define LOCAL_ATTACH_POINT "controller"
+#define LOCAL_ATTACH_POINT "controller2"
 
 void *server_thread();
 

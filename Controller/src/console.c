@@ -11,7 +11,7 @@ void *console_thread() {
 	while (1) {
 		// Get all states,
 		printf(
-				"Traffic light Controller Menu\n--> 1 - Update States of connected devices\n--> 2 - Use Command\n");
+				"\nTraffic light Controller Menu\n--> 1 - Update States of connected devices\n--> 2 - Use Command\n");
 		num = getNumFromUser(1, 2);
 		if (num == 1) {
 			for (int i = 0; i < CLIENT_COUNT; i++) {
@@ -32,6 +32,12 @@ void *console_thread() {
 			}
 			num = getNumFromUser(0, CLIENT_COUNT - 1);
 			ids = clients[num]->id;
+
+			if(clients[num]->conn_state == CONN_STATE_DISCONNECTED)
+			{
+				printf("ERROR : Node %s is disconnected\n", CLIENT_NAMES[ids]);
+				continue;
+			}
 
 			printf("Select a command to send to the %s:\n", CLIENT_NAMES[ids]);
 			printf("--> 1 - Toggle Sensor\n");
