@@ -6,4 +6,13 @@
 
 int *console_thread();
 
+typedef struct
+{
+	Client_ID clientID;
+	Node_Commands command;
+	int data1, data2;
+	pthread_mutex_t mutex;
+}Console_Command;
+
+
 #endif /* SRC_CONSOLE_H_ */

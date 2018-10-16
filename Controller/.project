@@ -23,11 +23,4 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>Modules</name>
-			<type>2</type>
-			<location>C:/Scratch/s3542686/real-time-systems-project/Modules</location>
-		</link>
-	</linkedResources>
 </projectDescription>

@@ -1,4 +1,7 @@
 #include "client.h"
+#include "console.h"
+
+extern Console_Command console_command;
 
 // Thread for each client. Many of these are running
 int *client_thread(void *data) {
@@ -10,45 +13,67 @@ int *client_thread(void *data) {
 
 	int server_coid;
 
-	int connectAttemptCount;
+	printf("Attempting to connect to: %s at %s\n",
+			CLIENT_NAMES[(int) client->id], client->QNET_name);
+
 	// Connect to the server
 
-	while(1)
-	{
+	while (1) {
 		client->conn_state = CONN_STATE_DISCONNECTED;
-		connectAttemptCount++;
-		//printf("Atempt %d to connect to: %s at %s\n",connectAttemptCount, CLIENT_NAMES[(int) client->id], client->QNET_name);
+		// Try to connect to the server on the node
 		if ((server_coid = name_open(client->QNET_name, 0)) == -1) {
-			sleep(1);
-		}else{
-			break;
+			sleep(1); // Wait before reconnecting again
+		} else {
+			printf("Connection established to: %s\n",
+					CLIENT_NAMES[(int) client->id]);
+			client->conn_state = CONN_STATE_CONNECTED;
 		}
-		if(connectAttemptCount >= MAX_CONNECT_ATTEMPT_COUNT)
-		{
-			client->conn_state = CONN_STATE_TIMEOUT;
-			printf("Failed to connect to %s after %d attempts\n", client->QNET_name, connectAttemptCount);
-			return EXIT_FAILURE;
+
+		// Once connected complete send/reply
+		while (client->conn_state == CONN_STATE_CONNECTED) {
+			pthread_mutex_lock(&client->mutex);
+			// Check if a msg is ready
+			if(client->messageReady)
+			{
+				msg.command = client->command;
+				msg.data1 = client->data1;
+				msg.data2 = client->data2;
+				client->messageReady = 0;
+			}else{
+				pthread_mutex_unlock(&client->mutex);
+				continue;
+			}
+			pthread_mutex_unlock(&client->mutex);
+
+			if (MsgSend(server_coid, &msg, sizeof(msg), &reply, sizeof(reply))
+					== -1) {
+				client->conn_state = CONN_STATE_DISCONNECTED;
+			}
+
+			printf("MSG from %s '%s'\n", CLIENT_NAMES[client->ClientID], reply.data);
+			// Depending on the client the response will be different.
+			switch (client->id) {
+			case CID_MALVERN:
+
+				// Process reply
+
+			case CID_FREEWAY:
+
+				// Process reply
+
+			case CID_PEDESTRAIN:
+
+				// Process reply
+
+			case CID_TRAIN:
+
+				// Process reply
+
+			default:
+				break;
+			}
 		}
 	}
-
-	client->conn_state = CONN_STATE_CONNECTED;
-
-	printf("Connection established to: %s\n", CLIENT_NAMES[(int) client->id]);
-
-	// We would have pre-defined data to stuff here
-	msg.hdr.type = 0x00;
-	msg.hdr.subtype = 0x00;
-
-	// Setup the command
-	msg.command = COMMAND_TOGGLE_SENSOR;
-	msg.data = 5;
-
-	// Send the command
-	MsgSend(server_coid, &msg, sizeof(msg), &reply, sizeof(reply));
-
-	// Process the response from the server/node
-	printf("Res is: %d\n", reply.data);
-
 	name_close(server_coid);
 	return EXIT_SUCCESS;
 }
