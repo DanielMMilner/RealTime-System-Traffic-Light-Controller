@@ -5,8 +5,7 @@ TurningSensors turningSensors = { 0, 0, 0, 0, 1, 0, 0 };
 // create global struct to share data between threads
 ISR_data ISR_area_data;
 
-int getSensorValue(int sensor) {
-	//returns the current value of a sensor
+int getSensorEnabled(int sensor) {
 	pthread_mutex_lock(&turningSensors.mutex);
 	int value = 0;
 	switch (sensor) {
@@ -40,17 +39,14 @@ int getSensorValue(int sensor) {
 void changeSensor(int* sensor, int value) {
 	pthread_mutex_lock(&turningSensors.mutex);
 	if (value == 2) {
-		//toggle sensor
 		*sensor = !*sensor;
 	} else {
-		//activates or deactivates sensor
 		*sensor = value;
 	}
 	pthread_mutex_unlock(&turningSensors.mutex);
 }
 
 void remoteSensorActivation(int sensor) {
-	//converts remote command from central controller into an action
 	switch (sensor) {
 	case (1):
 		changeSensor(&turningSensors.NE_Waiting, 1);
@@ -66,7 +62,7 @@ void remoteSensorActivation(int sensor) {
 		break;
 	case (5):
 		changeSensor(&turningSensors.Use_Sensors, 2);
-		if(turningSensors.Use_Sensors){
+		if(getSensorEnabled(turningSensors.Use_Sensors)){
 			printf("Sensors enabled\n");
 		}else{
 			printf("Sensors disabled\n");
@@ -74,7 +70,7 @@ void remoteSensorActivation(int sensor) {
 		break;
 	case (6):
 		changeSensor(&turningSensors.East_Onramp, 2);
-		if(turningSensors.East_Onramp){
+		if(getSensorEnabled(turningSensors.East_Onramp)){
 			printf("East on ramp lights enabled\n");
 		}else{
 			printf("East on ramp lights disabled\n");
@@ -82,7 +78,7 @@ void remoteSensorActivation(int sensor) {
 		break;
 	case (7):
 		changeSensor(&turningSensors.West_Onramp, 2);
-		if(turningSensors.West_Onramp){
+		if(getSensorEnabled(turningSensors.West_Onramp)){
 			printf("East on ramp lights enabled\n");
 		}else{
 			printf("East on ramp lights disabled\n");
@@ -92,7 +88,6 @@ void remoteSensorActivation(int sensor) {
 }
 
 void *userInput(){
-	//gets keyboard input
 	int temp;
 	while(1){
 		temp = getchar();
@@ -134,7 +129,6 @@ uint32_t KeypadReadIObit(uintptr_t gpio_base, uint32_t BitsToRead) {
 }
 
 void DecodeKeyValue(uint32_t word) {
-	//gets keypad input and acts accordingly.
 	switch (word) {
 	case 0x01:
 		printf("NE Sensor triggered\n");
@@ -157,13 +151,18 @@ void DecodeKeyValue(uint32_t word) {
 		changeSensor(&turningSensors.Use_Sensors, 2);
 		break;
 	case 0x20:
+		printf("Key  6 pressed\n");
 		changeSensor(&turningSensors.East_Onramp, 2);
 		break;
 	case 0x40:
+		printf("Key  7 pressed\n");
 		changeSensor(&turningSensors.West_Onramp, 2);
 		break;
 	case 0x00:  // key release event (do nothing)
 		break;
+//	default:
+//		printf("Key pressed could not be determined or is unused - %lu\n",
+//				word);
 	}
 }
 

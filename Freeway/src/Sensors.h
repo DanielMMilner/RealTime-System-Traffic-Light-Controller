@@ -120,7 +120,7 @@ typedef struct {
 	struct sigevent pevent; // remember to fill in "event" structure in main
 } ISR_data;
 
-int getSensorValue(int sensor);
+int getSensorEnabled(int sensor);
 
 void changeSensor(int* sensor, int value);
 

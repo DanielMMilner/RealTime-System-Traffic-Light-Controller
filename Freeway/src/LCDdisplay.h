@@ -45,7 +45,7 @@ typedef struct
 void changeDisplayUseSensors(int useSensors);
 void changeDisplayIntersection(char* state);
 void changeDisplayOnRamp(char state, int ramp);
-void *LCDfunction();
+int *LCDfunction();
 int  I2cWrite_(int fd, uint8_t Address, uint8_t mode, uint8_t *pBuffer, uint32_t NbData);
 void SetCursor(int fd, uint8_t LCDi2cAdd, uint8_t row, uint8_t column);
 void Initialise_LCD (int fd, _Uint32t LCDi2cAdd);

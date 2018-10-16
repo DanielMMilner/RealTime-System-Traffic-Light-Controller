@@ -14,9 +14,6 @@
 #include "Sensors.h"
 #include "LCDdisplay.h"
 
-#define YELLOW_STATE_LENGTH		2
-#define YELLOW_STATE_ID			-1
-
 enum mainIntersectionStates {
 	RRRRRRRR,
 	GGGGRRRR,
@@ -38,11 +35,6 @@ enum freewaySensors {
 	Use_Sensors = 5
 };
 
-enum boolean {
-	False = 0,
-	True = 1,
-};
-
 typedef struct State State;
 
 struct State {
@@ -54,9 +46,11 @@ struct State {
 
 extern TurningSensors turningSensors;
 
-void changeTiming(State *state, float newTime);
+void changeTiming(int sensorsTimings, int stateID, int newTime);
 
-void changePattern(State *state, State *nextState);
+void changePattern(int stateID, int nextStateID);
+
+char* getCurrentState();
 
 void changeStateUsingSensors(State *currentState, State sensorStates[]);
 

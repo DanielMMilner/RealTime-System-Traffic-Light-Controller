@@ -1,10 +1,4 @@
 #include "Client.h"
-#include "Sensors.h"
-
-static char *CLIENT_NAMES[5] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
-        "Pedestrain Node" };
-
-static char *COMMAND_STRS[2] = {"Get State", "Set Sensor"};
 
 // Thread for the server
 void *server_thread() {
@@ -24,8 +18,6 @@ void *server_thread() {
 	int living = 0;
 
 	Response_header replymsg; // replymsg structure for sending back to client
-	replymsg.hdr.type = 0x01;
-	replymsg.hdr.subtype = 0x00;
 
 	living = 1;
 	while (living) {
@@ -74,18 +66,25 @@ void *server_thread() {
 				continue;	// go back to top of while loop
 			}
 
-			printf("Message received from: %s with command '%s' and data '%d'\n", CLIENT_NAMES[msg.ClientID], COMMAND_STRS[(int)msg.command], msg.data);
+			printf("Message received from: %s with command '%s' and data '%d' and '%d'\n", CLIENT_NAMES[msg.ClientID], COMMAND_STRS[(int)msg.command], msg.data1, msg.data2);
 
 			// Process the data and res given the command
 			switch(msg.command)
 			{
 			case COMMAND_GET_STATE:
-				replymsg.data = 100; // ENTER STATE HERE
+				sprintf(replymsg.data,"%s",getCurrentState());
 				break;
 			case COMMAND_TOGGLE_SENSOR:
-				remoteSensorActivation(msg.data);
 				// PROCESS SENSOR REQUEST HERE
-				replymsg.data = -1;
+				// msg.data contains the sensor number
+				remoteSensorActivation(msg.data1);
+				break;
+			case COMMAND_CHANGE_LIGHT_TIMING:
+				changeTiming(msg.data1, msg.data2, msg.data3);
+				break;
+
+			case COMMAND_CHANGE_LIGHT_PATTERN:
+				changePattern(msg.data1, msg.data2);
 				break;
 			}
 
@@ -98,7 +97,6 @@ void *server_thread() {
 
 	}
 
-	// Remove the attach point name from the file system (i.e. /dev/name/local/<myname>)
 	name_detach(attach, 0);
 
 	return EXIT_SUCCESS;

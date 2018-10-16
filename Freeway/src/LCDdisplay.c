@@ -2,7 +2,7 @@
 
 int synchronized = 1;
 
-LCD_Data lcd_data= {"RRRRRRRR", "RR", 0};
+LCD_Data lcd_data= {"RRRRRRRR", "--", 0};
 
 void changeDisplayIntersection(char* state){
 	pthread_mutex_lock(&lcd_data.mutex);     //lock the function to make sure the variables are protected
@@ -43,10 +43,10 @@ void *LCDthread (void *data)
 		pthread_mutex_lock(&lcd_data.mutex);     //lock the function to make sure the variables are protected
 
 		if(lcd_data.useSensors){
-			NE_Sensor = getSensorValue(1) + '0';
-			SW_Sensor = getSensorValue(2) + '0';
-			ES_Sensor = getSensorValue(3) + '0';
-			WN_Sensor = getSensorValue(4) + '0';
+			NE_Sensor = getSensorEnabled(1) + '0';
+			SW_Sensor = getSensorEnabled(2) + '0';
+			ES_Sensor = getSensorEnabled(3) + '0';
+			WN_Sensor = getSensorEnabled(4) + '0';
 		}else{
 			NE_Sensor = '-';
 			SW_Sensor = '-';
@@ -72,7 +72,7 @@ void *LCDthread (void *data)
 	return 0;
 }
 
-void *LCDfunction()
+int *LCDfunction()
 {
 	int file;
 	int error;
