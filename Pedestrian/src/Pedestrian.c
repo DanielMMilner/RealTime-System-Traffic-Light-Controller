@@ -10,69 +10,70 @@ struct itimerspec itime_flash;
 
 void pedestrian_sm(enum states *curr_state, app_data *data) {
 
-	app_data *appdata = (app_data*) data;
 	uint8_t	LCDdata[10] = {};
 
 	switch (*curr_state) {
 
 	case RED:
 
-		printf("Current State: RED(0)\n");
+		printf("Current State: RED(%d)\n", data->state);
 
-		pthread_mutex_lock(&appdata->mutex);
+		pthread_mutex_lock(&data->mutex);
 
-		appdata->state = curr_state;
+		data->state = *curr_state;
 
-		SetCursor(appdata->fd, appdata->Address,0,0); // set cursor on LCD to first position first line
+		SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
 		sprintf(LCDdata,"RED");
-		I2cWrite_(appdata->fd, appdata->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 
-		if (appdata->sensor) {
+		if (data->sensor) {
 			*curr_state = GREEN;
 		}
 
-		pthread_mutex_unlock(&appdata->mutex);
+		pthread_mutex_unlock(&data->mutex);
 
-		timer_settime(appdata->timer_id, 0, &itime_red, NULL);
+		timer_settime(data->timer_id, 0, &itime_red, NULL);
 		break;
 	case GREEN:
 
-		printf("Current State: GREEN(1)\n");
+		printf("Current State: GREEN(%d)\n", data->state);
 
-		pthread_mutex_lock(&appdata->mutex);
+		pthread_mutex_lock(&data->mutex);
 
-		appdata->state = curr_state;
+		data->state = *curr_state;
 
-		SetCursor(appdata->fd, appdata->Address,0,0); // set cursor on LCD to first position first line
+		SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
 		sprintf(LCDdata,"GREEN");
-		I2cWrite_(appdata->fd, appdata->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 
 		*curr_state = FLASH_RED;
 
-		pthread_mutex_unlock(&appdata->mutex);
+		pthread_mutex_unlock(&data->mutex);
 
-		timer_settime(appdata->timer_id, 0, &itime_green, NULL);
+		timer_settime(data->timer_id, 0, &itime_green, NULL);
 		break;
 
 		break;
 
 	case FLASH_RED:
 
-		printf("Current State: FLASHING_RED(2)\n");
+		printf("Current State: FLASHING_RED(%d)\n", data->state);
 
-		pthread_mutex_lock(&appdata->mutex);
+		pthread_mutex_lock(&data->mutex);
 
-		appdata->state = curr_state;
+		data->state = *curr_state;
 
-		SetCursor(appdata->fd, appdata->Address,0,0); // set cursor on LCD to first position first line
+		SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
 		sprintf(LCDdata,"FLASH RED");
-		I2cWrite_(appdata->fd, appdata->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 
 		*curr_state = RED;
 
-		pthread_mutex_unlock(&appdata->mutex);
+		data->sensor = 0;
 
-		timer_settime(appdata->timer_id, 0, &itime_flash, NULL);
+		pthread_mutex_unlock(&data->mutex);
+
+		timer_settime(data->timer_id, 0, &itime_flash, NULL);
 		break;
 
 	case ERR:
@@ -98,6 +99,10 @@ int main(void) {
 	pthread_mutex_init(&data.mutex, NULL);
 
 	init_LCD(&data);
+
+	pthread_t s_thread;
+
+	pthread_create(&s_thread, NULL, server_thread, &data);
 
 	struct sigevent event;
 	my_message_t msg;
@@ -134,17 +139,17 @@ int main(void) {
 	itime_default.it_interval.tv_sec = 0;
 	itime_default.it_interval.tv_nsec = 0;
 
-	itime_red.it_value.tv_sec = 5;
+	itime_red.it_value.tv_sec = 4;
 	itime_red.it_value.tv_nsec = 0;
 	itime_red.it_interval.tv_sec = 0;
 	itime_red.it_interval.tv_nsec = 0;
 
-	itime_green.it_value.tv_sec = 3;
+	itime_green.it_value.tv_sec = 4;
 	itime_green.it_value.tv_nsec = 0;
 	itime_green.it_interval.tv_sec = 0;
 	itime_green.it_interval.tv_nsec = 0;
 
-	itime_flash.it_value.tv_sec = 3;
+	itime_flash.it_value.tv_sec = 4;
 	itime_flash.it_value.tv_nsec = 0;
 	itime_flash.it_interval.tv_sec = 0;
 	itime_flash.it_interval.tv_nsec = 0;
