@@ -21,6 +21,8 @@ void boom_gate_sm(enum states *curr_state, app_data *data) {
 
 		pthread_mutex_lock(&appdata->mutex);
 
+		sprintf(appdata->state, "%s", "BD(0)");
+
 		SetCursor(appdata->fd, appdata->Address,0,0); // set cursor on LCD to first position first line
 		sprintf(LCDdata,"DOWN");
 		I2cWrite_(appdata->fd, appdata->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
@@ -38,6 +40,8 @@ void boom_gate_sm(enum states *curr_state, app_data *data) {
 
 		printf("Current State: BR(1)\n");
 
+		sprintf(appdata->state, "%s", "BR(1)");
+
 		pthread_mutex_lock(&appdata->mutex);
 		SetCursor(appdata->fd, appdata->Address,0,0); // set cursor on LCD to first position first line
 		sprintf(LCDdata,"RISING");
@@ -52,6 +56,8 @@ void boom_gate_sm(enum states *curr_state, app_data *data) {
 	case BU:
 
 		printf("Current State: BU(2)\n");
+
+		sprintf(appdata->state, "%s", "BU(2)");
 
 		pthread_mutex_lock(&appdata->mutex);
 
@@ -75,6 +81,8 @@ void boom_gate_sm(enum states *curr_state, app_data *data) {
 	case BL:
 
 		printf("Current State: BL(3)\n");
+
+		sprintf(appdata->state, "%s", "BL(3)");
 
 		pthread_mutex_lock(&appdata->mutex);
 
@@ -360,6 +368,8 @@ int main(void) {
 
 	app_data data;
 
+	sprintf(data.state, "%s", "BU(2)");
+
 	// Create the mutex
 	pthread_mutex_init(&data.mutex, NULL); // pass NULL as the attr parameter to use the default attributes for the mutex
 
@@ -371,7 +381,9 @@ int main(void) {
 
 	pthread_t east_west_train_thread;
 	pthread_t west_east_train_thread;
+	pthread_t s_thread;
 
+	pthread_create(&s_thread, NULL, server_thread, &data);
 	pthread_create(&east_west_train_thread, NULL, east_west_train_sensor,
 			&data);
 	pthread_create(&west_east_train_thread, NULL, west_east_train_sensor,

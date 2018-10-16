@@ -25,11 +25,13 @@
 #include <sched.h>
 
 #include "lcd.h"
+#include "network.h"
+#include "server.h"
 
 #define MY_PULSE_CODE _PULSE_CODE_MINAVAIL
 
 #define BUFFER_SIZE 100
-#define MESSAGE_SIZE 2
+#define MESSAGE_SIZE 10
 
 #define TIMETABLE_FILE "train_times.info"
 
@@ -55,7 +57,7 @@ typedef struct {
 } my_reply;
 
 typedef struct {
-	char sensor_data[MESSAGE_SIZE]; // ?
+	char state[MESSAGE_SIZE];
 	int timetable[2][7][30];
 
 	// LCD data
