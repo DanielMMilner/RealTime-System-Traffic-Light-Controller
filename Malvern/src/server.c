@@ -2,7 +2,9 @@
 #include "malv_statemachine.h"
 
 // Thread for the server
-void *server_thread(void) {
+void *server_thread(void *data) {
+	light_data *ld = (light_data*)data;
+
 	name_attach_t *attach;
 
 	// Create a local name (/dev/name/...)
@@ -12,15 +14,13 @@ void *server_thread(void) {
 		return EXIT_FAILURE;
 	}
 
-	printf("Server Listening for Clients on ATTACH_POINT: %s \n", LOCAL_ATTACH_POINT);
+	//printf("Server Listening for Clients on ATTACH_POINT: %s \n", LOCAL_ATTACH_POINT);
 
 	Send_header msg;
 	int rcvid = 0;
 	int living = 0;
 
 	Response_header replymsg; // replymsg structure for sending back to client
-	replymsg.hdr.type = 0x01;
-	replymsg.hdr.subtype = 0x00;
 
 	living = 1;
 	while (living) {
@@ -44,7 +44,7 @@ void *server_thread(void) {
 
 			default:
 				// Some other pulse sent by one of your processes or the kernel
-				printf("\nServer got some other pulse\n");
+				//printf("\nServer got some other pulse\n");
 				break;
 
 			}
@@ -69,20 +69,27 @@ void *server_thread(void) {
 				continue;	// go back to top of while loop
 			}
 
-			printf("Message received from: %s with command '%s' and data '%d'\n", CLIENT_NAMES[msg.ClientID], COMMAND_STRS[(int)msg.command], msg.data);
+			printf("Message received from: %s with command '%s' and data '%d' and '%d' and '%d'\n", CLIENT_NAMES[msg.ClientID], COMMAND_STRS[(int)msg.command], msg.data1, msg.data2, msg.data3);
 
 			// Process the data and res given the command
 			switch(msg.command)
 			{
 			case COMMAND_GET_STATE:
-				replymsg.data = 200; // ENTER STATE HERE
+				pthread_mutex_lock(&ld->lcd_data.mutex);
+				sprintf((char*)&replymsg.data, "%s %s", ld->lcd_data.LCDdata1, ld->lcd_data.LCDdata2);
+				pthread_mutex_unlock(&ld->lcd_data.mutex);
 				break;
 			case COMMAND_TOGGLE_SENSOR:
 				// PROCESS SENSOR REQUEST HERE
 				// msg.data contains the sensor number
-				// msg.data2 contains the value to set the sensor to 0 or 1
 
-				replymsg.data = -1; // Always reply with -1 for set sensor
+				break;
+			case COMMAND_CHANGE_LIGHT_TIMING:
+
+				break;
+
+			case COMMAND_CHANGE_LIGHT_PATTERN:
+
 				break;
 			}
 
@@ -95,7 +102,6 @@ void *server_thread(void) {
 
 	}
 
-	// Remove the attach point name from the file system (i.e. /dev/name/local/<myname>)
 	name_detach(attach, 0);
 
 	return EXIT_SUCCESS;

@@ -6,60 +6,74 @@
 #include "malv_timer.h"
 #include "malv_sensors.h"
 #include "malv_statemachine.h"
-//#include "server.h"
+#include "server.h"
+#include "client.h"
 #include "LCDdisplay.h"
 #include "Keypad.h"
 
 int main(void) {
 	// state variables
-    timer_container tc;
-    sensor_state sen;
-    light_state state = State1;
-    LCD_connect td;
-    keypadData kd;
-
+	light_data ld = {0};
+    ld.state = State1;
     int boom_gate = 0;
 
+    Client_typedef train = {CID_TRAIN, "/net/RMIT_BBB_v5_06/dev/name/local/train"};
+    pthread_mutex_init(&train.mutex, NULL);
+
     // initialisation
-    configure_timer(&tc);
-    configure_sensor(&sen);
-    configureLCD(&td);
-    configureKeypad(&kd);
+    configure_timer(&ld.timer_cont);
+    configure_sensor(&ld.sensor_data);
+    configureLCD(&ld.lcd_data);
+    configureKeypad(&ld.keypaddata);
 
-    pthread_t th_sensor;
-    pthread_create(&th_sensor, NULL, sensor_thr, &sen);
+    pthread_t th_server;
+    pthread_create(&th_server, NULL, server_thread, &ld);
 
-//    pthread_t th_server;
-//    pthread_create(&th_server, NULL, server_thread, NULL);
+    pthread_t th_train;
+	pthread_create(&th_train, NULL, client_thread, &train);
 
     pthread_t th_lcd;
-    pthread_create(&th_lcd, NULL, LCDthread, &td);
+    pthread_create(&th_lcd, NULL, LCDthread, &ld.lcd_data);
 
     pthread_t th_keypad;
-    pthread_create(&th_keypad, NULL, KeypadThread, &kd);
+    pthread_create(&th_keypad, NULL, KeypadThread, &ld.keypaddata);
 
     // main control loop
     while(1)
     {
-    	pthread_mutex_lock(&kd.mutex);
-    	if(kd.new_press)
-    	{
-    		printf("Key Pressed!! %u\n", kd.key);
-    		kd.new_press = 0;
-    	}
-    	pthread_mutex_unlock(&kd.mutex);
 
-
-        if(timer_done(&tc))
+        if(timer_done(&ld.timer_cont))
         {
-            print_state(&state, &sen);
-            light_state_machine(&state, sen, boom_gate, &tc);
+        	pthread_mutex_lock(&train.mutex);
+        	if(train.responseReady)
+        	{
+        		train.responseReady = 0;
+        		if(train.response[1] == 'L' || train.response[1] == 'R' || train.response[1] == 'D')
+        		{
+        			boom_gate = 1;
+        		}
+        		else
+        		{
+        			boom_gate = 0;
+        		}
+        		printf("%s\n", train.response);
+        	}
+        	train.command = COMMAND_GET_STATE;
+        	train.messageReady = 1;
+        	pthread_mutex_unlock(&train.mutex);
 
-            timer_settime(tc.timer_id, 0, tc.itime_current, NULL);
+        	decode_keypad(&ld.sensor_data, &ld.keypaddata);
+            print_state(&ld);
+
+            pthread_mutex_lock(&ld.sensor_data.mutex);                // block for sensor measurement
+            light_state_machine(&ld.state, &ld.sensor_data, boom_gate, &ld.timer_cont);
+            pthread_mutex_unlock(&ld.sensor_data.mutex);
+
+            timer_settime(ld.timer_cont.timer_id, 0, ld.timer_cont.itime_current, NULL);
         }
     }
 
-    pthread_join(th_sensor, NULL);
+    pthread_join(th_lcd, NULL);
 
 	return EXIT_SUCCESS;
 }

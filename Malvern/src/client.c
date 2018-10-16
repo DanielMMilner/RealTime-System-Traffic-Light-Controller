@@ -1,7 +1,4 @@
 #include "client.h"
-#include "console.h"
-
-extern Console_Command console_command;
 
 // Thread for each client. Many of these are running
 void *client_thread(void *data) {

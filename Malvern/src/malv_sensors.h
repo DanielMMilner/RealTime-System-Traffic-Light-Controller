@@ -2,6 +2,7 @@
 #define SRC_MALV_SENSORS_H_
 
 #include <pthread.h>
+#include "Keypad.h"
 
 typedef struct
 {
@@ -15,6 +16,7 @@ typedef struct
     pthread_mutex_t mutex;
 } sensor_state;
 
+void decode_keypad(sensor_state *ss, keypadData *kd);
 void configure_sensor(sensor_state *sen);
 void *sensor_thr(void *data);
 

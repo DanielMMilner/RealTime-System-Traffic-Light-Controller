@@ -75,6 +75,7 @@ void *server_thread() {
 
 				break;
 			case COMMAND_TOGGLE_SENSOR:
+
 				// PROCESS SENSOR REQUEST HERE
 				// msg.data contains the sensor number
 			case COMMAND_CHANGE_LIGHT_TIMING:

@@ -16,43 +16,48 @@ void configure_sensor(sensor_state *sen)
 	pthread_mutex_init(&sen->mutex, NULL);
 }
 
-void *sensor_thr(void *data) {
-	sensor_state *ss = (sensor_state*)data;
+void decode_keypad(sensor_state *ss, keypadData *kd)
+{
+	int key = 0;
 
-	while(1) {
-		int sensor_sel = 0;
-		scanf("%d", &sensor_sel);
-
-		pthread_mutex_lock(&ss->mutex);
-
-		// toggle sensor data.
-		switch(sensor_sel) {
-		case 1:
-			ss->sensor1 = !ss->sensor1;
-			break;
-		case 2:
-			ss->sensor2 = !ss->sensor2;
-			break;
-		case 3:
-			ss->sensor3 = !ss->sensor3;
-			break;
-		case 4:
-			ss->sensor4 = !ss->sensor4;
-			break;
-		case 5:
-			ss->sensor5 = !ss->sensor5;
-			break;
-		case 6:
-			ss->sensor6 = !ss->sensor6;
-			break;
-		case 7:
-			ss->sensor7 = !ss->sensor7;
-			break;
-		default:
-			break;
-			// ignore bad values
-		}
-
-		pthread_mutex_unlock(&ss->mutex);
+	pthread_mutex_lock(&kd->mutex);
+	if(kd->new_press)
+	{
+		printf("Key Pressed!! %u\n", kd->key);
+		kd->new_press = 0;
+		key = kd->key;
 	}
+	pthread_mutex_unlock(&kd->mutex);
+
+	pthread_mutex_lock(&ss->mutex);
+	// toggle sensor data
+	switch(key)
+	{
+	case 1:
+		ss->sensor1 = 1;
+		break;
+	case 2:
+		ss->sensor2 = 1;
+		break;
+	case 4:
+		ss->sensor3 = 1;
+		break;
+	case 8:
+		ss->sensor4 = 1;
+		break;
+	case 16:
+		ss->sensor5 = 1;
+		break;
+	case 32:
+		ss->sensor6 = 1;
+		break;
+	case 64:
+		ss->sensor7 = 1;
+		break;
+	default:
+		break;
+		// ignore bad values
+	}
+
+	pthread_mutex_unlock(&ss->mutex);
 }
