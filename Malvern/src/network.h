@@ -51,6 +51,9 @@ typedef struct {
 	Node_Commands command;
 	int data1, data2, data3;
 	int messageReady;
+
+	int responseReady;
+	char response[100];
 	pthread_mutex_t mutex;
 } Client_typedef;
 

@@ -46,6 +46,11 @@ void *client_thread(void *data) {
 				client->conn_state = CONN_STATE_DISCONNECTED;
 			}
 
+			pthread_mutex_lock(&client->mutex);
+			client->responseReady = 1;
+			strcpy(&client->response, &reply.data);
+			pthread_mutex_unlock(&client->mutex);
+
 			if(msg.command == COMMAND_GET_STATE)
 			{
 				printf("State of %s is '%s'\n", CLIENT_NAMES[client->id], reply.data);

@@ -44,6 +44,24 @@ int main(void) {
 
         if(timer_done(&ld.timer_cont))
         {
+        	pthread_mutex_lock(&train.mutex);
+        	if(train.responseReady)
+        	{
+        		train.responseReady = 0;
+        		if(train.response[1] == 'L' || train.response[1] == 'R' || train.response[1] == 'D')
+        		{
+        			boom_gate = 1;
+        		}
+        		else
+        		{
+        			boom_gate = 0;
+        		}
+        		printf("%s\n", train.response);
+        	}
+        	train.command = COMMAND_GET_STATE;
+        	train.messageReady = 1;
+        	pthread_mutex_unlock(&train.mutex);
+
         	decode_keypad(&ld.sensor_data, &ld.keypaddata);
             print_state(&ld);
 
