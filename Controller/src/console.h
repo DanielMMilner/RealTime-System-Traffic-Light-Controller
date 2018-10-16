@@ -7,6 +7,11 @@
 void *console_thread();
 int getNumFromUser(int low, int high);
 
+#define FREEWAY_INTER_STATES 10
+
+static char *FREEWAY_INTER_STATES_STRS[FREEWAY_INTER_STATES] = { "RRRRRRRR" , "GGGGRRRR", "RGRGRRGG", "RRRRGGRR", "GRRGGRRR", "RGGRRGRR", "GGRGRRGR", "RGGGRRRG", "RRRGGRRG", "RGRRRGGR"};
+
+
 typedef struct
 {
 	Client_ID clientID;

@@ -23,8 +23,7 @@ void *client_thread(void *data) {
 		if ((server_coid = name_open(client->QNET_name, 0)) == -1) {
 			sleep(1); // Wait before reconnecting again
 		} else {
-			printf("Connection established to: %s\n",
-					CLIENT_NAMES[(int) client->id]);
+			//printf("Connection established to: %s\n", CLIENT_NAMES[(int) client->id]);
 			client->conn_state = CONN_STATE_CONNECTED;
 		}
 
@@ -37,6 +36,7 @@ void *client_thread(void *data) {
 				msg.command = client->command;
 				msg.data1 = client->data1;
 				msg.data2 = client->data2;
+				msg.data3 = client->data3;
 				client->messageReady = 0;
 			}else{
 				pthread_mutex_unlock(&client->mutex);
@@ -49,27 +49,11 @@ void *client_thread(void *data) {
 				client->conn_state = CONN_STATE_DISCONNECTED;
 			}
 
-			printf("MSG from %s '%s'\n", CLIENT_NAMES[client->id], reply.data);
-			// Depending on the client the response will be different.
-			switch (client->id) {
-			case CID_MALVERN:
-
-				// Process reply
-
-			case CID_FREEWAY:
-
-				// Process reply
-
-			case CID_PEDESTRAIN:
-
-				// Process reply
-
-			case CID_TRAIN:
-
-				// Process reply
-
-			default:
-				break;
+			if(msg.command == COMMAND_GET_STATE)
+			{
+				printf("State of %s is '%s'\n", CLIENT_NAMES[client->id], reply.data);
+			}else{
+				printf("Command Send\n");
 			}
 		}
 	}
