@@ -28,6 +28,8 @@ typedef struct
 	timer_container timer_cont;
 	LCD_connect lcd_data;
 	keypadData keypaddata;
+	int auto_timing;
+	int boom_gate;
 }light_data;
 
 void print_state(light_data *ld);

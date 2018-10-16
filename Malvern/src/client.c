@@ -57,6 +57,7 @@ void *client_thread(void *data) {
 			}else{
 				printf("Command Send\n");
 			}
+			usleep(100); // passes back to scheduler
 		}
 	}
 	name_close(server_coid);
