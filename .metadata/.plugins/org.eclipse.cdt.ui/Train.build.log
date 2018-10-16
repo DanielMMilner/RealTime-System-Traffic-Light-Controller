@@ -1,6 +1,6 @@
-17:50:14 **** Incremental Build of configuration armv7le-debug for project Train ****
+19:50:46 **** Incremental Build of configuration armv7le-debug for project Train ****
 make -j4 all 
 make: Nothing to be done for 'all'.
 
-17:50:14 Build Finished (took 390ms)
+19:50:46 Build Finished (took 375ms)
 

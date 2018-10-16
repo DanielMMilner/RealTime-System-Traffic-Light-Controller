@@ -5,6 +5,7 @@
 
 struct itimerspec itime_default;
 struct itimerspec itime_red;
+struct itimerspec itime_waiting;
 struct itimerspec itime_green;
 struct itimerspec itime_flash;
 
@@ -40,14 +41,46 @@ void pedestrian_sm(enum states *curr_state, app_data *data) {
 		sprintf(LCDdata,"RED");
 		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 
+		SetCursor(data->fd, data->Address,0,10); // set cursor on LCD to first position first line
+		sprintf(LCDdata,"GREEN");
+		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+
 		if (data->sensor) {
-			*curr_state = GREEN;
+			*curr_state = WAITING;
 		}
 
 		pthread_mutex_unlock(&data->mutex);
 
 		timer_settime(data->timer_id, 0, &itime_red, NULL);
 		break;
+
+	case WAITING:
+
+		printf("Current State: WAITING(%d)\n", data->state);
+
+		pthread_mutex_lock(&data->mutex);
+
+		data->state = *curr_state;
+
+		SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+		sprintf(LCDdata,"RED");
+		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+
+		SetCursor(data->fd, data->Address,0,10); // set cursor on LCD to first position first line
+		sprintf(LCDdata,"YELLOW");
+		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+
+		SetCursor(data->fd, data->Address,1,0); // set cursor on LCD to first position first line
+		sprintf(LCDdata,"         ");
+		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+
+		*curr_state = GREEN;
+
+		pthread_mutex_unlock(&data->mutex);
+
+		timer_settime(data->timer_id, 0, &itime_waiting, NULL);
+		break;
+
 	case GREEN:
 
 		printf("Current State: GREEN(%d)\n", data->state);
@@ -60,8 +93,8 @@ void pedestrian_sm(enum states *curr_state, app_data *data) {
 		sprintf(LCDdata,"GREEN");
 		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 
-		SetCursor(data->fd, data->Address,1,0); // set cursor on LCD to first position first line
-		sprintf(LCDdata,"            ");
+		SetCursor(data->fd, data->Address,0,10); // set cursor on LCD to first position first line
+		sprintf(LCDdata,"RED       ");
 		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 
 		*curr_state = FLASH_RED;
@@ -82,6 +115,10 @@ void pedestrian_sm(enum states *curr_state, app_data *data) {
 
 		SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
 		sprintf(LCDdata,"FLASH RED");
+		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+
+		SetCursor(data->fd, data->Address,0,10); // set cursor on LCD to first position first line
+		sprintf(LCDdata,"RED       ");
 		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 
 		*curr_state = RED;
@@ -151,6 +188,11 @@ void *kms(void *data) {
 	itime_red.it_interval.tv_sec = 0;
 	itime_red.it_interval.tv_nsec = 0;
 
+	itime_waiting.it_value.tv_sec = 2;
+	itime_waiting.it_value.tv_nsec = 0;
+	itime_waiting.it_interval.tv_sec = 0;
+	itime_waiting.it_interval.tv_nsec = 0;
+
 	itime_green.it_value.tv_sec = 4;
 	itime_green.it_value.tv_nsec = 0;
 	itime_green.it_interval.tv_sec = 0;
@@ -185,7 +227,7 @@ int main(void) {
 
 	init_LCD(&data);
 
-	pthread_t s_thread, sm_thread;
+	pthread_t s_thread, sm_thread, trainClient;
 
 	pthread_create(&s_thread, NULL, server_thread, &data);
 	pthread_create(&sm_thread, NULL, kms, &data);
