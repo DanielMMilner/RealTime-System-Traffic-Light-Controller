@@ -9,16 +9,17 @@
 #include <share.h>
 
 #define BUF_SIZE 300
-#define MAX_CONNECT_ATTEMPT_COUNT 20
+#define MAX_CONNECT_ATTEMPT_COUNT 2
 
-#define CLIENT_COUNT 5
+#define NODE_COUNT 5
 #define COMMAND_COUNT 2
+#define CONN_STATE_COUNT 3
 
 typedef enum {
 	CID_CONTROLLER = 0, CID_FREEWAY = 1, CID_MALVERN = 2, CID_TRAIN = 3, CID_PEDESTRAIN = 4
 } Client_ID;
 
-static char *CLIENT_NAMES[CLIENT_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
         "Pedestrian Node" };
 
 typedef enum
@@ -27,13 +28,22 @@ typedef enum
 	COMMAND_TOGGLE_SENSOR
 }Node_Commands;
 
+static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+
+typedef enum
+{
+	CONN_STATE_DISCONNECTED,
+	CONN_STATE_CONNECTED,
+	CONN_STATE_TIMEOUT
+}Connection_State;
+
+static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+
 typedef struct {
 	Client_ID id;
 	char QNET_name[BUF_SIZE];
-	uint8_t connected : 1;
+	Connection_State conn_state;
 } Client_typedef;
-
-static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
 
 typedef struct {
 	struct _pulse hdr;
