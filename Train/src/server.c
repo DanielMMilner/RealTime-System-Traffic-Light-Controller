@@ -1,7 +1,7 @@
 #include "server.h"
 
 // Thread for the server
-int *server_thread(void *data) {
+void *server_thread(void *data) {
 	name_attach_t *attach;
 	app_data *appdata = (app_data*) data;
 
@@ -82,7 +82,11 @@ int *server_thread(void *data) {
 				// msg.data contains the sensor number
 				// msg.data2 contains the value to set the sensor to 0 or 1
 
-//				0..6
+//				if (VALUE >= 0 && VALUE <= 6) {
+//					sprintf(appdata->day, "%d", <VALUE_HERE>);
+//				} else {
+//					printf("Invalid command from controller: Day must be an int in the range 0..6");
+//				}
 
 				break;
 			}

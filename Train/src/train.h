@@ -46,18 +46,13 @@ enum states {
 };
 
 typedef struct {
-	struct _pulse header;
-	int ClientID;
-	char data[MESSAGE_SIZE];
-} my_data;
-
-typedef struct {
-	struct _pulse header;
-	char buffer[BUFFER_SIZE];
-} my_reply;
-
-typedef struct {
+	// state machine data
 	char state[MESSAGE_SIZE];
+	int ew_train;
+	int we_train;
+	timer_t timer_id;
+
+	// timetable data
 	int timetable[2][7][30];
 	int day;
 

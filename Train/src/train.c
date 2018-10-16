@@ -3,10 +3,6 @@
 struct itimerspec itime_default;
 struct itimerspec itime_boom_down;
 struct itimerspec itime_boom_changing;
-timer_t timer_id;
-
-int train1 = 0;
-int train2 = 0;
 
 void boom_gate_sm(enum states *curr_state, app_data *data) {
 
@@ -27,13 +23,13 @@ void boom_gate_sm(enum states *curr_state, app_data *data) {
 		sprintf(LCDdata,"DOWN");
 		I2cWrite_(appdata->fd, appdata->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 
-		if (!train1 && !train2) {
+		if (!appdata->ew_train && !appdata->we_train) {
 			*curr_state = BR;
 		}
 
 		pthread_mutex_unlock(&appdata->mutex);
 
-		timer_settime(timer_id, 0, &itime_boom_down, NULL);
+		timer_settime(appdata->timer_id, 0, &itime_boom_down, NULL);
 
 		break;
 	case BR:
@@ -50,7 +46,7 @@ void boom_gate_sm(enum states *curr_state, app_data *data) {
 
 		*curr_state = BU;
 
-		timer_settime(timer_id, 0, &itime_boom_changing, NULL);
+		timer_settime(appdata->timer_id, 0, &itime_boom_changing, NULL);
 
 		break;
 	case BU:
@@ -69,13 +65,13 @@ void boom_gate_sm(enum states *curr_state, app_data *data) {
 		// if so, change to BL
 		// otherwise don't change state and continue.
 
-		if (train1 || train2) {
+		if (appdata->ew_train || appdata->we_train) {
 			*curr_state = BL;
 		}
 
 		pthread_mutex_unlock(&appdata->mutex);
 
-		timer_settime(timer_id, 0, &itime_default, NULL);
+		timer_settime(appdata->timer_id, 0, &itime_default, NULL);
 
 		break;
 	case BL:
@@ -95,7 +91,7 @@ void boom_gate_sm(enum states *curr_state, app_data *data) {
 		*curr_state = BD;
 
 		// stay in current state for set time
-		timer_settime(timer_id, 0, &itime_boom_changing, NULL);
+		timer_settime(appdata->timer_id, 0, &itime_boom_changing, NULL);
 
 		break;
 	case ERR:
@@ -110,7 +106,7 @@ void boom_gate_sm(enum states *curr_state, app_data *data) {
 
 		pthread_mutex_unlock(&appdata->mutex);
 
-		timer_settime(timer_id, 0, &itime_default, NULL);
+		timer_settime(appdata->timer_id, 0, &itime_default, NULL);
 
 		break;
 	}
@@ -181,23 +177,25 @@ void *east_west_train_sensor(void *data) {
 				I2cWrite_(appdata->fd, appdata->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 				pthread_mutex_unlock(&appdata->mutex);
 
+				// train is leaving, signal to sm to change state.
 				if (timer_count == leave_time) {
-					printf("Leave time: %d\n", leave_time);
 					pthread_mutex_lock(&appdata->mutex);
-					train1 = 0;
+					appdata->ew_train = 0;
 					pthread_mutex_unlock(&appdata->mutex);
 				}
 
 				timer_count = mono_time.tv_sec - time_of_day;
 
-				if (timer_count == appdata->timetable[0][appdata->day][next_train_index]) {
-					printf("Train here!\n");
-
-					leave_time = timer_count + BD_DURATION + B_CHANGE_DURATION;
-
+				// train is approaching, signal to sm to change state.
+				if (timer_count == appdata->timetable[0][appdata->day][next_train_index] - B_CHANGE_DURATION) {
 					pthread_mutex_lock(&appdata->mutex);
-					train1 = 1;
+					appdata->ew_train = 1;
 					pthread_mutex_unlock(&appdata->mutex);
+				}
+
+				// train is at middle, time has reached 0, display next time
+				if (timer_count == appdata->timetable[0][appdata->day][next_train_index]) {
+					leave_time = timer_count + BD_DURATION + B_CHANGE_DURATION;
 
 					next_train_index++;
 				}
@@ -273,23 +271,25 @@ void *west_east_train_sensor(void *data) {
 				I2cWrite_(appdata->fd, appdata->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 				pthread_mutex_unlock(&appdata->mutex);
 
+				// train is leaving, signal to sm to change state.
 				if (timer_count == leave_time) {
-					printf("Leave time: %d\n", leave_time);
 					pthread_mutex_lock(&appdata->mutex);
-					train2 = 0;
+					appdata->we_train = 0;
 					pthread_mutex_unlock(&appdata->mutex);
 				}
 
 				timer_count = mono_time.tv_sec - time_of_day;
 
-				if (timer_count == appdata->timetable[1][appdata->day][next_train_index]) {
-					printf("Train here!\n");
-
-					leave_time = timer_count + BD_DURATION + B_CHANGE_DURATION;
-
+				// train is approaching, signal to sm to change state.
+				if (timer_count == appdata->timetable[0][appdata->day][next_train_index] - (BD_DURATION + B_CHANGE_DURATION)) {
 					pthread_mutex_lock(&appdata->mutex);
-					train2 = 1;
+					appdata->we_train = 1;
 					pthread_mutex_unlock(&appdata->mutex);
+				}
+
+				// train is at middle, time has reached 0, display next time
+				if (timer_count == appdata->timetable[0][appdata->day][next_train_index]) {
+					leave_time = timer_count + BD_DURATION + B_CHANGE_DURATION;
 
 					next_train_index++;
 				}
@@ -407,7 +407,7 @@ int main(void) {
 
 	event.sigev_code = MY_PULSE_CODE;
 
-	if (timer_create(CLOCK_REALTIME, &event, &timer_id) == -1) {
+	if (timer_create(CLOCK_REALTIME, &event, &data.timer_id) == -1) {
 		printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
 		errno);
 		perror(NULL);
@@ -429,7 +429,7 @@ int main(void) {
 	itime_boom_changing.it_interval.tv_sec = 0;
 	itime_boom_changing.it_interval.tv_nsec = 0;
 
-	timer_settime(timer_id, 0, &itime_default, NULL);
+	timer_settime(data.timer_id, 0, &itime_default, NULL);
 
 	while (1) {
 		rcvid = MsgReceive(chid, &msg, sizeof(msg), NULL);

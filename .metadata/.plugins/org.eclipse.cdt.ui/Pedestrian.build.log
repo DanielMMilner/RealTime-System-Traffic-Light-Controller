@@ -1,6 +1,6 @@
-13:48:38 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+16:46:16 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
 make -j4 all 
 make: Nothing to be done for 'all'.
 
-13:48:38 Build Finished (took 303ms)
+16:46:16 Build Finished (took 343ms)
 

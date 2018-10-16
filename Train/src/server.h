@@ -6,6 +6,6 @@
 
 #define LOCAL_ATTACH_POINT "train"
 
-int *server_thread(void *data);
+void *server_thread(void *data);
 
 #endif /* SRC_SERVER_H_ */
