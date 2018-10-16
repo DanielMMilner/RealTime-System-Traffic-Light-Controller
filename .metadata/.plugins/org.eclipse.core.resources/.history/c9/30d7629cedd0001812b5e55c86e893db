@@ -59,7 +59,6 @@ typedef struct {
 typedef struct {
 	char state[MESSAGE_SIZE];
 	int timetable[2][7][30];
-	int day;
 
 	// LCD data
 	int fd;

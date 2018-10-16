@@ -173,7 +173,7 @@ void *east_west_train_sensor(void *data) {
 					pthread_exit(EXIT_FAILURE);
 				}
 
-				next_train = appdata->timetable[0][appdata->day][next_train_index] - timer_count;
+				next_train = appdata->timetable[0][day][next_train_index] - timer_count;
 
 				pthread_mutex_lock(&appdata->mutex);
 				SetCursor(appdata->fd, appdata->Address,0,10); // set cursor on LCD to first position first line
@@ -190,7 +190,7 @@ void *east_west_train_sensor(void *data) {
 
 				timer_count = mono_time.tv_sec - time_of_day;
 
-				if (timer_count == appdata->timetable[0][appdata->day][next_train_index]) {
+				if (timer_count == appdata->timetable[0][day][next_train_index]) {
 					printf("Train here!\n");
 
 					leave_time = timer_count + BD_DURATION + B_CHANGE_DURATION;
@@ -265,7 +265,7 @@ void *west_east_train_sensor(void *data) {
 					pthread_exit(EXIT_FAILURE);
 				}
 
-				next_train = appdata->timetable[1][appdata->day][next_train_index] - timer_count;
+				next_train = appdata->timetable[1][day][next_train_index] - timer_count;
 
 				pthread_mutex_lock(&appdata->mutex);
 				SetCursor(appdata->fd, appdata->Address,1,10); // set cursor on LCD to first position first line
@@ -282,7 +282,7 @@ void *west_east_train_sensor(void *data) {
 
 				timer_count = mono_time.tv_sec - time_of_day;
 
-				if (timer_count == appdata->timetable[1][appdata->day][next_train_index]) {
+				if (timer_count == appdata->timetable[1][day][next_train_index]) {
 					printf("Train here!\n");
 
 					leave_time = timer_count + BD_DURATION + B_CHANGE_DURATION;

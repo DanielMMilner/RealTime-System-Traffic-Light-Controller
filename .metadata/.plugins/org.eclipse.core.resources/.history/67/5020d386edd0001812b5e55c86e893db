@@ -82,7 +82,6 @@ int *server_thread(void *data) {
 				// msg.data contains the sensor number
 				// msg.data2 contains the value to set the sensor to 0 or 1
 
-//				0..6
 
 				break;
 			}
