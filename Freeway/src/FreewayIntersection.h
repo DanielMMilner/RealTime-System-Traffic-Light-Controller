@@ -14,6 +14,9 @@
 #include "Sensors.h"
 #include "LCDdisplay.h"
 
+#define YELLOW_STATE_LENGTH		2
+#define YELLOW_STATE_ID			-1
+
 enum mainIntersectionStates {
 	RRRRRRRR,
 	GGGGRRRR,
@@ -25,6 +28,11 @@ enum mainIntersectionStates {
 	RGGGRRRG,
 	RRRGGRRG,
 	RGRRRGGR,
+};
+
+enum boolean {
+	False = 0,
+	True = 1,
 };
 
 enum freewaySensors {
