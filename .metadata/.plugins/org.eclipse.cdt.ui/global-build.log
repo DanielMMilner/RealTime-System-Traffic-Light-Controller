@@ -7334,3 +7334,2797 @@ make: Nothing to be done for 'all'.
 18:15:02 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
 make -j4 all 
 make: Nothing to be done for 'all'.
+18:21:36 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/server.d,-MT,build/armv7le-debug/src/server.o -o build/armv7le-debug/src/server.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/server.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/lcd.d,-MT,build/armv7le-debug/src/lcd.o -o build/armv7le-debug/src/lcd.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/lcd.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/server.c: In function 'server_thread':
+src/server.c:12:10: warning: return makes pointer from integer without a cast [-Wint-conversion]
+   return EXIT_FAILURE;
+          ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_TIMING' not handled in switch [-Wswitch]
+    switch(msg.command)
+    ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_PATTERN' not handled in switch [-Wswitch]
+In file included from src/server.h:4:0,
+                 from src/server.c:1:
+src/server.c: At top level:
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/lcd.c: In function 'init_LCD':
+src/lcd.c:47:56: warning: implicit declaration of function 'strerror' [-Wimplicit-function-declaration]
+   fprintf(stderr, "Error setting the bus speed: %d\n", strerror(error));
+                                                        ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/lcd.h:25,
+                 from src/lcd.c:28:
+src/lcd.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/lcd.c: In function 'init_LCD':
+src/lcd.c:60:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:67:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:119:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:131:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o  
+18:22:58 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:121:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:133:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o  
+18:23:24 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:23:50 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:35:36 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Sensors.d,-MT,build/armv7le-debug/src/Sensors.o -o build/armv7le-debug/src/Sensors.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Sensors.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:108:35: error: 'keypadMethod' undeclared (first use in this function)
+  pthread_create(key_thread, NULL, keypadMethod, NULL);
+                                   ^
+src/Pedestrian.c:108:35: note: each undeclared identifier is reported only once for each function it appears in
+src/Pedestrian.c:108:17: warning: passing argument 1 of 'pthread_create' makes pointer from integer without a cast [-Wint-conversion]
+  pthread_create(key_thread, NULL, keypadMethod, NULL);
+                 ^
+In file included from src/pedestrian.h:13:0,
+                 from src/Pedestrian.c:4:
+C:/qnx700/target/qnx7/usr/include/pthread.h:197:12: note: expected 'pthread_t * {aka int *}' but argument is of type 'pthread_t {aka int}'
+ extern int pthread_create(pthread_t *__thr, const pthread_attr_t *__attr, void *(*__start_routine)(void *), void *__arg);
+            ^
+src/Pedestrian.c:122:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:134:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+src/Sensors.c: In function 'keypadMethod':
+src/Sensors.c:75:22: error: 'turningSensors' undeclared (first use in this function)
+  pthread_mutex_init(&turningSensors.mutex,NULL);  // pass NULL as the attr parameter to use the default attributes for the mutex
+                      ^
+src/Sensors.c:75:22: note: each undeclared identifier is reported only once for each function it appears in
+src/Sensors.c:114:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+src/Sensors.c:129:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);   // Read it back
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+make: *** Waiting for unfinished jobs....
+Makefile:55: recipe for target 'build/armv7le-debug/src/Sensors.o' failed
+make: *** [build/armv7le-debug/src/Sensors.o] Error 1
+18:35:51 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/server.d,-MT,build/armv7le-debug/src/server.o -o build/armv7le-debug/src/server.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/server.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/lcd.d,-MT,build/armv7le-debug/src/lcd.o -o build/armv7le-debug/src/lcd.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/lcd.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Sensors.d,-MT,build/armv7le-debug/src/Sensors.o -o build/armv7le-debug/src/Sensors.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Sensors.c
+src/server.c: In function 'server_thread':
+src/server.c:12:10: warning: return makes pointer from integer without a cast [-Wint-conversion]
+   return EXIT_FAILURE;
+          ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_TIMING' not handled in switch [-Wswitch]
+    switch(msg.command)
+    ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_PATTERN' not handled in switch [-Wswitch]
+In file included from src/server.h:4:0,
+                 from src/server.c:1:
+src/server.c: At top level:
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/lcd.h:25,
+                 from src/lcd.c:28:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/lcd.c: In function 'init_LCD':
+src/lcd.c:60:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:108:17: warning: passing argument 1 of 'pthread_create' makes pointer from integer without a cast [-Wint-conversion]
+  pthread_create(key_thread, NULL, keypadMethod, NULL);
+                 ^
+In file included from src/pedestrian.h:13:0,
+                 from src/Pedestrian.c:4:
+C:/qnx700/target/qnx7/usr/include/pthread.h:197:12: note: expected 'pthread_t * {aka int *}' but argument is of type 'pthread_t {aka int}'
+ extern int pthread_create(pthread_t *__thr, const pthread_attr_t *__attr, void *(*__start_routine)(void *), void *__arg);
+            ^
+src/Pedestrian.c:122:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:134:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:108:2: warning: 'key_thread' is used uninitialized in this function [-Wuninitialized]
+  pthread_create(key_thread, NULL, keypadMethod, NULL);
+  ^
+src/Sensors.c: In function 'keypadMethod':
+src/Sensors.c:75:22: error: 'turningSensors' undeclared (first use in this function)
+  pthread_mutex_init(&turningSensors.mutex,NULL);  // pass NULL as the attr parameter to use the default attributes for the mutex
+                      ^
+src/Sensors.c:75:22: note: each undeclared identifier is reported only once for each function it appears in
+src/Sensors.c:114:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+src/Sensors.c:129:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);   // Read it back
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+make: *** [build/armv7le-debug/src/Sensors.o] Error 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Sensors.o' failed
+make: *** Waiting for unfinished jobs....
+18:36:18 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Sensors.d,-MT,build/armv7le-debug/src/Sensors.o -o build/armv7le-debug/src/Sensors.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Sensors.c
+src/Sensors.c: In function 'keypadMethod':
+src/Sensors.c:113:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+src/Sensors.c:128:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);   // Read it back
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+18:37:04 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Sensors.d,-MT,build/armv7le-debug/src/Sensors.o -o build/armv7le-debug/src/Sensors.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Sensors.c
+src/Sensors.c: In function 'keypadMethod':
+src/Sensors.c:113:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+src/Sensors.c:128:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);   // Read it back
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+18:37:23 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Sensors.d,-MT,build/armv7le-debug/src/Sensors.o -o build/armv7le-debug/src/Sensors.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Sensors.c
+src/Sensors.c: In function 'keypadMethod':
+src/Sensors.c:113:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+src/Sensors.c:128:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);   // Read it back
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+18:37:25 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:37:43 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:122:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:134:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+18:37:45 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:38:14 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:38:49 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:40:29 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Sensors.d,-MT,build/armv7le-debug/src/Sensors.o -o build/armv7le-debug/src/Sensors.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Sensors.c
+src/Sensors.c: In function 'keypadMethod':
+src/Sensors.c:112:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+src/Sensors.c:127:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);   // Read it back
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+18:41:14 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:47:01 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:15:14: warning: dereferencing 'void *' pointer
+  switch (data->state) {
+              ^
+src/Pedestrian.c:15:14: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:19:42: warning: dereferencing 'void *' pointer
+   printf("Current State: RED(%d)\n", data->state);
+                                          ^
+src/Pedestrian.c:19:42: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:21:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:21:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:23:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:23:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:23:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:23:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:24:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:25:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:25:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:25:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:25:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:27:11: warning: dereferencing 'void *' pointer
+   if (data->sensor) {
+           ^
+src/Pedestrian.c:27:11: error: request for member 'sensor' in something not a structure or union
+src/Pedestrian.c:28:8: warning: dereferencing 'void *' pointer
+    data->state = GREEN;
+        ^
+src/Pedestrian.c:28:8: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:31:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:31:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:33:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_red, NULL);
+                     ^
+src/Pedestrian.c:33:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:37:44: warning: dereferencing 'void *' pointer
+   printf("Current State: GREEN(%d)\n", data->state);
+                                            ^
+src/Pedestrian.c:37:44: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:39:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:39:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:41:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:41:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:41:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:41:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:42:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:43:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:43:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:43:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:43:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:45:7: warning: dereferencing 'void *' pointer
+   data->state = FLASH_RED;
+       ^
+src/Pedestrian.c:45:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:47:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:47:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:49:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_green, NULL);
+                     ^
+src/Pedestrian.c:49:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:55:51: warning: dereferencing 'void *' pointer
+   printf("Current State: FLASHING_RED(%d)\n", data->state);
+                                                   ^
+src/Pedestrian.c:55:51: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:57:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:57:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:59:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:59:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:59:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:59:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:60:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:61:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:61:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:61:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:61:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:63:7: warning: dereferencing 'void *' pointer
+   data->state = RED;
+       ^
+src/Pedestrian.c:63:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:64:7: warning: dereferencing 'void *' pointer
+   data->sensor = 0;
+       ^
+src/Pedestrian.c:64:7: error: request for member 'sensor' in something not a structure or union
+src/Pedestrian.c:66:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:66:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:68:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_flash, NULL);
+                     ^
+src/Pedestrian.c:68:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:74:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_default, NULL);
+                     ^
+src/Pedestrian.c:74:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:115:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:127:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:160:5: error: too many arguments to function 'pedestrian_sm'
+     pedestrian_sm(&curr_state, &data);
+     ^
+src/Pedestrian.c:11:7: note: declared here
+ void *pedestrian_sm(void *data) {
+       ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:79:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+18:47:35 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:16:14: warning: dereferencing 'void *' pointer
+  switch (data->state) {
+              ^
+src/Pedestrian.c:16:14: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:20:42: warning: dereferencing 'void *' pointer
+   printf("Current State: RED(%d)\n", data->state);
+                                          ^
+src/Pedestrian.c:20:42: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:22:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:22:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:24:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:24:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:24:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:24:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:25:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:26:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:26:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:26:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:26:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:28:11: warning: dereferencing 'void *' pointer
+   if (data->sensor) {
+           ^
+src/Pedestrian.c:28:11: error: request for member 'sensor' in something not a structure or union
+src/Pedestrian.c:29:8: warning: dereferencing 'void *' pointer
+    data->state = GREEN;
+        ^
+src/Pedestrian.c:29:8: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:32:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:32:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:34:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_red, NULL);
+                     ^
+src/Pedestrian.c:34:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:38:44: warning: dereferencing 'void *' pointer
+   printf("Current State: GREEN(%d)\n", data->state);
+                                            ^
+src/Pedestrian.c:38:44: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:40:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:40:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:42:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:42:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:42:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:42:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:43:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:44:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:44:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:44:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:44:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:46:7: warning: dereferencing 'void *' pointer
+   data->state = FLASH_RED;
+       ^
+src/Pedestrian.c:46:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:48:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:48:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:50:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_green, NULL);
+                     ^
+src/Pedestrian.c:50:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:56:51: warning: dereferencing 'void *' pointer
+   printf("Current State: FLASHING_RED(%d)\n", data->state);
+                                                   ^
+src/Pedestrian.c:56:51: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:58:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:58:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:60:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:60:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:60:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:60:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:61:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:62:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:62:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:62:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:62:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:64:7: warning: dereferencing 'void *' pointer
+   data->state = RED;
+       ^
+src/Pedestrian.c:64:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:65:7: warning: dereferencing 'void *' pointer
+   data->sensor = 0;
+       ^
+src/Pedestrian.c:65:7: error: request for member 'sensor' in something not a structure or union
+src/Pedestrian.c:67:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:67:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:69:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_flash, NULL);
+                     ^
+src/Pedestrian.c:69:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:75:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_default, NULL);
+                     ^
+src/Pedestrian.c:75:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:13:12: warning: unused variable 'appdata' [-Wunused-variable]
+  app_data *appdata = (app_data*) data;
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:116:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:128:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:161:5: error: too many arguments to function 'pedestrian_sm'
+     pedestrian_sm(&curr_state, &data);
+     ^
+src/Pedestrian.c:11:7: note: declared here
+ void *pedestrian_sm(void *data) {
+       ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:80:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+18:48:08 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:16:14: warning: dereferencing 'void *' pointer
+  switch (data->state) {
+              ^
+src/Pedestrian.c:16:14: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:25:11: error: 'LCDappdata' undeclared (first use in this function)
+   sprintf(LCDappdata,"RED");
+           ^
+src/Pedestrian.c:25:11: note: each undeclared identifier is reported only once for each function it appears in
+src/Pedestrian.c:28:11: warning: dereferencing 'void *' pointer
+   if (data->sensor) {
+           ^
+src/Pedestrian.c:28:11: error: request for member 'sensor' in something not a structure or union
+src/Pedestrian.c:29:8: warning: dereferencing 'void *' pointer
+    data->state = GREEN;
+        ^
+src/Pedestrian.c:29:8: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:32:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:32:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:34:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_red, NULL);
+                     ^
+src/Pedestrian.c:34:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:38:44: warning: dereferencing 'void *' pointer
+   printf("Current State: GREEN(%d)\n", data->state);
+                                            ^
+src/Pedestrian.c:38:44: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:40:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:40:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:42:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:42:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:42:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:42:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:43:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:44:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:44:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:44:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:44:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:46:7: warning: dereferencing 'void *' pointer
+   data->state = FLASH_RED;
+       ^
+src/Pedestrian.c:46:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:48:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:48:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:50:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_green, NULL);
+                     ^
+src/Pedestrian.c:50:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:56:51: warning: dereferencing 'void *' pointer
+   printf("Current State: FLASHING_RED(%d)\n", data->state);
+                                                   ^
+src/Pedestrian.c:56:51: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:58:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:58:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:60:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:60:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:60:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:60:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:61:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:62:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:62:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:62:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:62:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:64:7: warning: dereferencing 'void *' pointer
+   data->state = RED;
+       ^
+src/Pedestrian.c:64:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:65:7: warning: dereferencing 'void *' pointer
+   data->sensor = 0;
+       ^
+src/Pedestrian.c:65:7: error: request for member 'sensor' in something not a structure or union
+src/Pedestrian.c:67:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:67:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:69:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_flash, NULL);
+                     ^
+src/Pedestrian.c:69:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:75:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_default, NULL);
+                     ^
+src/Pedestrian.c:75:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:116:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:128:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:161:5: error: too many arguments to function 'pedestrian_sm'
+     pedestrian_sm(&curr_state, &data);
+     ^
+src/Pedestrian.c:11:7: note: declared here
+ void *pedestrian_sm(void *data) {
+       ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:80:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+18:48:15 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:16:14: warning: dereferencing 'void *' pointer
+  switch (data->state) {
+              ^
+src/Pedestrian.c:16:14: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:25:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:28:11: warning: dereferencing 'void *' pointer
+   if (data->sensor) {
+           ^
+src/Pedestrian.c:28:11: error: request for member 'sensor' in something not a structure or union
+src/Pedestrian.c:29:8: warning: dereferencing 'void *' pointer
+    data->state = GREEN;
+        ^
+src/Pedestrian.c:29:8: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:32:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:32:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:34:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_red, NULL);
+                     ^
+src/Pedestrian.c:34:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:38:44: warning: dereferencing 'void *' pointer
+   printf("Current State: GREEN(%d)\n", data->state);
+                                            ^
+src/Pedestrian.c:38:44: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:40:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:40:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:42:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:42:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:42:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:42:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:43:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:44:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:44:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:44:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:44:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:46:7: warning: dereferencing 'void *' pointer
+   data->state = FLASH_RED;
+       ^
+src/Pedestrian.c:46:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:48:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:48:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:50:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_green, NULL);
+                     ^
+src/Pedestrian.c:50:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:56:51: warning: dereferencing 'void *' pointer
+   printf("Current State: FLASHING_RED(%d)\n", data->state);
+                                                   ^
+src/Pedestrian.c:56:51: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:58:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:58:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:60:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:60:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:60:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:60:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:61:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:62:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:62:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:62:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:62:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:64:7: warning: dereferencing 'void *' pointer
+   data->state = RED;
+       ^
+src/Pedestrian.c:64:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:65:7: warning: dereferencing 'void *' pointer
+   data->sensor = 0;
+       ^
+src/Pedestrian.c:65:7: error: request for member 'sensor' in something not a structure or union
+src/Pedestrian.c:67:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:67:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:69:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_flash, NULL);
+                     ^
+src/Pedestrian.c:69:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:75:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_default, NULL);
+                     ^
+src/Pedestrian.c:75:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:116:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:128:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:161:5: error: too many arguments to function 'pedestrian_sm'
+     pedestrian_sm(&curr_state, &data);
+     ^
+src/Pedestrian.c:11:7: note: declared here
+ void *pedestrian_sm(void *data) {
+       ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:80:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+18:48:29 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:16:14: warning: dereferencing 'void *' pointer
+  switch (data->state) {
+              ^
+src/Pedestrian.c:16:14: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:25:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:32:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:32:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:34:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_red, NULL);
+                     ^
+src/Pedestrian.c:34:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:38:44: warning: dereferencing 'void *' pointer
+   printf("Current State: GREEN(%d)\n", data->state);
+                                            ^
+src/Pedestrian.c:38:44: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:40:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:40:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:42:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:42:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:42:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:42:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:43:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:44:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:44:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:44:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:44:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:46:7: warning: dereferencing 'void *' pointer
+   data->state = FLASH_RED;
+       ^
+src/Pedestrian.c:46:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:48:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:48:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:50:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_green, NULL);
+                     ^
+src/Pedestrian.c:50:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:56:51: warning: dereferencing 'void *' pointer
+   printf("Current State: FLASHING_RED(%d)\n", data->state);
+                                                   ^
+src/Pedestrian.c:56:51: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:58:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:58:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:60:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:60:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:60:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:60:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:61:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:62:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:62:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:62:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:62:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:64:7: warning: dereferencing 'void *' pointer
+   data->state = RED;
+       ^
+src/Pedestrian.c:64:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:65:7: warning: dereferencing 'void *' pointer
+   data->sensor = 0;
+       ^
+src/Pedestrian.c:65:7: error: request for member 'sensor' in something not a structure or union
+src/Pedestrian.c:67:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:67:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:69:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_flash, NULL);
+                     ^
+src/Pedestrian.c:69:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:75:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_default, NULL);
+                     ^
+src/Pedestrian.c:75:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:116:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:128:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:161:5: error: too many arguments to function 'pedestrian_sm'
+     pedestrian_sm(&curr_state, &data);
+     ^
+src/Pedestrian.c:11:7: note: declared here
+ void *pedestrian_sm(void *data) {
+       ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:80:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+18:48:47 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:25:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:38:44: warning: dereferencing 'void *' pointer
+   printf("Current State: GREEN(%d)\n", data->state);
+                                            ^
+src/Pedestrian.c:38:44: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:40:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:40:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:42:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:42:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:42:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:42:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:43:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:44:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:44:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:44:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:44:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:46:7: warning: dereferencing 'void *' pointer
+   data->state = FLASH_RED;
+       ^
+src/Pedestrian.c:46:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:48:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:48:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:50:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_green, NULL);
+                     ^
+src/Pedestrian.c:50:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:56:51: warning: dereferencing 'void *' pointer
+   printf("Current State: FLASHING_RED(%d)\n", data->state);
+                                                   ^
+src/Pedestrian.c:56:51: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:58:27: warning: dereferencing 'void *' pointer
+   pthread_mutex_lock(&data->mutex);
+                           ^
+src/Pedestrian.c:58:27: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:60:17: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                 ^
+src/Pedestrian.c:60:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:60:27: warning: dereferencing 'void *' pointer
+   SetCursor(data->fd, data->Address,0,0); // set cursor on LCD to first position first line
+                           ^
+src/Pedestrian.c:60:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:61:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:62:17: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                 ^
+src/Pedestrian.c:62:17: error: request for member 'fd' in something not a structure or union
+src/Pedestrian.c:62:27: warning: dereferencing 'void *' pointer
+   I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));  // write new data to I2C
+                           ^
+src/Pedestrian.c:62:27: error: request for member 'Address' in something not a structure or union
+src/Pedestrian.c:64:7: warning: dereferencing 'void *' pointer
+   data->state = RED;
+       ^
+src/Pedestrian.c:64:7: error: request for member 'state' in something not a structure or union
+src/Pedestrian.c:65:7: warning: dereferencing 'void *' pointer
+   data->sensor = 0;
+       ^
+src/Pedestrian.c:65:7: error: request for member 'sensor' in something not a structure or union
+src/Pedestrian.c:67:29: warning: dereferencing 'void *' pointer
+   pthread_mutex_unlock(&data->mutex);
+                             ^
+src/Pedestrian.c:67:29: error: request for member 'mutex' in something not a structure or union
+src/Pedestrian.c:69:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_flash, NULL);
+                     ^
+src/Pedestrian.c:69:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c:75:21: warning: dereferencing 'void *' pointer
+   timer_settime(data->timer_id, 0, &itime_default, NULL);
+                     ^
+src/Pedestrian.c:75:21: error: request for member 'timer_id' in something not a structure or union
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:116:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:128:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:161:5: error: too many arguments to function 'pedestrian_sm'
+     pedestrian_sm(&curr_state, &data);
+     ^
+src/Pedestrian.c:11:7: note: declared here
+ void *pedestrian_sm(void *data) {
+       ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:80:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+18:49:17 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:25:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:43:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:61:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:116:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:128:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:161:5: error: too many arguments to function 'pedestrian_sm'
+     pedestrian_sm(&curr_state, &data);
+     ^
+src/Pedestrian.c:11:7: note: declared here
+ void *pedestrian_sm(void *data) {
+       ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:80:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+18:51:25 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:120:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:132:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+18:53:25 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:101:59: error: 'prog_name' undeclared (first use in this function)
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+                                                           ^
+src/Pedestrian.c:101:59: note: each undeclared identifier is reported only once for each function it appears in
+src/Pedestrian.c:101:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:112:48: error: request for member 'timer_id' in something not a structure or union
+  if (timer_create(CLOCK_REALTIME, &event, &data.timer_id) == -1) {
+                                                ^
+src/Pedestrian.c:113:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:139:20: error: request for member 'timer_id' in something not a structure or union
+  timer_settime(data.timer_id, 0, &itime_default, NULL);
+                    ^
+src/Pedestrian.c:146:20: error: 'curr_state' undeclared (first use in this function)
+     pedestrian_sm(&curr_state, &data);
+                    ^
+src/Pedestrian.c:146:32: warning: passing argument 2 of 'pedestrian_sm' from incompatible pointer type [-Wincompatible-pointer-types]
+     pedestrian_sm(&curr_state, &data);
+                                ^
+src/Pedestrian.c:11:6: note: expected 'app_data * {aka struct <anonymous> *}' but argument is of type 'void **'
+ void pedestrian_sm(enum states *curr_state, app_data *data) {
+      ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:158:8: warning: unused variable 'prog_name' [-Wunused-variable]
+  char *prog_name = "pedestrian.c";
+        ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+18:55:10 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:106:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:117:43: warning: passing argument 3 of 'timer_create' makes pointer from integer without a cast [-Wint-conversion]
+  if (timer_create(CLOCK_REALTIME, &event, appdata->timer_id) == -1) {
+                                           ^
+In file included from C:/qnx700/target/qnx7/usr/include/pthread.h:41:0,
+                 from src/pedestrian.h:13,
+                 from src/Pedestrian.c:4:
+C:/qnx700/target/qnx7/usr/include/time.h:135:12: note: expected 'timer_t * {aka int *}' but argument is of type 'timer_t {aka int}'
+ extern int timer_create(clockid_t __clock_id, struct sigevent *__evp, timer_t *__timerid);
+            ^
+src/Pedestrian.c:118:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:151:20: error: 'curr_state' undeclared (first use in this function)
+     pedestrian_sm(&curr_state, &data);
+                    ^
+src/Pedestrian.c:151:20: note: each undeclared identifier is reported only once for each function it appears in
+src/Pedestrian.c:151:32: warning: passing argument 2 of 'pedestrian_sm' from incompatible pointer type [-Wincompatible-pointer-types]
+     pedestrian_sm(&curr_state, &data);
+                                ^
+src/Pedestrian.c:11:6: note: expected 'app_data * {aka struct <anonymous> *}' but argument is of type 'void **'
+ void pedestrian_sm(enum states *curr_state, app_data *data) {
+      ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+18:55:36 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:108:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:119:43: warning: passing argument 3 of 'timer_create' makes pointer from integer without a cast [-Wint-conversion]
+  if (timer_create(CLOCK_REALTIME, &event, appdata->timer_id) == -1) {
+                                           ^
+In file included from C:/qnx700/target/qnx7/usr/include/pthread.h:41:0,
+                 from src/pedestrian.h:13,
+                 from src/Pedestrian.c:4:
+C:/qnx700/target/qnx7/usr/include/time.h:135:12: note: expected 'timer_t * {aka int *}' but argument is of type 'timer_t {aka int}'
+ extern int timer_create(clockid_t __clock_id, struct sigevent *__evp, timer_t *__timerid);
+            ^
+src/Pedestrian.c:120:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:153:32: warning: passing argument 2 of 'pedestrian_sm' from incompatible pointer type [-Wincompatible-pointer-types]
+     pedestrian_sm(&curr_state, &data);
+                                ^
+src/Pedestrian.c:11:6: note: expected 'app_data * {aka struct <anonymous> *}' but argument is of type 'void **'
+ void pedestrian_sm(enum states *curr_state, app_data *data) {
+      ^
+src/Pedestrian.c: In function 'main':
+src/Pedestrian.c:165:15: error: 'curr_state' undeclared (first use in this function)
+  data.state = curr_state;
+               ^
+src/Pedestrian.c:165:15: note: each undeclared identifier is reported only once for each function it appears in
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+18:55:49 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:108:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:119:43: warning: passing argument 3 of 'timer_create' makes pointer from integer without a cast [-Wint-conversion]
+  if (timer_create(CLOCK_REALTIME, &event, appdata->timer_id) == -1) {
+                                           ^
+In file included from C:/qnx700/target/qnx7/usr/include/pthread.h:41:0,
+                 from src/pedestrian.h:13,
+                 from src/Pedestrian.c:4:
+C:/qnx700/target/qnx7/usr/include/time.h:135:12: note: expected 'timer_t * {aka int *}' but argument is of type 'timer_t {aka int}'
+ extern int timer_create(clockid_t __clock_id, struct sigevent *__evp, timer_t *__timerid);
+            ^
+src/Pedestrian.c:120:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:153:32: warning: passing argument 2 of 'pedestrian_sm' from incompatible pointer type [-Wincompatible-pointer-types]
+     pedestrian_sm(&curr_state, &data);
+                                ^
+src/Pedestrian.c:11:6: note: expected 'app_data * {aka struct <anonymous> *}' but argument is of type 'void **'
+ void pedestrian_sm(enum states *curr_state, app_data *data) {
+      ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+18:55:55 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:56:14 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:57:02 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:108:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:119:43: warning: passing argument 3 of 'timer_create' makes pointer from integer without a cast [-Wint-conversion]
+  if (timer_create(CLOCK_REALTIME, &event, appdata->timer_id) == -1) {
+                                           ^
+In file included from C:/qnx700/target/qnx7/usr/include/pthread.h:41:0,
+                 from src/pedestrian.h:13,
+                 from src/Pedestrian.c:4:
+C:/qnx700/target/qnx7/usr/include/time.h:135:12: note: expected 'timer_t * {aka int *}' but argument is of type 'timer_t {aka int}'
+ extern int timer_create(clockid_t __clock_id, struct sigevent *__evp, timer_t *__timerid);
+            ^
+src/Pedestrian.c:120:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:153:32: warning: passing argument 2 of 'pedestrian_sm' from incompatible pointer type [-Wincompatible-pointer-types]
+     pedestrian_sm(&curr_state, &data);
+                                ^
+src/Pedestrian.c:11:6: note: expected 'app_data * {aka struct <anonymous> *}' but argument is of type 'void **'
+ void pedestrian_sm(enum states *curr_state, app_data *data) {
+      ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+18:57:26 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:108:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:119:43: warning: passing argument 3 of 'timer_create' makes pointer from integer without a cast [-Wint-conversion]
+  if (timer_create(CLOCK_REALTIME, &event, appdata->timer_id) == -1) {
+                                           ^
+In file included from C:/qnx700/target/qnx7/usr/include/pthread.h:41:0,
+                 from src/pedestrian.h:13,
+                 from src/Pedestrian.c:4:
+C:/qnx700/target/qnx7/usr/include/time.h:135:12: note: expected 'timer_t * {aka int *}' but argument is of type 'timer_t {aka int}'
+ extern int timer_create(clockid_t __clock_id, struct sigevent *__evp, timer_t *__timerid);
+            ^
+src/Pedestrian.c:120:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+18:57:28 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:57:41 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:57:57 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:58:04 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:58:13 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:59:58 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+19:00:21 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:108:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:120:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+19:00:27 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+19:00:47 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+19:01:02 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:26:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:108:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:120:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+19:01:05 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+19:02:05 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+19:03:06 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+19:04:05 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Sensors.d,-MT,build/armv7le-debug/src/Sensors.o -o build/armv7le-debug/src/Sensors.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Sensors.c
+src/Sensors.c: In function 'keypadMethod':
+src/Sensors.c:112:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+src/Sensors.c:127:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);   // Read it back
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+19:05:58 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/server.d,-MT,build/armv7le-debug/src/server.o -o build/armv7le-debug/src/server.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/server.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/lcd.d,-MT,build/armv7le-debug/src/lcd.o -o build/armv7le-debug/src/lcd.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/lcd.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Sensors.d,-MT,build/armv7le-debug/src/Sensors.o -o build/armv7le-debug/src/Sensors.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Sensors.c
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:28:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:48:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:68:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:110:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:122:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/server.c: In function 'server_thread':
+src/server.c:12:10: warning: return makes pointer from integer without a cast [-Wint-conversion]
+   return EXIT_FAILURE;
+          ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_TIMING' not handled in switch [-Wswitch]
+    switch(msg.command)
+    ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_PATTERN' not handled in switch [-Wswitch]
+In file included from src/server.h:4:0,
+                 from src/server.c:1:
+src/server.c: At top level:
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/lcd.h:25,
+                 from src/lcd.c:28:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/lcd.c: In function 'init_LCD':
+src/lcd.c:60:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/Sensors.c: In function 'keypadMethod':
+src/Sensors.c:112:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+src/Sensors.c:127:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);   // Read it back
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Sensors.h:45,
+                 from src/Sensors.c:1:
+src/Sensors.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+build/armv7le-debug/src/Sensors.o: In function `DecodeKeyValue':
+C:\Scratch\s3542623\real-time-systems-project\Pedestrian/src/Sensors.c:44: undefined reference to `changeState'
+cc: C:/qnx700/host/win64/x86_64/usr/bin/arm-unknown-nto-qnx7.0.0eabi-ld caught signal 1
+make: *** [build/armv7le-debug/Pedestrian] Error 1
+Makefile:60: recipe for target 'build/armv7le-debug/Pedestrian' failed
+19:06:54 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/server.d,-MT,build/armv7le-debug/src/server.o -o build/armv7le-debug/src/server.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/server.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/lcd.d,-MT,build/armv7le-debug/src/lcd.o -o build/armv7le-debug/src/lcd.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/lcd.c
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Sensors.d,-MT,build/armv7le-debug/src/Sensors.o -o build/armv7le-debug/src/Sensors.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Sensors.c
+src/server.c: In function 'server_thread':
+src/server.c:12:10: warning: return makes pointer from integer without a cast [-Wint-conversion]
+   return EXIT_FAILURE;
+          ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_TIMING' not handled in switch [-Wswitch]
+    switch(msg.command)
+    ^
+src/server.c:73:4: warning: enumeration value 'COMMAND_CHANGE_LIGHT_PATTERN' not handled in switch [-Wswitch]
+In file included from src/server.h:4:0,
+                 from src/server.c:1:
+src/server.c: At top level:
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:32:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:52:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:72:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:114:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:126:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/lcd.h:25,
+                 from src/lcd.c:28:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+src/lcd.c: In function 'init_LCD':
+src/lcd.c:60:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/Sensors.c: In function 'keypadMethod':
+src/Sensors.c:112:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+src/Sensors.c:127:9: warning: passing argument 1 of 'in32s' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   in32s(&val, 1, control_module + P9_12_pinConfig);   // Read it back
+         ^
+In file included from C:/qnx700/target/qnx7/usr/include/hw/inout.h:37:0,
+                 from src/Sensors.h:37,
+                 from src/Sensors.c:1:
+C:/qnx700/target/qnx7/usr/include/arm/inout.h:106:1: note: expected 'void *' but argument is of type 'volatile uint32_t * {aka volatile unsigned int *}'
+ in32s(void *__buff, unsigned __len, _Uintptrt __addr)
+ ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Sensors.h:45,
+                 from src/Sensors.c:1:
+src/Sensors.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+19:06:57 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+19:08:12 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'changeState':
+src/Pedestrian.c:18:16: error: 'curr_state' undeclared (first use in this function)
+  data.state = *curr_state;
+                ^
+src/Pedestrian.c:18:16: note: each undeclared identifier is reported only once for each function it appears in
+src/Pedestrian.c:21:10: error: 'LCDdata' undeclared (first use in this function)
+  sprintf(LCDdata,"CLICKED");
+          ^
+src/Pedestrian.c:28:28: error: invalid type argument of '->' (have 'app_data {aka struct <anonymous>}')
+  pthread_mutex_unlock(&data->mutex);
+                            ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:86:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:128:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:140:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+19:08:34 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'changeState':
+src/Pedestrian.c:21:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  sprintf(LCDdata,"CLICKED");
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:25:4: error: 'curr_state' undeclared (first use in this function)
+   *curr_state = GREEN;
+    ^
+src/Pedestrian.c:25:4: note: each undeclared identifier is reported only once for each function it appears in
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:46:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:66:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:86:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:128:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:140:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+cc: C:/qnx700/host/win64/x86_64/usr/lib/gcc/arm-unknown-nto-qnx7.0.0eabi/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/armv7le-debug/src/Pedestrian.o' failed
+make: *** [build/armv7le-debug/src/Pedestrian.o] Error 1
+19:08:43 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'changeState':
+src/Pedestrian.c:20:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  sprintf(LCDdata,"CLICKED");
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:40:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:60:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:80:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:122:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:134:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+19:08:47 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+19:09:34 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+qcc -Vgcc_ntoarmv7le -c -Wp,-MMD,build/armv7le-debug/src/Pedestrian.d,-MT,build/armv7le-debug/src/Pedestrian.o -o build/armv7le-debug/src/Pedestrian.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/Pedestrian.c
+src/Pedestrian.c: In function 'changeState':
+src/Pedestrian.c:20:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  sprintf(LCDdata,"CLICKED");
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'pedestrian_sm':
+src/Pedestrian.c:40:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:60:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"GREEN");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:64:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"            ");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c:84:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(LCDdata,"FLASH RED");
+           ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:184:12: note: expected 'char *' but argument is of type 'uint8_t * {aka unsigned char *}'
+ extern int sprintf(char *__s, const char *__format, ...);
+            ^
+src/Pedestrian.c: In function 'kms':
+src/Pedestrian.c:126:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't ConnectAttach to self!\n", prog_name);
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+src/Pedestrian.c:138:10: warning: passing argument 1 of 'printf' from incompatible pointer type [-Wincompatible-pointer-types]
+   printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
+          ^
+In file included from src/Pedestrian.c:1:0:
+C:/qnx700/target/qnx7/usr/include/stdio.h:176:12: note: expected 'const char *' but argument is of type 'FILE * {aka struct _Filet *}'
+ extern int printf(const char *__format, ...);
+            ^
+In file included from src/server.h:4:0,
+                 from src/pedestrian.h:21,
+                 from src/Pedestrian.c:4:
+src/Pedestrian.c: At top level:
+src/network.h:24:14: warning: 'CLIENT_NAMES' defined but not used [-Wunused-variable]
+ static char *CLIENT_NAMES[NODE_COUNT] = { "Controller Node", "Freeway Node", "Malvern Intersection Node", "Train Node",
+              ^
+src/network.h:35:14: warning: 'COMMAND_STRS' defined but not used [-Wunused-variable]
+ static char *COMMAND_STRS[COMMAND_COUNT] = {"Get State", "Set Sensor"};
+              ^
+src/network.h:43:14: warning: 'CONN_STATE_STRS' defined but not used [-Wunused-variable]
+ static char *CONN_STATE_STRS[CONN_STATE_COUNT] = {"Disconnected", "Connected", "Timeout"};
+              ^
+qcc -Vgcc_ntoarmv7le -o build/armv7le-debug/Pedestrian   build/armv7le-debug/src/server.o build/armv7le-debug/src/Pedestrian.o build/armv7le-debug/src/lcd.o build/armv7le-debug/src/Sensors.o  
+19:09:39 **** Incremental Build of configuration armv7le-debug for project Pedestrian ****
+make -j4 all 
+make: Nothing to be done for 'all'.

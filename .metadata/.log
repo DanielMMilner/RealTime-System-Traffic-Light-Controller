@@ -1473,3 +1473,453 @@ java.io.FileNotFoundException: C:\Scratch\s3542623\real-time-systems-project\.me
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY com.qnx.tools.ide.qde.debug.ui 4 -1 2018-10-16 18:37:09.235
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.debug.core.DebugException: Error in final launch sequence
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:296)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Failed to release application on target
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	... 7 more
+Caused by: org.eclipse.core.runtime.CoreException: Error starting remote application '/tmp/Pedestrian': Socket closed
+	at com.qnx.tools.ide.qde.debug.core.QDELaunchUtils.releaseApplicationOnTarget(QDELaunchUtils.java:1198)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.releaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:525)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.stepReleaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:505)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.cdt.dsf.concurrent.ReflectionSequence$ReflectionStep.execute(ReflectionSequence.java:155)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 1 com.qnx.tools.ide.qde.debug.ui 4 5012 2018-10-16 18:37:09.235
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: Failed to release application on target
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Error starting remote application '/tmp/Pedestrian': Socket closed
+	at com.qnx.tools.ide.qde.debug.core.QDELaunchUtils.releaseApplicationOnTarget(QDELaunchUtils.java:1198)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.releaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:525)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.stepReleaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:505)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.cdt.dsf.concurrent.ReflectionSequence$ReflectionStep.execute(ReflectionSequence.java:155)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 2 com.qnx.tools.ide.qde.debug.core 4 -1 2018-10-16 18:37:09.235
+!MESSAGE Failed to release application on target
+!STACK 1
+org.eclipse.core.runtime.CoreException: Error starting remote application '/tmp/Pedestrian': Socket closed
+	at com.qnx.tools.ide.qde.debug.core.QDELaunchUtils.releaseApplicationOnTarget(QDELaunchUtils.java:1198)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.releaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:525)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.stepReleaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:505)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.cdt.dsf.concurrent.ReflectionSequence$ReflectionStep.execute(ReflectionSequence.java:155)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 3 com.qnx.tools.ide.qde.debug.core 4 0 2018-10-16 18:37:09.235
+!MESSAGE Error starting remote application '/tmp/Pedestrian': Socket closed
+!SUBENTRY 1 com.qnx.tools.ide.qde.debug.ui 4 5012 2018-10-16 18:37:09.235
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: Failed to release application on target
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Error starting remote application '/tmp/Pedestrian': Socket closed
+	at com.qnx.tools.ide.qde.debug.core.QDELaunchUtils.releaseApplicationOnTarget(QDELaunchUtils.java:1198)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.releaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:525)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.stepReleaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:505)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.cdt.dsf.concurrent.ReflectionSequence$ReflectionStep.execute(ReflectionSequence.java:155)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 2 com.qnx.tools.ide.qde.debug.core 4 -1 2018-10-16 18:37:09.235
+!MESSAGE Failed to release application on target
+!STACK 1
+org.eclipse.core.runtime.CoreException: Error starting remote application '/tmp/Pedestrian': Socket closed
+	at com.qnx.tools.ide.qde.debug.core.QDELaunchUtils.releaseApplicationOnTarget(QDELaunchUtils.java:1198)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.releaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:525)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.stepReleaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:505)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.cdt.dsf.concurrent.ReflectionSequence$ReflectionStep.execute(ReflectionSequence.java:155)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 3 com.qnx.tools.ide.qde.debug.core 4 0 2018-10-16 18:37:09.235
+!MESSAGE Error starting remote application '/tmp/Pedestrian': Socket closed
+
+!ENTRY com.qnx.tools.ide.qde.debug.ui 4 -1 2018-10-16 18:38:34.602
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.debug.core.DebugException: Error in final launch sequence
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:296)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Failed to release application on target
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	... 7 more
+Caused by: org.eclipse.core.runtime.CoreException: Error starting remote application '/tmp/Pedestrian': Stream closed.
+	at com.qnx.tools.ide.qde.debug.core.QDELaunchUtils.releaseApplicationOnTarget(QDELaunchUtils.java:1198)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.releaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:525)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.stepReleaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:505)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.cdt.dsf.concurrent.ReflectionSequence$ReflectionStep.execute(ReflectionSequence.java:155)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 1 com.qnx.tools.ide.qde.debug.ui 4 5012 2018-10-16 18:38:34.602
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: Failed to release application on target
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Error starting remote application '/tmp/Pedestrian': Stream closed.
+	at com.qnx.tools.ide.qde.debug.core.QDELaunchUtils.releaseApplicationOnTarget(QDELaunchUtils.java:1198)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.releaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:525)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.stepReleaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:505)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.cdt.dsf.concurrent.ReflectionSequence$ReflectionStep.execute(ReflectionSequence.java:155)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 2 com.qnx.tools.ide.qde.debug.core 4 -1 2018-10-16 18:38:34.602
+!MESSAGE Failed to release application on target
+!STACK 1
+org.eclipse.core.runtime.CoreException: Error starting remote application '/tmp/Pedestrian': Stream closed.
+	at com.qnx.tools.ide.qde.debug.core.QDELaunchUtils.releaseApplicationOnTarget(QDELaunchUtils.java:1198)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.releaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:525)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.stepReleaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:505)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.cdt.dsf.concurrent.ReflectionSequence$ReflectionStep.execute(ReflectionSequence.java:155)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 3 com.qnx.tools.ide.qde.debug.core 4 0 2018-10-16 18:38:34.602
+!MESSAGE Error starting remote application '/tmp/Pedestrian': Stream closed.
+!SUBENTRY 1 com.qnx.tools.ide.qde.debug.ui 4 5012 2018-10-16 18:38:34.602
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: Failed to release application on target
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Error starting remote application '/tmp/Pedestrian': Stream closed.
+	at com.qnx.tools.ide.qde.debug.core.QDELaunchUtils.releaseApplicationOnTarget(QDELaunchUtils.java:1198)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.releaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:525)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.stepReleaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:505)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.cdt.dsf.concurrent.ReflectionSequence$ReflectionStep.execute(ReflectionSequence.java:155)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 2 com.qnx.tools.ide.qde.debug.core 4 -1 2018-10-16 18:38:34.602
+!MESSAGE Failed to release application on target
+!STACK 1
+org.eclipse.core.runtime.CoreException: Error starting remote application '/tmp/Pedestrian': Stream closed.
+	at com.qnx.tools.ide.qde.debug.core.QDELaunchUtils.releaseApplicationOnTarget(QDELaunchUtils.java:1198)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.releaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:525)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDEDSFFinalLaunchSequence.stepReleaseApplicationOnTarget(QDEDSFFinalLaunchSequence.java:505)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.cdt.dsf.concurrent.ReflectionSequence$ReflectionStep.execute(ReflectionSequence.java:155)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 3 com.qnx.tools.ide.qde.debug.core 4 0 2018-10-16 18:38:34.602
+!MESSAGE Error starting remote application '/tmp/Pedestrian': Stream closed.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2018-10-16 18:38:36.505
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.mi.service.MIRunControl$9@419b7011): Status ERROR: org.eclipse.cdt.dsf code=10001 Sequence "" failed while rolling back. null children=[Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down null Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down null]' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2018-10-16 18:38:36.505
+!MESSAGE Connection is shut down
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2018-10-16 18:38:36.505
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2018-10-16 18:58:07.110
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.mi.service.MIRunControl$9@5912e077): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Context cannot be suspended. null' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2018-10-16 18:58:07.110
+!MESSAGE Context cannot be suspended.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2018-10-16 18:58:07.125
+!MESSAGE Composite status
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb.ui 4 0 2018-10-16 18:58:07.125
+!MESSAGE Task java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask@69a67290 rejected from org.eclipse.cdt.dsf.concurrent.DefaultDsfExecutor@6e0e0fc2[Shutting down, pool size = 1, active threads = 0, queued tasks = 2, completed tasks = 826]
+!SUBENTRY 1 org.eclipse.cdt.dsf 4 10005 2018-10-16 18:58:07.125
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.gdb.internal.ui.actions.GdbDisconnectCommand$1@9b413c0): Status ERROR: org.eclipse.cdt.dsf.gdb.ui code=0 Task java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask@69a67290 rejected from org.eclipse.cdt.dsf.concurrent.DefaultDsfExecutor@6e0e0fc2[Shutting down, pool size = 1, active threads = 0, queued tasks = 2, completed tasks = 826] null' resulted in a rejected execution exception.
+
+!ENTRY com.qnx.tools.ide.qde.debug.ui 4 -1 2018-10-16 18:58:07.141
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.debug.core.DebugException: Error in final launch sequence
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:296)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Connection is shut down
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	... 7 more
+!SUBENTRY 1 com.qnx.tools.ide.qde.debug.ui 4 5012 2018-10-16 18:58:07.141
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: Connection is shut down
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 2 org.eclipse.cdt.dsf.gdb 4 10001 2018-10-16 18:58:07.141
+!MESSAGE Connection is shut down
+!SUBENTRY 1 com.qnx.tools.ide.qde.debug.ui 4 5012 2018-10-16 18:58:07.141
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: Connection is shut down
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 2 org.eclipse.cdt.dsf.gdb 4 10001 2018-10-16 18:58:07.141
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10001 2018-10-16 18:58:14.832
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10001 2018-10-16 18:58:14.832
+!MESSAGE Connection is shut down
+
+!ENTRY com.qnx.tools.ide.qde.debug.ui 4 -1 2018-10-16 18:58:14.863
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.debug.core.DebugException: Error in final launch sequence
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:296)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Invalid context
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	... 7 more
+!SUBENTRY 1 com.qnx.tools.ide.qde.debug.ui 4 5012 2018-10-16 18:58:14.863
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: Invalid context
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 2 org.eclipse.cdt.dsf.gdb 4 10005 2018-10-16 18:58:14.863
+!MESSAGE Invalid context
+!SUBENTRY 1 com.qnx.tools.ide.qde.debug.ui 4 5012 2018-10-16 18:58:14.863
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: Invalid context
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.executeAndWait(QDELaunchConfigurationDelegate.java:290)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launchDebugSession(QDELaunchConfigurationDelegate.java:273)
+	at com.qnx.tools.ide.qde.internal.ui.launch.dsf.QDELaunchConfigurationDelegate.launch(QDELaunchConfigurationDelegate.java:128)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 2 org.eclipse.cdt.dsf.gdb 4 10005 2018-10-16 18:58:14.863
+!MESSAGE Invalid context
+
+!ENTRY org.eclipse.debug.core 4 5010 2018-10-16 19:02:41.274
+!MESSAGE Terminate failed
+
+!ENTRY org.eclipse.cdt.dsf.gdb.ui 4 5012 2018-10-16 19:02:41.383
+!MESSAGE Terminate failed
+!SUBENTRY 1 org.eclipse.debug.core 4 5010 2018-10-16 19:02:41.383
+!MESSAGE Terminate failed
+
+!ENTRY com.qnx.tools.ide.qde.debug.core 4 0 2018-10-16 19:03:00.471
+!MESSAGE Launch cleaning error
+!SUBENTRY 1 com.qnx.tools.ide.qde.debug.core 4 0 2018-10-16 19:03:00.471
+!MESSAGE Attempt to delete remote file failed:
+!STACK 0
+com.qnx.tools.ide.utils.target.RemoteIOException: Remove No such file or directory
+	at com.qnx.tools.ide.utils.target.TargetServiceFile.rm(TargetServiceFile.java:329)
+	at com.qnx.tools.ide.utils.target.TargetServiceFile.rm(TargetServiceFile.java:317)
+	at com.qnx.tools.ide.qde.debug.internal.core.dsf.QDELaunch.cleanRemoteFiles(QDELaunch.java:712)
+	at com.qnx.tools.ide.qde.debug.internal.core.dsf.QDELaunch.cleanup(QDELaunch.java:171)
+	at com.qnx.tools.ide.qde.debug.internal.core.dsf.QDELaunch.handleDebugEvents(QDELaunch.java:426)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1185)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:441)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

@@ -8,6 +8,20 @@ struct itimerspec itime_red;
 struct itimerspec itime_green;
 struct itimerspec itime_flash;
 
+app_data data;
+
+void changeState() {
+	data.sensor = 1;
+
+	uint8_t	LCDdata[10] = {};
+
+	pthread_mutex_lock(&data.mutex);
+	SetCursor(data.fd, data.Address,1,0); // set cursor on LCD to first position first line
+	sprintf(LCDdata,"CLICKED");
+	I2cWrite_(data.fd, data.Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+	pthread_mutex_unlock(&data.mutex);
+}
+
 void pedestrian_sm(enum states *curr_state, app_data *data) {
 
 	uint8_t	LCDdata[10] = {};
@@ -46,12 +60,15 @@ void pedestrian_sm(enum states *curr_state, app_data *data) {
 		sprintf(LCDdata,"GREEN");
 		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
 
+		SetCursor(data->fd, data->Address,1,0); // set cursor on LCD to first position first line
+		sprintf(LCDdata,"            ");
+		I2cWrite_(data->fd, data->Address, DATA_SEND, &LCDdata[0], sizeof(LCDdata));		// write new data to I2C
+
 		*curr_state = FLASH_RED;
 
 		pthread_mutex_unlock(&data->mutex);
 
 		timer_settime(data->timer_id, 0, &itime_green, NULL);
-		break;
 
 		break;
 
@@ -77,32 +94,22 @@ void pedestrian_sm(enum states *curr_state, app_data *data) {
 		break;
 
 	case ERR:
+		printf("Current State: ERR\n");
+
+		timer_settime(data->timer_id, 0, &itime_default, NULL);
 
 		break;
 	}
 
 }
 
-int main(void) {
+void *kms(void *data) {
 
-	printf("Boom Gate Node Running.\n");
-
-	enum states curr_state = RED;
+	app_data *appdata = (app_data*) data;
 
 	char *prog_name = "pedestrian.c";
 
-	app_data data;
-
-	data.state = curr_state;
-	data.sensor = 0;
-
-	pthread_mutex_init(&data.mutex, NULL);
-
-	init_LCD(&data);
-
-	pthread_t s_thread;
-
-	pthread_create(&s_thread, NULL, server_thread, &data);
+	enum states curr_state = RED;
 
 	struct sigevent event;
 	my_message_t msg;
@@ -127,7 +134,7 @@ int main(void) {
 
 	event.sigev_code = MY_PULSE_CODE;
 
-	if (timer_create(CLOCK_REALTIME, &event, &data.timer_id) == -1) {
+	if (timer_create(CLOCK_REALTIME, &event, &appdata->timer_id) == -1) {
 		printf(stderr, "%s: couldn't create a timer, errno %d\n", prog_name,
 		errno);
 		perror(NULL);
@@ -154,17 +161,39 @@ int main(void) {
 	itime_flash.it_interval.tv_sec = 0;
 	itime_flash.it_interval.tv_nsec = 0;
 
-	timer_settime(data.timer_id, 0, &itime_default, NULL);
+	timer_settime(appdata->timer_id, 0, &itime_default, NULL);
 
 	while (1) {
 		rcvid = MsgReceive(chid, &msg, sizeof(msg), NULL);
 
 		if (rcvid == 0) {
 			if (msg.pulse.code == MY_PULSE_CODE) {
-				pedestrian_sm(&curr_state, &data);
+				pedestrian_sm(&curr_state, appdata);
 			}
 		}
 	}
+}
+
+int main(void) {
+
+	printf("Boom Gate Node Running.\n");
+
+	data.state = RED;
+	data.sensor = 0;
+
+	pthread_mutex_init(&data.mutex, NULL);
+
+	init_LCD(&data);
+
+	pthread_t s_thread, sm_thread;
+
+	pthread_create(&s_thread, NULL, server_thread, &data);
+	pthread_create(&sm_thread, NULL, kms, &data);
+
+	keypadMethod();
+
+	pthread_join(sm_thread, NULL);
+	pthread_join(s_thread, NULL);
 
 	return EXIT_SUCCESS;
 }
